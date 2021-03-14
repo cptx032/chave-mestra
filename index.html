@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!--Estilos e animações-->
+      <!--Materialize-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/materialize.css">
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+      <!--Materialize-->
+      <!--Google-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Google-->
+      <!--jquery-->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+      <!--jquery-->
+      <!--Scripts personalizados-->
+        <script src="js/scripts.js"></script>
+      <!--Scripts personalizados-->
+      <meta charset="utf-8" />
+    <!--Estilos e animações-->
+  </head>
+  <body>
+    <div class="card loadPage fundo"> <!-- Tela inicial (Personalização do usuário e cadastro das palavras) -->
+      <div class="btn-floating detalhes white"><span>?</span></div>
+      <div class="btn yellow darken-2 texto_1">Bem-vindo ao jogo Chave-mestra <i class="material-icons large">videogame_asset</i></div>
+      <div class="btn grey darken-2 texto_5">Adicione palavras ao jogo <i class="material-icons large">edit</i></div>
+      <div class="cadPalavras modal"> <!-- Cadastra palavras das fases-->
+        <div class="container">
+          <div class="row rowCadPalavras">
+            <div class="modal-footer">
+              <a href="#!" class="maisPalavras waves-effect waves-green btn-flat ">Mais palavras...<i class="material-icons right">maps_ugc</i></a>
+              <a href="#!" class="salvarPalavras waves-effect waves-green btn-flat yellow">Salvar<i class="material-icons right">save_alt</i></a>
+            </div>  
+            <div class="input-field col s12 l6">
+              <i class="material-icons prefix">menu_book</i>
+              <input id="icon_prefix" class="palavraF palFase1" type="text" data-ls-module="charCounter" maxlength="12" >
+              <label for="icon_prefix">Palavra da 1a fase</label>
+            </div>
+            <div class="input-field col s12 l6">
+              <i class="material-icons prefix">menu_book</i>
+              <input id="icon_prefix" class="palavraF palFase2" type="text" data-ls-module="charCounter" maxlength="12" >
+              <label for="icon_prefix">Palavra da 2a fase</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn yellow darken-2 texto_2 pulse">Click e escolha seu nome e avatar</div>
+      <div class="personalize modal"> <!-- Nome e foto (avatar) do jogador -->
+        <div class="container">
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="col s12 l1">
+                  <div class="btn-floating btn-large waves-effect waves-light white j1"><img src="perfis/1.png" alt="" class="circle"></div>
+                </div>
+                <div class="input-field col s12 l10 offset-l1">
+                  <input id="icon_prefix" type="text" class="nomeJogador">
+                  <label for="icon_prefix">Nome do jogador</label>
+                </div>
+                <div class="file-field input-field col s12">
+                  <div class="btn">
+                    <span>File</span>
+                    <input type="file" multiple>
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Selecione sua foto">
+                  </div>
+                </div>
+                <ul class="collection">
+                  <div class="col l2 s4 hoverable">
+                    <li class="collection-item avatar">
+                      <img src="perfis/1.png" alt="" class="circle">
+                    </li>
+                  </div>
+                  <div class="col l2 s4 hoverable">
+                    <li class="collection-item avatar">
+                      <img src="perfis/2.png" alt="" class="circle">
+                    </li>
+                  </div>
+                  <div class="col l2 s4 hoverable">
+                    <li class="collection-item avatar">
+                      <img src="perfis/3.png" alt="" class="circle">
+                    </li>
+                  </div>
+                  <div class="col l2 s4 hoverable">
+                    <li class="collection-item avatar">
+                      <img src="perfis/4.png" alt="" class="circle">
+                    </li>
+                  </div>
+                  <div class="col l2 s4 hoverable">
+                    <li class="collection-item avatar">
+                      <img src="perfis/5.png" alt="" class="circle">
+                    </li>
+                  </div>
+                  <div class="col l2 s4 hoverable">
+                    <li class="collection-item avatar">
+                      <img src="perfis/6.png" alt="" class="circle">
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="fechaPersonalize waves-effect waves-green btn-flat">Fechar</a>
+                <a href="#!" class="salvaDados waves-effect waves-green btn-flat yellow">Salvar</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="btn yellow darken-2 texto_3">Classificação: E (Para todos os públicos)</div>
+      <div class="card txtStartJogo">Carregar informações e visualizar jogo.</div>
+      <div class="texto_4 btn black darken-2 hoverable">Novo jogo<i class="material-icons medium">play_arrow</i></div>
+      <div class="card creditos">Ícones baixados de: https://icons8.com.br/</div>
+    </div>
+    <div class="container runGame">   <!-- Tela do Jogo -->
+      <div class="row"> <!--Estrelas--> <!--Clones--> <!--Número da Fase-->
+        <div id="jogoD" class="col s10">
+          <div id="divPainelUser" class="col s12">
+            <div class="col s5 starPanel"> <!--Estrelas-->
+              <i class="material-icons star starB">star_border</i>
+              <i class="material-icons star starB">star_border</i>
+              <i class="material-icons star starB">star_border</i>
+              <i class="material-icons star starB">star_border</i>
+              <i class="material-icons star starB">star_border</i>
+            </div>
+            <div class="col s3 clonePanel"> <!--Clones-->              
+            </div>
+            <div class="col s2 lifePanel"> <!--Estrelas-->
+              <i class="material-icons life1">favorite</i>
+              <i class="material-icons life2">favorite</i>
+              <i class="material-icons life3">favorite</i>
+            </div>
+            <div class="col s2"> <!--Fase-->
+              <a id="nFase" class="btn-floating btn-medium green darken-2 waves-effect waves-light right"></a>
+            </div>
+          </div>
+          <div id="divAnimacao" class="col s12"> <!--Jogador e letras caindo-->
+            <div class="vidro"><!-- Botões de início e próxima fase -->
+              <div class="startGame"><!-- Botão de início de jogo -->
+                <div class="btn black">Iniciar<i class="material-icons large right">videogame_asset</i></div>
+              </div>
+              <div class="proxFase"><!-- Botão Próxima fase -->
+                <div class="btn yellow darken-2 fim1">Parabéns! Aguarde, estamos carregando a nova fase para você.<i class="material-icons right chaveIco1">alarm</i></div>
+                <div class="progress"><div class="indeterminate"></div></div>
+                <div class="btn purple fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">vpn_key</i></div>
+              </div>
+              <div class="gameOver"><!-- Botão Próxima fase -->
+                <div class="fim3">
+                  <span class="g">G</span>
+                  <span class="a">A</span>
+                  <span class="m">M</span>
+                  <span class="e">E</span>
+                  <span class="oo">&nbsp;</span>
+                  <span class="o">O</span>
+                  <span class="v">V</span>
+                  <span class="e">E</span>
+                  <span class="r">R</span>
+                  <i class="material-icons large right">videogame_asset_off</i></div>
+                <div class="fim4">Tente novamente <div class="btn-floating large black pulse"><i class="material-icons large right">play_circle</i></div></div>
+              </div>
+              <div class="fimJogo"><!-- Botão Próxima fase -->
+                <div class="row">
+                </div>
+              </div>
+            </div>
+            <!--Jogadores-->
+              <div id="j1" class="btn-floating btn-large waves-effect waves-light white j1"><img id="circle1" src="perfis/1.png" alt="" class="circle"></div>
+              <div id="j2" class="btn-floating btn-large waves-effect waves-light white j2"><img id="circle2" src="perfis/1.png" alt="" class="circle"></div>
+              <div id="j3" class="btn-floating btn-large waves-effect waves-light white j3"><img id="circle3" src="perfis/1.png" alt="" class="circle"></div>
+            <!--Jogadores-->
+          </div>
+        </div>
+        <div class="col s2" style="position: relative;"> <!--Acomoda a palavra chave-->
+          <div id="palavraChave" class="col s12">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container"><div class="row"><div id="final" class="col s12 card"> <!-- Detalhes da fase: Nome do jogador, pontos e estrelas coletadas-->
+      <div class="col s4"><span class="telaInfo">Nome Jogador</span></div>
+      <div class="col s4"><span class="telaInfo">Pontos</span></div>
+      <div class="col s4"><span class="telaInfo">Total estrelas</span></div>
+      <div class="col s4"><span class="detInfo" id="nomeJogador"></span></div>
+      <div class="col s4"><span class="detInfo" id="pontos"></span></div>
+      <div class="col s4"><span class="detInfo" id="totalEstrelas"></span></div>
+    </div>
+    <script>
+      //Variáveis do jogo
+        var palavraChave = ["A","BOLA","UVA","ABACATE","BATATA","PANELA","NATALINO","JERIMUM","COCADA","BILOCA","GATO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
+        var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W"] //Letras do alfabeto que cairão para serem coletadas
+        var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w"] //Letras do alfabeto que cairão para serem coletadas
+        var nFase = 10
+        var maxLetras = 14           //Limite de letras das palavras chave + 1
+        var nLetrasFase1 = [4,5,3,6] //Quantidade de letras que caem na 1a fase
+        var nLetrasFase2 = [6,8,5,6] //Quantidade de letras que caem na 2a fase
+        var nLetrasFase3 = [7,8,9,8] //Quantidade de letras que caem na 3a fase
+        var nomeJogador  = 'Jogador'
+        var letrasDaChave   = []     //Lista com a palavra escolhida
+        var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
+        var xPalavra = 3
+        var tempoCascata  = 10500    //Velocidade que as letras serão geradas, em milissegundos
+        var removeLetras  = 10000;   //Tempo para remover as letras
+        var totalEstrelas = 0
+        var totalPontos = 0
+        var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
+        var estrelas = 1
+        var life     = 3
+        var telaH = $('#divAnimacao').height()
+        var mX = mY = 0
+      //Efeitos da tela inicial
+        $('.texto_1').fadeToggle(1000);
+        $('.texto_2').fadeToggle(2000);
+        $('.texto_2').click(function()
+        {
+          $('.personalize').fadeIn()
+        })
+        $('.texto_3').fadeToggle(3000);
+        $('.texto_4').fadeToggle();
+        $('.texto_4').click(function()
+        {
+          var intervalo = window.setInterval(function() 
+          {
+            $('.loadPage').hide(500);
+            $('.runGame').show(1000);
+            $('#final').show(1000);
+          }, 20);
+          var intervalo = window.setTimeout(function() 
+          {
+            $('.startGame').fadeIn();
+          }, 2000);
+        });
+        $('.texto_4').mouseenter(function()
+        {
+          $('.txtStartJogo').fadeIn()
+        })
+        $('.texto_4').mouseleave(function()
+        {
+          $('.txtStartJogo').fadeOut()
+        })
+        $('.texto_5').fadeToggle(3000);
+        $('.texto_5').click(function()
+        {
+          $('.cadPalavras').show()
+        })
+        $('.fechaPersonalize').click(function()
+        {
+          $('.personalize').fadeOut()
+        })
+        // Atribuindo dados e foto do jogador
+        $('#nomeJogador').html(nomeJogador)
+        $('.salvaDados').click(function()     //Adiciona nome
+        {
+          $('.personalize').fadeOut()
+          if($('.nomeJogador').val().length > 0)
+          {
+            nomeJogador = $('.nomeJogador').val()
+            $('#nomeJogador').html(nomeJogador)
+          }
+          else
+          {
+            $('#nomeJogador').html(nomeJogador)
+          }
+        })
+        $('.circle').click(function ()        //Seleciona avatar 
+        { 
+          var avatar = $(this).attr('src')
+          $(".j1").empty()
+          $(".j2").empty()
+          $(".j3").empty()
+          $(".j1").append('<img id="circle1" src="'+avatar+'" alt="" class="circle">')
+          $(".j2").append('<img id="circle2" src="'+avatar+'" alt="" class="circle">')
+          $(".j3").append('<img id="circle3" src="'+avatar+'" alt="" class="circle">')
+
+        })
+        $('.maisPalavras').click(function()   //Mostra mais inputs para cadastrar palavras
+        {
+          if(xPalavra < 11)
+          {
+            $('.rowCadPalavras').append('<div class="input-field col s12 l6"><i class="material-icons prefix">menu_book</i><input id="icon_prefix" class="palavraF palFase'+xPalavra+'" type="text" data-ls-module="charCounter" maxlength="12" ><label for="icon_prefix">Palavra da '+xPalavra+'a fase</label></div>')
+            xPalavra ++
+          }
+          else
+          {
+            alert('Ops! O limite de palavras é 10, você já cadastrou o máximo de palavras.\n\n Se já finalizou clique em salvar.')
+          }
+        })
+        $('.salvarPalavras').click(function() //Aciona botão salvar palavras
+        {
+          for(i = 1; i < xPalavra; i++)
+          {
+            var pp = $('.palFase'+i).val()
+            palavraChave[i] = pp
+          }
+          $('.cadPalavras').fadeOut(1000)
+        })
+
+      //Início do jogo
+      $('.startGame, .fim2, .fim4').click(function()
+      {
+        estrelas = 1
+        velox    = 30            //Velocidade do movimento do jogador, medida em pixel
+        for(i=0; i<5; i++)
+          {$(".starPanel > i:nth-child("+i+")").fadeIn().html('star_border')}
+        life = 3
+        $('.vidro').hide()
+        $('.pC').removeClass('blue')
+        $('.pC').addClass('white')
+        $('.pC').hide()
+        $('#nFase').html(nFase)
+        $('#totalEstrelas').html(totalEstrelas)
+        $('#pontos').html(totalPontos)
+        sortPalChave()
+        movJogadorK()
+        movJogadorMouse()
+      //Gera quantidade de letras que cairão a cada (var tempoCastaca)segundos
+        var nLS = Math.floor(Math.random() * (3 - 0) + 1);
+        var nL = nLetrasFase1[nLS]
+        geraLetras(nL)
+        stopLetras = setInterval(function()
+        {
+          var nLS = Math.floor(Math.random() * (3 - 0) + 1);
+          if(nFase == 0)
+          {nL = nLetrasFase1[nLS]}
+          if(nFase == 1)
+          {nL = nLetrasFase1[nLS]}
+          if(nFase == 2)
+          {nL = nLetrasFase2[nLS]}
+          if(nFase >= 3)
+          {nL = nLetrasFase3[nLS]}
+          geraLetras(nL)
+        }, tempoCascata);
+      
+      //Prepara a letrasColetadas para receber as letras capturadas pelo jogador a fim de comparar as listas e saber quando o usuário ganhou
+        for(i = 0; i < letrasDaChave.length; i ++)
+        {
+          letrasColetadas[i] = '-'
+        }
+        stopProcessLetras = setInterval(function()
+        {
+          var div = document.getElementById('j1');
+          var rect = div.getBoundingClientRect();
+          var xj1 = rect.x;
+          var yj1 = rect.y;
+
+          for(ii = 0; ii <= nL; ii++)
+          {
+            var cH = 'cH'+ii
+            if(cH == 'cH0')
+            {
+              var div = document.getElementById('cH0');
+            }
+            if(cH == 'cH1')
+            {
+              var div = document.getElementById('cH1');
+            }
+            if(cH == 'cH2')
+            {
+              var div = document.getElementById('cH2');
+            }
+            if(cH == 'cH3')
+            {
+              var div = document.getElementById('cH3');
+            }
+            if(cH == 'cH4')
+            {
+              var div = document.getElementById('cH4');
+            }
+            if(cH == 'cH5')
+            {
+              var div = document.getElementById('cH5');
+            }
+            if(cH == 'cH6')
+            {
+              var div = document.getElementById('cH6');
+            }
+            if(cH == 'cH7')
+            {
+              var div = document.getElementById('cH7');
+            }
+            if(cH == 'cH8')
+            {
+              var div = document.getElementById('cH8');
+            }
+            if(cH == 'cH9')
+            {
+              var div = document.getElementById('cH9');
+            }
+            
+            var rect = div.getBoundingClientRect();
+            var xcH = rect.x;
+            var ycH = rect.y;
+
+            processaLetras(cH, xj1, yj1, xcH, ycH) //Verifica se a letra coletada compõe a palavra e toma decisão de acordo com a resposta
+          }
+        }, 500);
+      })
+    </script>
+  </body>
+</html>
