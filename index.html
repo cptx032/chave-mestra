@@ -137,7 +137,20 @@
           <div id="divAnimacao" class="col s12"> <!--Jogador e letras caindo-->
             <div class="vidro"><!-- Botões de início e próxima fase -->
               <div class="startGame"><!-- Botão de início de jogo -->
-                <div class="btn black">Iniciar<i class="material-icons large right">videogame_asset</i></div>
+                <div class="col s12">
+                  <div class="col s3 offset-s1 card hoverable controlTeclado">
+                    <div class="col s12"><i class="material-icons large right">videogame_asset</i></div>
+                    <div class="col s12">Teclado</div>
+                  </div>
+                  <div class="col s3 offset-s1 card hoverable controlMouse">
+                    <div class="col s12"><i class="material-icons large right">mouse</i></div>
+                    <div class="col s12">Mouse</div>
+                  </div>
+                  <div class="col s3 offset-s1 card hoverable controlCam">
+                    <div class="col s12"><i class="material-icons large right">photo_camera_front</i></div>
+                    <div class="col s12">Câmera</div>
+                  </div>
+                </div>
               </div>
               <div class="proxFase"><!-- Botão Próxima fase -->
                 <div class="btn yellow darken-2 fim1">Parabéns! Aguarde, estamos carregando a nova fase para você.<i class="material-icons right chaveIco1">alarm</i></div>
@@ -205,8 +218,11 @@
         var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
         var estrelas = 1
         var life     = 3
+        var item = ''
         var telaH = $('#divAnimacao').height()
         var mX = mY = 0
+        var idLetraVal = //iD que foi atribuído ao class e ao ID da última letra gerada, nesse caso esse ID está sendo atribuído a uma letra que compõe a palavra chave e que cai cada vez que as letras são geradas. Servirá de base para gerar a bomba e o coração.
+
       //Efeitos da tela inicial
         $('.texto_1').fadeToggle(1000);
         $('.texto_2').fadeToggle(2000);
@@ -246,7 +262,7 @@
         {
           $('.personalize').fadeOut()
         })
-        // Atribuindo dados e foto do jogador
+      //Atribuindo dados e foto do jogador
         $('#nomeJogador').html(nomeJogador)
         $('.salvaDados').click(function()     //Adiciona nome
         {
@@ -293,7 +309,19 @@
           }
           $('.cadPalavras').fadeOut(1000)
         })
-
+      //Seleciona modo de controle do jogo
+        $('.controlTeclado').click(function()
+        {
+          movJogadorK()
+        })
+        $('.controlMouse').click(function()
+        {
+          movJogadorMouse()
+        })
+        $('.controlCam').click(function()
+        {
+          movJogadorVideo()
+        })
       //Início do jogo
       $('.startGame, .fim2, .fim4').click(function()
       {
@@ -310,8 +338,6 @@
         $('#totalEstrelas').html(totalEstrelas)
         $('#pontos').html(totalPontos)
         sortPalChave()
-        movJogadorK()
-        movJogadorMouse()
       //Gera quantidade de letras que cairão a cada (var tempoCastaca)segundos
         var nLS = Math.floor(Math.random() * (3 - 0) + 1);
         var nL = nLetrasFase1[nLS]
@@ -342,7 +368,7 @@
           var xj1 = rect.x;
           var yj1 = rect.y;
 
-          for(ii = 0; ii <= nL; ii++)
+          for(ii = 0; ii <= (nL+2); ii++)
           {
             var cH = 'cH'+ii
             if(cH == 'cH0')
@@ -385,7 +411,15 @@
             {
               var div = document.getElementById('cH9');
             }
-            
+            if(cH == 'cH10')
+            {
+              var div = document.getElementById('cH10');
+            }
+            if(cH == 'cH11')
+            {
+              var div = document.getElementById('cH11');
+            }
+
             var rect = div.getBoundingClientRect();
             var xcH = rect.x;
             var ycH = rect.y;

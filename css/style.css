@@ -1,5 +1,6 @@
+.btnCentroH { position: absolute; left: 50%; transform: translate(-50%); }
 body .loadPage { width: 100%; height: 110%; top:-10px; position: absolute; z-index: 1001; display: ; } /* None */
-  .loadPage .texto_1,.loadPage .texto_2,.loadPage .texto_3,.loadPage .texto_4, .loadPage .texto_5, .loadPage .coracao, .loadPage .txtStartJogo {position: absolute; left: 50%; transform: translate(-50%, -50%); color: black; font-weight: 500; font-size: x-large; display: none; }
+  .loadPage .texto_1,.loadPage .texto_2,.loadPage .texto_3,.loadPage .texto_4, .loadPage .texto_5, .loadPage .coracao, .loadPage .txtStartJogo { position: absolute; left: 50%; transform: translate(-50%, -50%); color: black; font-weight: 500; font-size: x-large; display: none; }
   .loadPage .detalhes { position: absolute; right: 10px; top: 10px; padding: 0px 13px; }
   .loadPage .detalhes span { font-size: 2em; color: black; } 
   .loadPage .texto_1 { top: 20%; }
@@ -7,28 +8,33 @@ body .loadPage { width: 100%; height: 110%; top:-10px; position: absolute; z-ind
   .loadPage .texto_2 { top: 40%; font-size: 1em; }
   .loadPage .personalize, .loadPage .cadPalavras {margin-top: 1%; z-index: 2000; min-height: 300px; padding-top: 20px;}
   .loadPage .texto_3 { top: 50%; width: 400px; font-size: 1em; }
-  .loadPage .texto_4 { top: 70%; color: rgb(199, 199, 83); }
+  .loadPage .texto_4 { top: 70%; color: #fbc02d; }
   .loadPage .txtStartJogo { border-radius: 5px; top:74%; padding: 0px 10px; font-size: 1.3em; }
   .loadPage .creditos { border-radius: 5px; bottom:10px; padding: 0px 10px; font-size: 1em; position: absolute; right: 10px; padding: 0px 13px; }
   .fundo {  background-image: url("../imagens/tFundo.jpg"); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
 
   #divAnimacao { height: 450px; padding: 0px; position: relative; border-top: 1px solid gainsboro; border-right: 1px solid gainsboro;}
+  #divAnimacao .chaveAnima .iCoracao, #divAnimacao .chaveAnima .iBomba {text-align: center; font-size: 3em; }
+  #divAnimacao .chaveAnima .iCoracao { color: brown; }
+  #divAnimacao .chaveAnima .iBomba { color: #fbc02d; }
 .vidro { height: 100%; background-color: rgba(0, 0, 0, 0.2); z-index: 2000; }
   .startGame, .proxFase, .gameOver, .fimJogo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none; z-index: 2000; }
+  .startGame .col .controlTeclado, .startGame .col .controlMouse, .startGame .col .controlCam { background-color: black; border-radius: 10px; text-align: center; font-size: 1.3em; color: white;}
+  .startGame .col .controlTeclado:hover, .startGame .col .controlMouse:hover, .startGame .col .controlCam:hover { background-color: #fbc02d; color: ;}
   .proxFase .btn .chaveIco1 { font-size: 4em; color: rgb(53, 49, 49);}
-  .proxFase .btn .chaveIco2 { font-size: 4em; color: yellow}
+  .proxFase .btn .chaveIco2 { font-size: 4em; color: #fbc02d}
   .proxFase .progress .indeterminate {color: #255784; background: #21f360; box-shadow: 0 0 10px #21f360, 0 0 40px #21f360, 0 0 80px #21f360;}
   .fim3 span, .fim4 { font-size: 3em; text-align: center; font-weight: 500; color: rgb(36, 10, 10); }
   .g,.a,.m,.e,.o,.v,.e,.r,.oo { display: none;}
   .loadGame { height: 100%; position: absolute; padding: 1%; }
   .fimJogo .row a .fimJogoAviso, .fimJogo .row .fimJogoListaPal { font-size: 1.3em; font-weight: 500; margin-top: .3%; }
-  .fimJogo .row a .fimJogoAviso { color: rgba(214, 214, 29, 0.7); margin-top: 2%;}
+  .fimJogo .row a .fimJogoAviso { color: #fbc02d; margin-top: 2%;}
 body .runGame { display: none; height: 500px; padding: 0px; border: 1px solid rgba(0, 0, 0, 0.2); margin-top: 2%;}
 .runGame .row { height: 500px; margin: 0px; }
 #jogoD { height: 400px; padding: 0px;}
 #divPainelUser { height: 50px; }
 #divPainelUser .starB { font-size: 40px; color: rgba(41, 41, 17, 0.7);   border: black; }
-#divPainelUser .star  { font-size: 40px; color: rgba(214, 214, 29, 0.7); border: black; }
+#divPainelUser .star  { font-size: 40px; color: #fbc02d); border: black; }
 .lifePanel i { font-size: 40px; color: #842525; }
 #nFase { margin-top: 5px; font-weight: 500; text-align: center; font-size: 2em;}
 #palavraChave { position: absolute; left: 50%; transform: translate(-50%); margin-top: -5px; padding: 0px; width: 42px; height: 95%}
