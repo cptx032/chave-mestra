@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
     <!--Estilos e animações-->
       <!--Materialize-->
         <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -19,6 +22,7 @@
       <meta charset="utf-8" />
     <!--Estilos e animações-->
   </head>
+  <title>Chave Mestra</title>
   <body>
     <div class="card loadPage fundo"> <!-- Tela inicial (Personalização do usuário e cadastro das palavras) -->
       <div class="btn-floating detalhes white"><span>?</span></div>
@@ -28,8 +32,9 @@
         <div class="container">
           <div class="row rowCadPalavras">
             <div class="modal-footer">
-              <a href="#!" class="maisPalavras waves-effect waves-green btn-flat ">Mais palavras...<i class="material-icons right">maps_ugc</i></a>
+              <a href="#!" class="fechaModal waves-effect waves-green btn red ">Fechar</a>
               <a href="#!" class="salvarPalavras waves-effect waves-green btn-flat yellow">Salvar<i class="material-icons right">save_alt</i></a>
+              <a href="#!" class="maisPalavras waves-effect waves-green btn-flat ">Mais palavras...<i class="material-icons right">maps_ugc</i></a>
             </div>  
             <div class="input-field col s12 l6">
               <i class="material-icons prefix">menu_book</i>
@@ -67,32 +72,32 @@
                   </div>
                 </div>
                 <ul class="collection">
-                  <div class="col l2 s4 hoverable">
+                  <div class="col l2 s4 hoverable divAvatar">
                     <li class="collection-item avatar">
                       <img src="perfis/1.png" alt="" class="circle">
                     </li>
                   </div>
-                  <div class="col l2 s4 hoverable">
+                  <div class="col l2 s4 hoverable divAvatar">
                     <li class="collection-item avatar">
                       <img src="perfis/2.png" alt="" class="circle">
                     </li>
                   </div>
-                  <div class="col l2 s4 hoverable">
+                  <div class="col l2 s4 hoverable divAvatar">
                     <li class="collection-item avatar">
                       <img src="perfis/3.png" alt="" class="circle">
                     </li>
                   </div>
-                  <div class="col l2 s4 hoverable">
+                  <div class="col l2 s4 hoverable divAvatar">
                     <li class="collection-item avatar">
                       <img src="perfis/4.png" alt="" class="circle">
                     </li>
                   </div>
-                  <div class="col l2 s4 hoverable">
+                  <div class="col l2 s4 hoverable divAvatar">
                     <li class="collection-item avatar">
                       <img src="perfis/5.png" alt="" class="circle">
                     </li>
                   </div>
-                  <div class="col l2 s4 hoverable">
+                  <div class="col l2 s4 hoverable divAvatar">
                     <li class="collection-item avatar">
                       <img src="perfis/6.png" alt="" class="circle">
                     </li>
@@ -107,30 +112,28 @@
           </div>
         </div>
       </div>
-      <div class="btn yellow darken-2 texto_3">Classificação: E (Para todos os públicos)</div>
+      <div class="btn yellow darken-2 texto_3">Classificação: <br id="brE"> <span>E</span> <br> (Para todos os públicos)</div>
       <div class="card txtStartJogo">Carregar informações e visualizar jogo.</div>
-      <div class="texto_4 btn black darken-2 hoverable">Novo jogo<i class="material-icons medium">play_arrow</i></div>
-      <div class="card creditos">Ícones baixados de: https://icons8.com.br/</div>
+      <div class="texto_4"><div class="btn black darken-2 playIcon">Novo jogo</div><i class="material-icons medium playCircle">play_circle</i></div>
+      <div class="card creditos"><strong>Créditos</strong> <br> UFRN - iMD 2020 <br> <strong>Desenvolvedores:</strong> Diogo Eugênio, Willie da Paz e Lucas Ribeiro <br> <strong>Ícones baixados de:</strong> https://icons8.com.br/</div>
     </div>
     <div class="container runGame">   <!-- Tela do Jogo -->
-      <div class="row"> <!--Estrelas--> <!--Clones--> <!--Número da Fase-->
+      <div class="row"> <!--Estrelas--> <!--Clones--> <!--Número da Fase--> <!--Tela do jogo-->
         <div id="jogoD" class="col s10">
-          <div id="divPainelUser" class="col s12">
-            <div class="col s5 starPanel"> <!--Estrelas-->
+          <div id="divPainelUser" class="col s12"> <!--Painel de cima-->
+            <div class="col s7 l6 xl5 starPanel"> <!--Estrelas-->
               <i class="material-icons star starB">star_border</i>
               <i class="material-icons star starB">star_border</i>
               <i class="material-icons star starB">star_border</i>
               <i class="material-icons star starB">star_border</i>
               <i class="material-icons star starB">star_border</i>
             </div>
-            <div class="col s3 clonePanel"> <!--Clones-->              
-            </div>
-            <div class="col s2 lifePanel"> <!--Estrelas-->
+            <div class="col s4 l4 xl4 lifePanel"> <!--Estrelas-->
               <i class="material-icons life1">favorite</i>
               <i class="material-icons life2">favorite</i>
               <i class="material-icons life3">favorite</i>
             </div>
-            <div class="col s2"> <!--Fase-->
+            <div class="col s1 l2 xl3 divnFase"> <!--Fase-->
               <a id="nFase" class="btn-floating btn-medium green darken-2 waves-effect waves-light right"></a>
             </div>
           </div>
@@ -138,23 +141,24 @@
             <div class="vidro"><!-- Botões de início e próxima fase -->
               <div class="startGame"><!-- Botão de início de jogo -->
                 <div class="col s12">
-                  <div class="col s3 offset-s1 card hoverable controlTeclado">
-                    <div class="col s12"><i class="material-icons large right">videogame_asset</i></div>
+                  <div class="col s8 offset-s1 l5 offset-l1 card hoverable controlTeclado">
+                    <div class="col s12"><i class="material-icons">videogame_asset</i></div>
                     <div class="col s12">Teclado</div>
                   </div>
-                  <div class="col s3 offset-s1 card hoverable controlMouse">
-                    <div class="col s12"><i class="material-icons large right">mouse</i></div>
+                  <div class="col s8 offset-s1 l5 offset-l1 card hoverable controlMouse">
+                    <div class="col s12"><i class="material-icons">mouse</i></div>
                     <div class="col s12">Mouse</div>
                   </div>
-                  <div class="col s3 offset-s1 card hoverable controlCam">
-                    <div class="col s12"><i class="material-icons large right">photo_camera_front</i></div>
+                  <div class="col s8 offset-s1 l5 offset-l1 card hoverable controlCam">
+                    <div class="col s12"><i class="material-icons">photo_camera_front</i></div>
                     <div class="col s12">Câmera</div>
                   </div>
                 </div>
               </div>
               <div class="proxFase"><!-- Botão Próxima fase -->
-                <div class="btn yellow darken-2 fim1">Parabéns! Aguarde, estamos carregando a nova fase para você.<i class="material-icons right chaveIco1">alarm</i></div>
-                <div class="progress"><div class="indeterminate"></div></div>
+                <div class="material-icons right chaveIco1">alarm</div>
+                <div class="btn blue lighten-2 fim1">Parabéns! Aguarde, estamos carregando a nova fase para você.</div>
+                <div class="progress"><div class="indeterminate black"></div></div>
                 <div class="btn purple fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">vpn_key</i></div>
               </div>
               <div class="gameOver"><!-- Botão Próxima fase -->
@@ -169,7 +173,7 @@
                   <span class="e">E</span>
                   <span class="r">R</span>
                   <i class="material-icons large right">videogame_asset_off</i></div>
-                <div class="fim4">Tente novamente <div class="btn-floating large black pulse"><i class="material-icons large right">play_circle</i></div></div>
+                <div class="fim4">Tente novamente <div class="btn-floating large black pulse hoverable"><i class="material-icons large right">play_circle</i></div></div>
               </div>
               <div class="fimJogo"><!-- Botão Próxima fase -->
                 <div class="row">
@@ -177,9 +181,9 @@
               </div>
             </div>
             <!--Jogadores-->
-              <div id="j1" class="btn-floating btn-large waves-effect waves-light white j1"><img id="circle1" src="perfis/1.png" alt="" class="circle"></div>
-              <div id="j2" class="btn-floating btn-large waves-effect waves-light white j2"><img id="circle2" src="perfis/1.png" alt="" class="circle"></div>
-              <div id="j3" class="btn-floating btn-large waves-effect waves-light white j3"><img id="circle3" src="perfis/1.png" alt="" class="circle"></div>
+              <div id="j1" class="waves-effect waves-light j1">
+                <img id="circle1" src="perfis/1.png" alt="" class="circle">
+              </div>
             <!--Jogadores-->
           </div>
         </div>
@@ -199,28 +203,38 @@
     </div>
     <script>
       //Variáveis do jogo
-        var palavraChave = ["A","BOLA","UVA","ABACATE","BATATA","PANELA","NATALINO","JERIMUM","COCADA","BILOCA","GATO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
+        var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
         var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W"] //Letras do alfabeto que cairão para serem coletadas
         var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w"] //Letras do alfabeto que cairão para serem coletadas
-        var nFase = 10
-        var maxLetras = 14           //Limite de letras das palavras chave + 1
-        var nLetrasFase1 = [4,5,3,6] //Quantidade de letras que caem na 1a fase
-        var nLetrasFase2 = [6,8,5,6] //Quantidade de letras que caem na 2a fase
-        var nLetrasFase3 = [7,8,9,8] //Quantidade de letras que caem na 3a fase
+        var nFase = 1
+        var maxLetras = 14                    //Limite de letras das palavras chave + 1
+        var nLetrasFase1 = [4,5,3,6]          //Quantidade de letras que caem na 1 e 2a fase
+        var nLetrasFase2 = [6,8,5,6]          //Quantidade de letras que caem na 3 e 4a fase
+        var nLetrasFase3 = [7,8,9,8]          //Quantidade de letras que caem na 5 e 6a fase
+        var nLetrasFase4 = [7,8,9,8,10,11]    //Quantidade de letras que caem na 7 e 8a fase
+        var nLetrasFase5 = [7,8,9,8,10,11,12] //Quantidade de letras que caem na 9 e 10a fase
+
+        var xj1 = yj1 = 0            // Posição do jogador
         var nomeJogador  = 'Jogador'
         var letrasDaChave   = []     //Lista com a palavra escolhida
         var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
+        var posicaoW = nLtr = nLtr = 0 //Variáveis necessárias para geração das letras aleatórias
+        var letra = ''
         var xPalavra = 3
         var tempoCascata  = 10500    //Velocidade que as letras serão geradas, em milissegundos
         var removeLetras  = 10000;   //Tempo para remover as letras
         var totalEstrelas = 0
         var totalPontos = 0
         var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
+        var horizontal = velox
+        var vertical   = 55
+        var joystick = ''
+        var tecla = ''
         var estrelas = 1
         var life     = 3
         var item = ''
-        var telaH = $('#divAnimacao').height()
-        var mX = mY = 0
+        var telaW = telaH = 0
+        var mX = mY = xUltPosicao = yUltPosicao = 0
         var idLetraVal = //iD que foi atribuído ao class e ao ID da última letra gerada, nesse caso esse ID está sendo atribuído a uma letra que compõe a palavra chave e que cai cada vez que as letras são geradas. Servirá de base para gerar a bomba e o coração.
 
       //Efeitos da tela inicial
@@ -262,7 +276,11 @@
         {
           $('.personalize').fadeOut()
         })
-      //Atribuindo dados e foto do jogador
+        $('.fechaModal').click(function()
+        {
+          $('.cadPalavras').hide()
+        })
+        //Atribuindo dados e foto do jogador
         $('#nomeJogador').html(nomeJogador)
         $('.salvaDados').click(function()     //Adiciona nome
         {
@@ -281,11 +299,7 @@
         { 
           var avatar = $(this).attr('src')
           $(".j1").empty()
-          $(".j2").empty()
-          $(".j3").empty()
           $(".j1").append('<img id="circle1" src="'+avatar+'" alt="" class="circle">')
-          $(".j2").append('<img id="circle2" src="'+avatar+'" alt="" class="circle">')
-          $(".j3").append('<img id="circle3" src="'+avatar+'" alt="" class="circle">')
 
         })
         $('.maisPalavras').click(function()   //Mostra mais inputs para cadastrar palavras
@@ -312,23 +326,27 @@
       //Seleciona modo de controle do jogo
         $('.controlTeclado').click(function()
         {
-          movJogadorK()
+         movJogadorK()
+         joystick = 'k'
         })
         $('.controlMouse').click(function()
         {
-          movJogadorMouse()
+          movJogadorM()
+          joystick = 'm'
         })
         $('.controlCam').click(function()
         {
-          movJogadorVideo()
+          movJogadorC()
+          joystick = 'c'
         })
       //Início do jogo
       $('.startGame, .fim2, .fim4').click(function()
       {
+        telaW = parseInt($('#divAnimacao').width())
+        telaH = parseInt($('#divAnimacao').height())
         estrelas = 1
         velox    = 30            //Velocidade do movimento do jogador, medida em pixel
-        for(i=0; i<5; i++)
-          {$(".starPanel > i:nth-child("+i+")").fadeIn().html('star_border')}
+        for(i=1; i<5; i++){$(".starPanel > i:nth-child("+i+")").fadeIn().html('star_border')}
         life = 3
         $('.vidro').hide()
         $('.pC').removeClass('blue')
@@ -344,15 +362,18 @@
         geraLetras(nL)
         stopLetras = setInterval(function()
         {
-          var nLS = Math.floor(Math.random() * (3 - 0) + 1);
-          if(nFase == 0)
+          var nLS = Math.floor(Math.random() * (4 - 0) + 1);
+          if(nFase == 1 || nFase == 2)
           {nL = nLetrasFase1[nLS]}
-          if(nFase == 1)
-          {nL = nLetrasFase1[nLS]}
-          if(nFase == 2)
+          if(nFase == 3 || nFase == 4)
           {nL = nLetrasFase2[nLS]}
-          if(nFase >= 3)
+          if(nFase >= 5 || nFase == 6)
           {nL = nLetrasFase3[nLS]}
+          if(nFase == 7 || nFase == 8)
+          {nL = nLetrasFase4[nLS]}
+          if(nFase >= 9 || nFase == 10)
+          {nL = nLetrasFase5[nLS]}
+
           geraLetras(nL)
         }, tempoCascata);
       
@@ -361,12 +382,12 @@
         {
           letrasColetadas[i] = '-'
         }
-        stopProcessLetras = setInterval(function()
+        var stopProcessLetras = window.setInterval(function() 
         {
           var div = document.getElementById('j1');
           var rect = div.getBoundingClientRect();
-          var xj1 = rect.x;
-          var yj1 = rect.y;
+          xj1 = rect.x;
+          yj1 = rect.y;
 
           for(ii = 0; ii <= (nL+2); ii++)
           {
@@ -420,13 +441,16 @@
               var div = document.getElementById('cH11');
             }
 
-            var rect = div.getBoundingClientRect();
-            var xcH = rect.x;
-            var ycH = rect.y;
+            if (document.getElementById(cH))
+            {
+              var rect = div.getBoundingClientRect();
+              var xcH = rect.x;
+              var ycH = rect.y;
 
-            processaLetras(cH, xj1, yj1, xcH, ycH) //Verifica se a letra coletada compõe a palavra e toma decisão de acordo com a resposta
+              processaLetras(cH, xj1, yj1, xcH, ycH) //Verifica se a letra coletada compõe a palavra e toma decisão de acordo com a resposta
+            }
           }
-        }, 500);
+        })
       })
     </script>
   </body>
