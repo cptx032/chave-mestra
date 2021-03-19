@@ -113,3 +113,10 @@ body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
   text-decoration: underline;
   color: blue !important;
 }
+.btn-no-pointer {
+  cursor: unset !important;
+}
+
+body {
+  overflow-y: hidden;
+}

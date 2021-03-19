@@ -26,7 +26,7 @@
   <body>
     <div class="card loadPage fundo"> <!-- Tela inicial (Personalização do usuário e cadastro das palavras) -->
       <div class="btn-floating detalhes white"><span>?</span></div>
-      <div class="btn yellow darken-2 texto_1">Bem-vindo ao jogo Chave-mestra <i class="material-icons large">videogame_asset</i></div>
+      <div class="btn yellow darken-2 texto_1 btn-no-pointer">Bem-vindo ao jogo Chave-mestra <i class="material-icons large">videogame_asset</i></div>
       <div class="btn grey darken-2 texto_5">Adicione palavras ao jogo <i class="material-icons large">edit</i></div>
       <div class="cadPalavras modal"> <!-- Cadastra palavras das fases-->
         <div class="container">
@@ -38,13 +38,13 @@
             </div>
             <div class="input-field col s12 l6">
               <i class="material-icons prefix">menu_book</i>
-              <input id="icon_prefix" class="palavraF palFase1" type="text" data-ls-module="charCounter" maxlength="12" >
-              <label for="icon_prefix">Palavra da 1a fase</label>
+              <input id="first_level" class="palavraF palFase1" type="text" data-ls-module="charCounter" maxlength="12" >
+              <label for="first_level">Palavra da 1a fase</label>
             </div>
             <div class="input-field col s12 l6">
               <i class="material-icons prefix">menu_book</i>
-              <input id="icon_prefix" class="palavraF palFase2" type="text" data-ls-module="charCounter" maxlength="12" >
-              <label for="icon_prefix">Palavra da 2a fase</label>
+              <input id="second_level" class="palavraF palFase2" type="text" data-ls-module="charCounter" maxlength="12" >
+              <label for="second_level">Palavra da 2a fase</label>
             </div>
           </div>
         </div>
@@ -116,7 +116,7 @@
         Classificação: <br id="brE"> <span>E</span> <br> (Para todos os públicos)
       </div>
       <div class="card txtStartJogo">Carregar informações e visualizar jogo.</div>
-      <div class="texto_4"><div class="btn black darken-2 playIcon">Novo jogo</div><i class="material-icons medium playCircle">play_circle</i></div>
+      <div id="new_game" class="texto_4"><div class="btn black darken-2 playIcon">Novo jogo</div><i class="material-icons medium playCircle">play_circle</i></div>
       <div class="card creditos">
         <div id="creditos1">
           <div style="text-align: center; font-weight: 500"> Créditos
@@ -135,7 +135,7 @@
           </div>
       </div>
     </div>
-    <div class="container runGame">   <!-- Tela do Jogo -->
+    <div class="container runGame" style="margin-top: 0px">   <!-- Tela do Jogo -->
       <div class="row card"> <!--Estrelas--> <!--Clones--> <!--Número da Fase--> <!--Tela do jogo-->
         <div id="jogoD" class="col s10">
           <div id="divPainelUser" class="col s12 btn cyan lighten-5"> <!--Painel de cima-->
@@ -275,25 +275,23 @@
         })
         $('.texto_3').fadeToggle(3000);
         $('.texto_4').fadeToggle();
-        $('.texto_4').click(function()
+        $('#new_game').click(function()
         {
           $('.vidro-green-top').hide()
           $('.vidro-green-left').hide()
-          //$('.vidro').css({'background-image': 'url("imagens/.jpg"'})
-          var intervalo = window.setTimeout(function()
+          setTimeout(function()
           {
-            $('.vidro-green-top').fadeIn(1000)
-            $('.loadPage').hide(500);
             $('.runGame').fadeIn(500);
+            $('.texto_3').hide();
           }, 20);
-          var intervalo = window.setTimeout(function()
+          setTimeout(function()
           {
             $('#final').fadeIn();
           }, 500);
-          var intervalo = window.setTimeout(function()
+          setTimeout(function()
           {
             $('.startGame').fadeIn();
-          }, 2000);
+          }, 1000);
         });
         $('.texto_4').mouseenter(function()
         {
