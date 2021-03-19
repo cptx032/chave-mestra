@@ -46,7 +46,6 @@
   function sortPalChave()  //Sorteia a palavra chave da fase
   {
     var pChave = palavraChave[nFase]
-    $('.vidro1').hide()
     for(i = 0; i < pChave.length; i++)
     {
       var letra = pChave[i]
@@ -55,7 +54,7 @@
     }
   }
 
-  function movJogadorK()   //Configurações das teclas do teclado habilitadas para o jogo 
+ function movJogadorK()   //Configurações das teclas do teclado habilitadas para o jogo 
   { 
     document.querySelector('body').addEventListener('keydown', function(event)
     {
@@ -128,6 +127,7 @@
           totalEstrelas ++
           $('#totalEstrelas').html(totalEstrelas)
           velox ++    //Aumenta a velocidade do jogador em 1
+          $('#velocidade').html(velox-30)
           $('.j1 img').addClass("pulse green lighten-2")   //Pisca jogador cor verde
           var intervalo = window.setTimeout(function() //Remove pisca 
           {
@@ -144,7 +144,7 @@
           }
           if(estrelas == 6 && life == 1) //Adiciona life se já tiver 5 estrelas. Zera estrelas
           {
-            $('.lifePanel').append('<i class="material-icons life2">favorite</i>')
+            $('.lifePanel').append('<i class="material-icons life2 btn-floating white">favorite</i>')
             life ++
             totalEstrelas = estrelas + totalEstrelas
             $('#totalEstrelas').html(totalEstrelas)
@@ -153,7 +153,7 @@
           }
           else if(estrelas == 6 && life == 2)
           {
-            $('.lifePanel').append('<i class="material-icons life3">favorite</i>')
+            $('.lifePanel').append('<i class="material-icons life3 btn-floating white">favorite</i>')
             life ++
             totalEstrelas = estrelas + totalEstrelas
             $('#totalEstrelas').html(totalEstrelas)
@@ -167,14 +167,32 @@
             if(nFase <= 10)
             {
               $('.j1').css({ "bottom": "10px"})
+              $('#circle1').css({ "width": "150px", "height": "150px"})
               while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()}
-              $('.vidro, .proxFase, .fim1, .progress').show()
+              $('.vidro, .proxFase, .fim1, .vidro-green-left').show()
+              $('.vidro-green-left').css({"width": "15%", "height": "100%"});
+
+              var load = window.setInterval(function()
+              {
+                $('.load').fadeIn(200)
+                $('.load').css({"border-top":"solid 5px blue"});
+                setTimeout(() => {$('.load').css({"border-top":"solid 5px white"});
+                $('.load').css({"border-right":"solid 5px blue"});},200)
+                setTimeout(() => {$('.load').css({"border-right":"solid 5px white"});
+                $('.load').css({"border-bottom":"solid 5px blue"});},400)
+                setTimeout(() => { $('.load').css({"border-bottom":"solid 5px white"});
+                $('.load').css({"border-left":"solid 5px blue"});},600)
+                setTimeout(() => { $('.load').css({"border-left":"solid 5px white"});},800)
+              },800)
+
               $('.startGame, .fim2, .gameOver').hide()
               clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item1, item2)
-              var intervalo = window.setInterval(function() 
+              var endLoad = window.setInterval(function() 
               {  
-                $('.fim1, .progress').hide()
+                clearInterval(load);
+                $('.fim1, .load').hide()
                 $('.fim2').show()
+                $('#circle1').css({ "width": "50px", "height": "50px"})
               }, 7000);
               fim = false
               $('div').remove('.chaveAnima')
@@ -213,13 +231,13 @@
           $('div').remove('.iCoracao')       //Remove a coração da tela
           if(life == 1)
           {
-            $('.lifePanel').append('<i class="material-icons life2">favorite</i>')
-            $('.lifePanel').append('<i class="material-icons life3">favorite</i>')
+            $('.lifePanel').append('<i class="material-icons life2 btn-floating white">favorite</i>')
+            $('.lifePanel').append('<i class="material-icons life3 btn-floating white">favorite</i>')
             life += 2
           }
           if(life == 2)
           {
-            $('.lifePanel').append('<i class="material-icons life2">favorite</i>')
+            $('.lifePanel').append('<i class="material-icons life2 btn-floating white">favorite</i>')
             life ++
           }
           break
@@ -276,10 +294,6 @@
           else if(life == 0)
           {
             $('i').remove('.life1')
-
-            nFase = 1
-            totalEstrelas = 0
-            totalPontos = 0
             $('.j1').css({ "bottom": "10px"})
             while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()}
             clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item1, item2);

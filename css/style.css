@@ -8,41 +8,45 @@ body .loadPage { width: 100%; height: 100%; top:-10px; position: absolute; z-ind
   .loadPage .personalize, .loadPage .cadPalavras {margin-top: 1%; z-index: 2000; min-height: 300px; padding-top: 20px;}
   .loadPage .texto_3 { width: auto; height: auto; font-size: 1em; left: auto; transform: none; top: 0px; right: 0px; border-bottom: 10px solid white;}
   body .loadPage .texto_3 span { font-size: 4em;}
-  .loadPage .texto_4 { top: 50%; color: #fbc02d; }
+  .loadPage .texto_4 { top: 60%; color: #fbc02d; }
   .loadPage .txtStartJogo { border-radius: 5px; top:56%; padding: 0px 10px; font-size: 1.3em; }
   .playIcon { margin-bottom: 50px; font-size: 1.5em }
   .playCircle { cursor: pointer ;}
   .divAvatar { margin-top: 10px; margin-bottom: 10px;}
-  .loadPage .creditos { position: absolute; left: 50%; transform: translate(-50%); border-radius: 5px; bottom:0px; padding: 0px 10px; font-size: 1em; padding: 0px 13px; border-left: 4px solid #fbc02d;; }
-  .fundo {  background-image: url("../imagens/tFundo.jpg"); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+  .loadPage .creditos { position: absolute; left: 50%; transform: translate(-50%); border-radius: 5px; bottom:0px; padding: 0px 10px; font-size: 1em; padding: 0px 13px; border-left: 4px solid #fbc02d; }
+  #creditos2 {display: none }
+  .fundo { background-image: url("../imagens/tFundo.jpg"); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
 
   #divAnimacao { height: 450px; padding: 0px; position: relative; border-top: 1px solid gainsboro; border-right: 1px solid gainsboro;}
   #divAnimacao .chaveAnima .iCoracao, #divAnimacao .chaveAnima .iBomba {text-align: center; font-size: 3em; }
   #divAnimacao .chaveAnima .iCoracao { color: rgb(247, 35, 35); }
   #divAnimacao .chaveAnima .iBomba { color: #fbc02d; }
   .startGame .col .col .col i { font-size: 70px; }
-.vidro { height: 100%; background-color: rgba(0, 0, 0, 0.2); z-index: 2000; }
+.vidro { height: 100%; z-index: 2000; background-image: url("../imagens/3.jpg"); background-repeat: no-repeat; background-size: cover; filter:blur()}
   .startGame, .proxFase, .gameOver { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none; z-index: 2000; }
-  .fimJogo { padding: 30px; z-index: 2000;}
+  .proxFase {font-size: 2.2em}
+  .vidro-green-left { left: 0px; float: left; }
+  .vidro-green-left div { font-size: 3em; margin-top: 12px}
+  .fimJogo { display:none; padding: 30px; z-index: 2000;}
   .startGame .col .controlTeclado, .startGame .col .controlMouse, .startGame .col .controlCam { background-color: black; border-radius: 0px 10px 10px 0px; border-left: 5px solid white; text-align: center; font-size: 1.3em; color: white;}
   .startGame .col .controlTeclado:hover, .startGame .col .controlMouse:hover, .startGame .col .controlCam:hover { background-color: #fbc02d;}
-  .proxFase .chaveIco1 { font-size: 4em; color: rgb(53, 49, 49); }
-  .proxFase .btn .chaveIco2 { font-size: 4em; color: #fbc02d}
-  .proxFase .progress .indeterminate { width: 70%; margin-top: 20px;}
+  .vidro .load { display: none; z-index: 2000; width: 110px; height: 110px; border: solid 5px white; position: absolute; bottom: 0px; right: 0px;}
+  .vidro .load img { z-index: 2000; width: 100px; }
+  .vidro .btn .chaveIco2 { font-size: 4em; color: #fbc02d}
   .fim3 span, .fim4 { font-size: 3em; text-align: center; font-weight: 500; color: rgb(36, 10, 10); }
   .g,.a,.m,.e,.o,.v,.e,.r,.oo { display: none;}
   .loadGame { height: 100%; position: absolute; padding: 1%; }
   .fimJogo .row a .fimJogoAviso, .fimJogo .row .fimJogoListaPal, .fimJogoNumPal { font-size: 1.3em; font-weight: 500; margin-top: .3%; }
   .fimJogoNumPal { border-bottom: 5px solid white; text-align: center; font-weight: 900; }
   .fimJogo .row a .fimJogoAviso { color: #fbc02d; margin-top: 2%;}
-body .runGame { height: 500px; padding: 0px; border: 1px solid rgba(0, 0, 0, 0.2); margin-top: 2%;}
-.runGame .row { height: 500px; margin: 0px; }
+body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
+.runGame .row { height: 500px; margin: 0px; border-radius: 10px 10px 0px 0px; }
 #jogoD { height: 400px; padding: 0px;}
-#divPainelUser { height: 50px; }
+.row #jogoD #divPainelUser { height: 50px; border-radius: 10px 0px 0px 0px; padding-top: 5px}
 #divPainelUser .starB { font-size: 40px; color: rgba(41, 41, 17, 0.7);   border: black; }
 #divPainelUser .star  { font-size: 40px; color: #fbc02d; }
-.lifePanel i { font-size: 40px; color: rgb(247, 35, 35); }
-#nFase { margin-top: 5px; font-weight: 500; text-align: center; font-size: 2em;}
+#jogoD .lifePanel i { font-size: 36px; color: rgb(247, 35, 35); padding-top: 3px; margin-left: 5px }
+#nFase { font-weight: 500; text-align: center; font-size: 2em; color: black;}
 #palavraChave { position: absolute; left: 50%; transform: translate(-50%); margin-top: -5px; padding: 0px; width: 42px; height: 95%}
 #palavraChave .pC { left: 50%; transform: translate(-50%); margin-top: 10px; text-align: center; color: black; font-weight: 500; }
 .chaveAnima { position: absolute; margin-bottom: 410px; animation: desce 10s linear; text-align: center; }
@@ -68,21 +72,33 @@ body .runGame { height: 500px; padding: 0px; border: 1px solid rgba(0, 0, 0, 0.2
   .detInfo {  font-size: 2em; font-weight: 500; text-align: center; color: rgba(90, 87, 87, 0.767); }
 
 
+  @media screen and (min-width: 0px) and (max-width: 600px)
+  {
+   #final span { font-size: 1em}
+  }
+
   @media screen and (min-width: 0px) and (max-width: 991px)
   {
+    body .loadPage .runGame { padding: 0px}
     body .loadPage .texto_3 { font-size: .8em;}
     body .loadPage .texto_3 span { font-size: 2em;}
-    #brE{display: none;}
+    #brE {display: none;}
     body .loadPage .texto_1 {font-size: 1.5em; height: auto; width: 80%;}
     body .loadPage .texto_1 i { position: absolute; font-size: 3em; bottom: 0px; right: -30px;}
-    body .loadPage .texto_5 {font-size: 1em; height: auto; width: 280px; top: 32%;}
+    body .loadPage .texto_5 {font-size: 1em; height: auto; width: 280px; top: 35%;}
     body .loadPage .texto_2 {font-size: 1em; height: auto; width: 60%; top: 45%;}
-    body .loadPage .texto_4 {top: 60%; width: 60%;}
-    body .loadPage .txtStartJogo {top: 63%; width: 350px;}
-    #divPainelUser .starPanel i { font-size: 30px; margin-top: 5px;}
-    #divPainelUser .lifePanel i { font-size: 25px; margin-top: 10px;}
+    body .loadPage .texto_4 {top: 60%; width: auto;}
+    body .loadPage .txtStartJogo {top: 67%; width: 350px;}
+    #divPainelUser .starPanel i { font-size: 30px; }
+    #divPainelUser .lifePanel i { font-size: 25px; }
     .rowCadPalavras .input-field { margin-top: 40px;}
   }  
+    @media screen and (min-width: 600px) and (max-width: 991px)
+  {
+    body .loadPage .texto_5 {top: 30%; }
+    body .loadPage .texto_2 {top: 40%; }
+    body .loadPage .txtStartJogo {top: 53%; width: 350px;}
+  }
   @media screen and (min-width: 992px) and (max-width: 1366px)
   {
     body .loadPage .texto_1 i { position: absolute; font-size: 3em; bottom: 0px; left: -70px;}
