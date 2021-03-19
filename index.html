@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="imagens/favicon.png"/>
     <!--Estilos e animações-->
       <!--Materialize-->
         <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -35,7 +35,7 @@
               <a href="#!" class="fechaModal waves-effect waves-green btn red ">Fechar</a>
               <a href="#!" class="salvarPalavras waves-effect waves-green btn-flat yellow">Salvar<i class="material-icons right">save_alt</i></a>
               <a href="#!" class="maisPalavras waves-effect waves-green btn-flat ">Mais palavras...<i class="material-icons right">maps_ugc</i></a>
-            </div>  
+            </div>
             <div class="input-field col s12 l6">
               <i class="material-icons prefix">menu_book</i>
               <input id="icon_prefix" class="palavraF palFase1" type="text" data-ls-module="charCounter" maxlength="12" >
@@ -112,10 +112,28 @@
           </div>
         </div>
       </div>
-      <div class="btn yellow darken-2 texto_3">Classificação: <br id="brE"> <span>E</span> <br> (Para todos os públicos)</div>
+      <div class="btn yellow darken-2 texto_3">
+        Classificação: <br id="brE"> <span>E</span> <br> (Para todos os públicos)
+      </div>
       <div class="card txtStartJogo">Carregar informações e visualizar jogo.</div>
       <div class="texto_4"><div class="btn black darken-2 playIcon">Novo jogo</div><i class="material-icons medium playCircle">play_circle</i></div>
-      <div class="card creditos"><div id="creditos1"><div style="text-align: center; font-weight: 500"> Créditos</div></div><div id="creditos2"> UFRN - iMD 2020 <br> <strong>Desenvolvedores:</strong> Diogo Eugênio, Willie da Paz e Lucas Ribeiro <br> <strong>Ícones baixados de:</strong> https://icons8.com.br/ <br> <a href="https://www.freepik.com/vectors/background"><strong>Background vector created by freepik</strong>: freepik.com</a></div></div>
+      <div class="card creditos">
+        <div id="creditos1">
+          <div style="text-align: center; font-weight: 500"> Créditos
+          </div>
+          <div id="creditos2">
+            <div>UFRN - iMD 2020</div>
+            <div>
+              <strong>Desenvolvedores:</strong> Diogo Eugênio, Willie da Paz e Lucas Ribeiro
+            </div>
+            <div>
+              <strong>Ícones baixados de:</strong> <a class="blue-link" href="https://icons8.com.br/">Icons8</a> e <a class="blue-link" href="https://www.iconfinder.com/">Icon Finder</a>
+            </div>
+            <div>
+              <strong>Background Image:</strong> <a class="blue-link" href="https://www.freepik.com/vectors/background">FreePik</a>
+            </div>
+          </div>
+      </div>
     </div>
     <div class="container runGame">   <!-- Tela do Jogo -->
       <div class="row card"> <!--Estrelas--> <!--Clones--> <!--Número da Fase--> <!--Tela do jogo-->
@@ -200,7 +218,7 @@
     </div>
     <div class="container"><!-- Detalhes da fase: Nome do jogador, pontos e estrelas coletadas-->
       <div class="row">
-        <div id="final" class="col s12 card"> 
+        <div id="final" class="col s12 card">
           <div class="col s4"><span class="telaInfo">Nome Jogador</span></div>
           <div class="col s2"><span class="telaInfo">Pontos</span></div>
           <div class="col s3"><span class="telaInfo">Total estrelas</span><div class="material-icons left medium">star</div></div>
@@ -262,17 +280,17 @@
           $('.vidro-green-top').hide()
           $('.vidro-green-left').hide()
           //$('.vidro').css({'background-image': 'url("imagens/.jpg"'})
-          var intervalo = window.setTimeout(function() 
+          var intervalo = window.setTimeout(function()
           {
             $('.vidro-green-top').fadeIn(1000)
             $('.loadPage').hide(500);
             $('.runGame').fadeIn(500);
           }, 20);
-          var intervalo = window.setTimeout(function() 
+          var intervalo = window.setTimeout(function()
           {
             $('#final').fadeIn();
           }, 500);
-          var intervalo = window.setTimeout(function() 
+          var intervalo = window.setTimeout(function()
           {
             $('.startGame').fadeIn();
           }, 2000);
@@ -317,8 +335,8 @@
             $('#nomeJogador').html(nomeJogador)
           }
         })
-        $('.circle').click(function ()        //Seleciona avatar 
-        { 
+        $('.circle').click(function ()        //Seleciona avatar
+        {
           var avatar = $(this).attr('src')
           $(".j1").empty()
           $(".j1").append('<img id="circle1" src="'+avatar+'" alt="" class="circle">')
@@ -367,7 +385,7 @@
         telaW = parseInt($('#divAnimacao').width())
         telaH = parseInt($('#divAnimacao').height())
         estrelas = 1
-        velox    = 30            //Velocidade do movimento do jogador, medida em pixel 
+        velox    = 30            //Velocidade do movimento do jogador, medida em pixel
         for(i=1; i<5; i++){$(".starPanel > i:nth-child("+i+")").fadeIn().html('star_border')}
         for(i=1; i<=3; i++){$(".lifePanel").append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
         life = 3
@@ -403,13 +421,13 @@
 
           geraLetras(nL)
         }, tempoCascata);
-      
+
       //Prepara a letrasColetadas para receber as letras capturadas pelo jogador a fim de comparar as listas e saber quando o usuário ganhou
         for(i = 0; i < letrasDaChave.length; i ++)
         {
           letrasColetadas[i] = '-'
         }
-        var stopProcessLetras = window.setInterval(function() 
+        var stopProcessLetras = window.setInterval(function()
         {
           var div = document.getElementById('j1');
           var rect = div.getBoundingClientRect();
