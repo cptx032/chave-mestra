@@ -147,6 +147,9 @@
               <i class="material-icons star starB">star_border</i>
             </div>
             <div class="col s4 l4 xl4 lifePanel"> <!--Corações-->
+              <i class="material-icons life1 btn-floating white">favorite</i>
+              <i class="material-icons life2 btn-floating white">favorite</i>
+              <i class="material-icons life3 btn-floating white">favorite</i>
             </div>
             <div class="col s1 l2 xl3 divnFase"> <!--Fase-->
               <a id="nFase" class="btn-floating btn-medium white darken-2 waves-effect waves-light right"></a>
@@ -157,7 +160,7 @@
               <div class="startGame"><!-- Botão de início de jogo -->
                 <div class="col s12">
                   <div class="col s8 offset-s1 l5 offset-l1 card hoverable controlTeclado">
-                    <div class="col s12"><i class="material-icons">videogame_asset</i></div>
+                    <div class="col s12"><i class="material-icons">keyboard</i></div>
                     <div class="col s12">Teclado</div>
                   </div>
                   <div class="col s8 offset-s1 l5 offset-l1 card hoverable controlMouse">
@@ -172,7 +175,7 @@
               </div>
               <div class="proxFase"><!-- Botão Próxima fase -->
                 <div class="btn blue lighten-2 fim1">Parabéns! Aguarde, estamos carregando a nova fase para você.</div>
-                <div class="btn blue fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">vpn_key</i></div>
+                <div class="btn black fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">lock_open</i></div>
               </div>
               <div class="btn blue lighten-2 vidro-green-left">
                 <div class="col s12">A</div>
@@ -277,8 +280,7 @@
         $('.texto_4').fadeToggle();
         $('#new_game').click(function()
         {
-          $('.vidro-green-top').hide()
-          $('.vidro-green-left').hide()
+          $('.vidro-green-left, .creditos, .detalhes').hide()
           setTimeout(function()
           {
             $('.runGame').fadeIn(500);
@@ -317,6 +319,11 @@
         $('.fechaModal').click(function()
         {
           $('.cadPalavras').hide()
+        })
+        $('.fim4').click(function()
+        {
+          $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
+          for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
         })
         //Atribuindo dados e foto do jogador
         $('#nomeJogador').html(nomeJogador)
@@ -385,11 +392,6 @@
         estrelas = 1
         velox    = 30            //Velocidade do movimento do jogador, medida em pixel
         for(i=1; i<5; i++){$(".starPanel > i:nth-child("+i+")").fadeIn().html('star_border')}
-        for(i=1; i<=3; i++){$(".lifePanel").append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
-        life = 3
-        nFase = 1
-        totalEstrelas = 0
-        totalPontos = 0
         $('#velocidade').html(0)
         $('.vidro').hide()
         $('.pC').removeClass('blue')

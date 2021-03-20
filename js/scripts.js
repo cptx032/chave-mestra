@@ -175,19 +175,23 @@
               var load = window.setInterval(function()
               {
                 $('.load').fadeIn(200)
-                $('.load').css({"border-top":"solid 5px blue"});
-                setTimeout(() => {$('.load').css({"border-top":"solid 5px white"});
-                $('.load').css({"border-right":"solid 5px blue"});},200)
-                setTimeout(() => {$('.load').css({"border-right":"solid 5px white"});
-                $('.load').css({"border-bottom":"solid 5px blue"});},400)
-                setTimeout(() => { $('.load').css({"border-bottom":"solid 5px white"});
-                $('.load').css({"border-left":"solid 5px blue"});},600)
-                setTimeout(() => { $('.load').css({"border-left":"solid 5px white"});},800)
-              },800)
+                $('.load').css({"border-top":"solid 5px rgba(40, 120, 255, 0.6)"});
+                setTimeout(() => {$('.load').css({"border-top":"solid 5px #fbc02d"});
+                $('.load').css({"border-right":"solid 5px rgba(40, 120, 255, 0.6)"});},100)
+                setTimeout(() => {$('.load').css({"border-right":"solid 5px #fbc02d"});
+                $('.load').css({"border-bottom":"solid 5px rgba(40, 120, 255, 0.6)"});},250)
+                setTimeout(() => { $('.load').css({"border-bottom":"solid 5px #fbc02d"});
+                $('.load').css({"border-left":"solid 5px rgba(40, 120, 255, 0.6)"});},400)
+                setTimeout(() => { $('.load').css({"border-left":"solid 5px #fbc02d"});},550)
+              },550)
 
               $('.startGame, .fim2, .gameOver').hide()
               clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item1, item2)
-              var endLoad = window.setInterval(function() 
+              var endLoad1 = window.setTimeout(function() 
+              {  
+                $('.vidro-green-left').fadeOut(500);
+              },6500)
+              var endLoad2 = window.setInterval(function() 
               {  
                 clearInterval(load);
                 $('.fim1, .load').hide()
@@ -311,7 +315,7 @@
             var intervalo = window.setTimeout(function() 
             {  
               $('.fim3').hide()
-              $('.fim4').show()
+              $('.fim4').fadeIn(500)
             },9000);
             fim = false
             $('div').remove('.chaveAnima')

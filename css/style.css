@@ -25,13 +25,13 @@ body .loadPage { width: 100%; height: 100%; top:-10px; position: absolute; z-ind
 .vidro { height: 100%; z-index: 2000; background-image: url("../imagens/3.jpg"); background-repeat: no-repeat; background-size: cover; filter:blur()}
   .startGame, .proxFase, .gameOver { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none; z-index: 2000; }
   .proxFase {font-size: 2.2em}
-  .vidro-green-left { left: 0px; float: left; }
+  .vidro-green-left { left: 0px; float: left; opacity: .7; color: black; }
   .vidro-green-left div { font-size: 3em; margin-top: 12px}
   .fimJogo { display:none; padding: 30px; z-index: 2000;}
   .startGame .col .controlTeclado, .startGame .col .controlMouse, .startGame .col .controlCam { background-color: black; border-radius: 0px 10px 10px 0px; border-left: 5px solid white; text-align: center; font-size: 1.3em; color: white;}
   .startGame .col .controlTeclado:hover, .startGame .col .controlMouse:hover, .startGame .col .controlCam:hover { background-color: #fbc02d;}
-  .vidro .load { display: none; z-index: 2000; width: 110px; height: 110px; border: solid 5px white; position: absolute; bottom: 0px; right: 0px;}
-  .vidro .load img { z-index: 2000; width: 100px; }
+  .vidro .load { display: none; z-index: 2000; width: 110px; height: 110px; border: solid 5px rgb(199, 189, 158); position: absolute; bottom: 0px; right: 0px; border-radius: 50%;}
+  .vidro .load img { z-index: 2000; width: 100px; border-radius: 50%; }
   .vidro .btn .chaveIco2 { font-size: 4em; color: #fbc02d}
   .fim3 span, .fim4 { font-size: 3em; text-align: center; font-weight: 500; color: rgb(36, 10, 10); }
   .g,.a,.m,.e,.o,.v,.e,.r,.oo { display: none;}
