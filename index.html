@@ -25,7 +25,7 @@
   <title>Chave Mestr@</title>
   <body>
     <div class="card loadPage fundo"> <!-- Tela inicial (Personalização do usuário e cadastro das palavras) -->
-      <div class="btn-floating detalhes white"><span>?</span></div>
+      <div class="btn-floating detalhes white" onclick="javascript:$('#helpmodal').fadeIn()"><span>?</span></div>
       <div class="btn yellow darken-2 texto_1 btn-no-pointer">Bem-vindo ao jogo Chave-mestra <i class="material-icons large">videogame_asset</i></div>
       <div class="btn grey darken-2 texto_5">Adicione palavras ao jogo <i class="material-icons large">edit</i></div>
       <div class="cadPalavras modal"> <!-- Cadastra palavras das fases-->
@@ -49,7 +49,40 @@
           </div>
         </div>
       </div>
-      <div class="btn yellow darken-2 texto_2 pulse">Click e escolha seu nome e avatar</div>
+      <div class="btn yellow darken-2 choose_name pulse">Click e escolha seu nome e avatar</div>
+
+      <div id="helpmodal" class="modal">
+        <div class="container">
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <h3>Bem vindo ao Jogo Chave-Mestra</h3>
+                <h6>
+                  <p>
+                    O objetivo do jogo é ajudar seu personagem a coletar todas
+                    as letras para formar as palavras.
+                  </p>
+                  <p>
+                    A palavra que você precisa formar está presente no lado
+                    direito da tela.
+                  </p>
+                  <p>
+                    Quanto mais letras coletadas mais estrelas!
+                  </p>
+                  <p>
+                    Cuidado ao escolher letras erradas, você perde uma estrela
+                    a cada letra errada coletada.
+                  </p>
+                </h6>
+              </div>
+              <div class="modal-footer">
+                <a href="javascript:$('#helpmodal').fadeOut()" class="waves-effect waves-green btn-flat">Fechar</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <div class="personalize modal"> <!-- Nome e foto (avatar) do jogador -->
         <div class="container">
           <div class="row">
@@ -112,8 +145,8 @@
           </div>
         </div>
       </div>
-      <div class="btn yellow darken-2 texto_3">
-        Classificação: <br id="brE"> <span>E</span> <br> (Para todos os públicos)
+      <div class="btn yellow darken-2 texto_3 btn-no-pointer">
+        Classificação: <div><span>E</span></div> <div>(Para todos os públicos)</div>
       </div>
       <div class="card txtStartJogo">Carregar informações e visualizar jogo.</div>
       <div id="new_game" class="texto_4"><div class="btn black darken-2 playIcon">Novo jogo</div><i class="material-icons medium playCircle">play_circle</i></div>
@@ -271,8 +304,8 @@
 
       //Efeitos da tela inicial
         $('.texto_1').fadeToggle(1000);
-        $('.texto_2').fadeToggle(2000);
-        $('.texto_2').click(function()
+        $('.choose_name').fadeToggle(2000);
+        $('.choose_name').click(function()
         {
           $('.personalize').fadeIn()
         })

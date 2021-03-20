@@ -1,10 +1,10 @@
 body .loadPage { width: 100%; height: 100%; top:-10px; position: absolute; z-index: 2000; }
-  .loadPage .texto_1,.loadPage .texto_2,.loadPage .texto_3,.loadPage .texto_4, .loadPage .texto_5, .loadPage .coracao, .loadPage .txtStartJogo { position: absolute; left: 50%; transform: translate(-50%); color: black; font-weight: 500; font-size: x-large; display: none; }
+  .loadPage .texto_1,.loadPage .choose_name,.loadPage .texto_3,.loadPage .texto_4, .loadPage .texto_5, .loadPage .coracao, .loadPage .txtStartJogo { position: absolute; left: 50%; transform: translate(-50%); color: black; font-weight: 500; font-size: x-large; display: none; }
   .loadPage .detalhes { position: absolute; left: 10px; top: 10px; padding: 0px 13px; }
   .loadPage .detalhes span { font-size: 2em; color: black; }
   .loadPage .texto_1 { top: 20%; }
   .loadPage .texto_5 { top: 30%; color: rgb(255, 255, 255); }
-  .loadPage .texto_2 { top: 40%; font-size: 1em; }
+  .loadPage .choose_name { top: 40%; font-size: 1em; }
   .loadPage .personalize, .loadPage .cadPalavras {margin-top: 1%; z-index: 2000; min-height: 300px; padding-top: 20px;}
   .loadPage .texto_3 { width: auto; height: auto; font-size: 1em; left: auto; transform: none; top: 0px; right: 0px; border-bottom: 10px solid white;}
   body .loadPage .texto_3 span { font-size: 4em;}
@@ -86,7 +86,7 @@ body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
     body .loadPage .texto_1 {font-size: 1.5em; height: auto; width: 80%;}
     body .loadPage .texto_1 i { position: absolute; font-size: 3em; bottom: 0px; right: -30px;}
     body .loadPage .texto_5 {font-size: 1em; height: auto; width: 280px; top: 35%;}
-    body .loadPage .texto_2 {font-size: 1em; height: auto; width: 60%; top: 45%;}
+    body .loadPage .choose_name {font-size: 1em; height: auto; width: 60%; top: 45%;}
     body .loadPage .texto_4 {top: 60%; width: auto;}
     body .loadPage .txtStartJogo {top: 67%; width: 350px;}
     #divPainelUser .starPanel i { font-size: 30px; }
@@ -96,7 +96,7 @@ body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
     @media screen and (min-width: 600px) and (max-width: 991px)
   {
     body .loadPage .texto_5 {top: 30%; }
-    body .loadPage .texto_2 {top: 40%; }
+    body .loadPage .choose_name {top: 40%; }
     body .loadPage .txtStartJogo {top: 53%; width: 350px;}
   }
   @media screen and (min-width: 992px) and (max-width: 1366px)
@@ -120,3 +120,4 @@ body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
 body {
   overflow-y: hidden;
 }
+
