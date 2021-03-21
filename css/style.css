@@ -17,11 +17,18 @@ body .loadPage { width: 100%; height: 100%; top:-10px; position: absolute; z-ind
   #creditos2 {display: none }
   .fundo { background-image: url("../imagens/tFundo.jpg"); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
 
-  #divAnimacao { height: 450px; padding: 0px; position: relative; border-top: 1px solid gainsboro; border-right: 1px solid gainsboro;}
-  #divAnimacao .chaveAnima .iCoracao, #divAnimacao .chaveAnima .iBomba {text-align: center; font-size: 3em; }
-  #divAnimacao .chaveAnima .iCoracao { color: rgb(247, 35, 35); }
-  #divAnimacao .chaveAnima .iBomba { color: #fbc02d; }
-  .startGame .col .col .col i { font-size: 70px; }
+  #divAnimacao { height: 450px; padding: 0px; position: relative; border-top: 1px solid gainsboro; border-right: 1px solid gainsboro; }
+    #palavraChave { position: absolute; left: 50%; transform: translate(-50%); margin-top: -5px; padding: 0px; width: 42px; height: 95% }
+    #palavraChave .pC { left: 50%; transform: translate(-50%); margin-top: 10px; text-align: center; color: black; font-weight: 500; }
+    #divAnimacao .chaveAnima { position: absolute; margin-bottom: 410px; animation: desce 10s linear; text-align: center; }
+    @keyframes desce
+    {
+      to { margin-top: 42%; }
+    }
+  #divAnimacao .iCoracao i, #divAnimacao .iBomba i {text-align: center; font-size: 3em; }
+  #divAnimacao .iCoracao i { color: rgb(247, 35, 35); }
+  #divAnimacao .iBomba   i { color: #fbc02d; }
+  .startGame i { font-size: 70px; }
 .vidro { height: 100%; z-index: 2000; background-image: url("../imagens/3.jpg"); background-repeat: no-repeat; background-size: cover; filter:blur()}
   .startGame, .proxFase, .gameOver { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none; z-index: 2000; }
   .proxFase {font-size: 2.2em}
@@ -48,14 +55,6 @@ body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
 #divPainelUser .star  { font-size: 40px; color: #fbc02d; }
 #jogoD .lifePanel i { font-size: 36px; color: rgb(247, 35, 35); padding-top: 3px; margin-left: 5px }
 #nFase { font-weight: 500; text-align: center; font-size: 2em; color: black;}
-#palavraChave { position: absolute; left: 50%; transform: translate(-50%); margin-top: -5px; padding: 0px; width: 42px; height: 95%}
-#palavraChave .pC { left: 50%; transform: translate(-50%); margin-top: 10px; text-align: center; color: black; font-weight: 500; }
-.chaveAnima { position: absolute; margin-bottom: 410px; animation: desce 10s linear; text-align: center; }
-@keyframes desce
-{
-  to { margin-top: 42%; }
-}
-
 .pulsar {animation: pulsar 1s infinite}
 @keyframes pulsar
 {

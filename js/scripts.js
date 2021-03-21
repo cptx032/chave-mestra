@@ -1,46 +1,53 @@
 
   function geraLetras(nL)    //Sorteia e adiciona as letras que vão cair, controla o tempo que as novas letras aparecerão
   {
+    setTimeout(function(){$('div').remove('.remove')}, removeLetras);        //Remove letras ao final do tempo programado
     // Letras aleatórias dentro do alfabeto
-      var ltr = Math.floor(Math.random() * 120);
-      $('.'+nL).css({"top": ltr} )
       for(i = 0; i < nL; i++) //Sorteia letras aleatórias do alfabeto
       {
         nLtr = Math.floor(Math.random() * 25);
         letra = alfabetoBig[nLtr]
-        posicao1 = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-        $('#divAnimacao').fadeIn().append('<div id="cH'+i+'"class="btn-floating white chaveAnima cH'+i+'"><span class="spancH'+i+'">'+letra+'</span></div>') //Adiciona as letras que caem
-        $('.cH'+i).css({"left": posicao1})
-        nLtr = Math.floor(Math.random() * 120);
-        $('.cH'+i).css({"top": nLtr} )
+        $('#divAnimacao').fadeIn().append('<div id="cH'+i+'"class="btn-floating white chaveAnima remove cH'+i+'"><span class="spancH'+i+'">'+letra+'</span></div>') //Adiciona as letras que caem
+        mTop = Math.floor(Math.random() * 120);
+        $('.cH'+i).css({"top": mTop} )
+        mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
+        $('.cH'+i).css({"left": mLeft})
       }
-      setTimeout(function()
-      {
-        $('div').remove('.chaveAnima')
-      }, removeLetras);
     // Letra válida gerada em meio às que são do sorteio aleatório
       ltr = Math.floor(Math.random() * (letrasDaChave.length - 0));
       letra = letrasDaChave[ltr]
       idLetraVal = nL
-      $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima cH'+idLetraVal+'"><span class="spancH'+idLetraVal+'">'+letra+'</span></div>') //Adiciona as letras que caem
-      posicao2 = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-      $('.'+idLetraVal).css({"left": posicao2})
+      $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima remove cH'+idLetraVal+'"><span class="spancH'+idLetraVal+'">'+letra+'</span></div>') //Adiciona as letras que caem
+      mTop = Math.floor(Math.random() * 120);
+      $('.'+idLetraVal).css({"top": mTop} )
+      mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
+      $('.'+idLetraVal).css({"left": mLeft})
 
-    // Gera corações ou bombas
-    item1 = stopProcessLetras = setTimeout(function()
+    setTimeout(function()
     {
-      idLetraVal ++
-      $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iCoracao cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons iCoracao">favorite</i><span class="spancH'+idLetraVal+'" style="display: none">favorite</span></div>') //Adiciona o item
-      posicao3 = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-      $('.'+idLetraVal).css({"left": posicao3})  
-    }, 5000);
-    item2 = stopProcessLetras = setTimeout(function()
-      {
-        idLetraVal ++
-        $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima .iBomba cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons iBomba ">local_fire_department</i><span class="spancH'+idLetraVal+'" style="display: none">local_fire_department</span></div>') //Adiciona o item
-        posicao4 = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-        $('.'+idLetraVal).css({"left": posicao4})  
-      }, 8000);
+      // Gera corações
+         item1 = stopProcessLetras = setTimeout(function()
+        {
+          idLetraVal ++
+          $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iCoracao cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">favorite</i><span class="spancH'+idLetraVal+'" style="display: none">favorite</span></div>') //Adiciona o item
+          mTop = Math.floor(Math.random() * 120);
+          $('.'+idLetraVal).css({"top": mTop} )
+          mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
+          $('.'+idLetraVal).css({"left": mLeft})
+          setTimeout(function(){$('div').remove('.iCoracao')}, removeLetras); //Remove iCoracoes ao final do tempo programado
+        }, 2000);
+      // Gera foguinhos
+        item2 = stopProcessLetras = setTimeout(function()
+        {
+          idLetraVal ++
+          $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iBomba cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">local_fire_department</i><span class="spancH'+idLetraVal+'" style="display: none">local_fire_department</span></div>') //Adiciona o item
+          mTop = Math.floor(Math.random() * 120);
+          $('.'+idLetraVal).css({"top": mTop} )
+          mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
+          $('.'+idLetraVal).css({"left": mLeft})
+          setTimeout(function(){$('div').remove('.iBomba')}, removeLetras);   //Remove iBomba ao final do tempo programado
+        }, 5000);
+      }, 3000);
   }
 
   function sortPalChave()  //Sorteia a palavra chave da fase
@@ -125,46 +132,49 @@
           if      (v1 == v2)                    //Se a letra coletada (v1) for igual as letras da palavra chave (v2)...
           {
             totalPontos += 3
+            letrasColetadas[iX] = v1
             $('#pontos').html(totalPontos)
-            totalEstrelas ++
-            $('#totalEstrelas').html(totalEstrelas)
-            velox ++    //Aumenta a velocidade do jogador em 1
-            $('#velocidade').html(velox-30)
             $('.j1 img').addClass("pulse green lighten-2")   //Pisca jogador cor verde
             window.setTimeout(function() //Remove pisca 
             {
               $('.j1 img').removeClass("pulse green lighten-2")
             }, 500);
-      
             $('.pC'+v1).removeClass('white');$('.pC'+v1).addClass('blue') //Remove cor branca da palavra chave e adiciona azul para marcar como coletada
-            letrasColetadas[iX] = v1 //Adiciona a letra coletada na posição correta desta lista
-            if (estrelas > 0 && estrelas < 6)   //Adiciona estrelas
-            {
-              if(estrelas == 0){estrela ++}
-              $(".starPanel > i:nth-child("+estrelas+")").fadeIn().html('star') //Muda icone da estrela
-              if(estrelas >= 1){estrelas ++} //Adiciona 1 estrela            
-            }
-            else if(estrelas == 6 && life == 1) //Se tiver 5 estrelas e 1 vida ganha dois corações. Zera estrelas
-            {
-              $('.lifePanel').append('<i class="material-icons life2 btn-floating white">favorite</i>')
-              life ++
-              totalEstrelas = estrelas + totalEstrelas
-              $('#totalEstrelas').html(totalEstrelas)
-              for(iZeraStar = 1; iZeraStar < 6; iZeraStar++)
-              {$(".starPanel > i:nth-child("+iZeraStar+")").fadeIn().html('star_border')} //Reseta icones da estrela
-            }
-            else if(estrelas == 6 && life == 2) //Se tiver 5 estrelas e 2 vida ganha um coração. Zera estrelas
-            {
-              $('.lifePanel').append('<i class="material-icons life3 btn-floating white">favorite</i>')
-              life ++
-              totalEstrelas = estrelas + totalEstrelas
-              $('#totalEstrelas').html(totalEstrelas)
-              for(iZeraStar = 1; iZeraStar < 6; iZeraStar++)
-              {$(".starPanel > i:nth-child("+iZeraStar+")").fadeIn().html('star_border')} //Reseta icones da estrela
             }
           }
         }
-        penalidade = letrasDaChave.includes(v1) //Verifica se letra coletada está dentro da palavra chave, se não, aplica as penalidades
+        penalidade = letrasDaChave.includes(v1) //Verifica se letra coletada está dentro da palavra chave
+        if(penalidade)
+        {
+          totalEstrelas ++
+          velox ++
+          $('#totalEstrelas').html(totalEstrelas)//Aumenta a velocidade do jogador em 1
+          $('#velocidade').html(velox-30)
+          //Adiciona a letra coletada na posição correta desta lista
+          if (estrelas > 0 && estrelas < 6)   //Adiciona estrelas
+          {
+            if(estrelas == 0){estrela ++}
+            $(".starPanel > i:nth-child("+estrelas+")").fadeIn().html('star') //Muda icone da estrela
+            if(estrelas >= 1){estrelas ++} //Adiciona 1 estrela            
+          }
+          else if(estrelas == 6 && life == 1) //Se tiver 5 estrelas e 1 vida ganha dois corações. Zera estrelas
+          {
+            $('.lifePanel').append('<i class="material-icons life2 btn-floating white">favorite</i>')
+            life ++
+            totalEstrelas = estrelas + totalEstrelas
+            $('#totalEstrelas').html(totalEstrelas)
+            for(iZeraStar = 1; iZeraStar < 6; iZeraStar++)
+            {$(".starPanel > i:nth-child("+iZeraStar+")").fadeIn().html('star_border')} //Reseta icones da estrela
+          }
+          else if(estrelas == 6 && life == 2) //Se tiver 5 estrelas e 2 vida ganha um coração. Zera estrelas
+          {
+            $('.lifePanel').append('<i class="material-icons life3 btn-floating white">favorite</i>')
+            life ++
+            totalEstrelas = estrelas + totalEstrelas
+            $('#totalEstrelas').html(totalEstrelas)
+            for(iZeraStar = 1; iZeraStar < 6; iZeraStar++)
+            {$(".starPanel > i:nth-child("+iZeraStar+")").fadeIn().html('star_border')} //Reseta icones da estrela
+        }
         if(!penalidade)                         //Se a letra coletada não tiver na palavra chave, um coração é perdido 
         {
           if (estrelas > 0) //Remove estrelas
