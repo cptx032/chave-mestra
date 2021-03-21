@@ -21,7 +21,7 @@
       mTop = Math.floor(Math.random() * 120);
       $('.'+idLetraVal).css({"top": mTop} )
       mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-      $('.'+idLetraVal).css({"left": mLeft})
+      $('.cH'+idLetraVal).css({"left": mLeft})
 
     setTimeout(function()
     {
@@ -33,7 +33,7 @@
           mTop = Math.floor(Math.random() * 120);
           $('.'+idLetraVal).css({"top": mTop} )
           mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-          $('.'+idLetraVal).css({"left": mLeft})
+          $('.cH'+idLetraVal).css({"left": mLeft})
           setTimeout(function(){$('div').remove('.iCoracao')}, removeLetras); //Remove iCoracoes ao final do tempo programado
         }, 2000);
       // Gera foguinhos
@@ -44,7 +44,7 @@
           mTop = Math.floor(Math.random() * 120);
           $('.'+idLetraVal).css({"top": mTop} )
           mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-          $('.'+idLetraVal).css({"left": mLeft})
+          $('.cH'+idLetraVal).css({"left": mLeft})
           setTimeout(function(){$('div').remove('.iBomba')}, removeLetras);   //Remove iBomba ao final do tempo programado
         }, 5000);
       }, 3000);
@@ -122,7 +122,6 @@
     if(xj1 + 40 > xcH && xj1 < xcH + 40 && yj1 + 40 > ycH && yj1 < ycH + 40) //Verifica se houve colisão em algum lado do jogador: Uma das ações abaixo é executada
     { //Se entrou aqui houve colisão
       var v1 = $('.span'+cH).text() //Pega a letra dentro da esfera
-      console.log("Início - Fim: "+fim+"  V1:  "+v1+"  Letras Coletadas:  "+letrasColetadas+"  Letras Chave:  "+letrasDaChave)  
       $('div').remove('#'+cH)                      //Remove a esfera da tela
       if(v1 != 'favorite' && v1 != 'local_fire_department')
       {
@@ -340,4 +339,4 @@
       }
     }
   }
-  //console.log(letrasColetadas.join())  
+  //console.log("Início - Fim: "+fim+"  V1:  "+v1+"  Letras Coletadas:  "+letrasColetadas+"  Letras Chave:  "+letrasDaChave)  
