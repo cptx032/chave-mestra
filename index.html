@@ -168,7 +168,7 @@
           </div>
       </div>
     </div>
-    <div class="container runGame" style="margin-top: 0px">   <!-- Tela do Jogo -->
+    <div class="container runGame">   <!-- Tela do Jogo -->
       <div class="row card"> <!--Estrelas--> <!--Clones--> <!--Número da Fase--> <!--Tela do jogo-->
         <div id="jogoD" class="col s10">
           <div id="divPainelUser" class="col s12 btn cyan lighten-5"> <!--Painel de cima-->
@@ -271,7 +271,7 @@
         var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
         var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W"] //Letras do alfabeto que cairão para serem coletadas
         var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w"] //Letras do alfabeto que cairão para serem coletadas
-        var nFase = 0
+        var nFase = 10
         var maxLetras = 14                    //Limite de letras das palavras chave + 1
         var nLetrasFase1 = [4,5,3,6]          //Quantidade de letras que caem na 1 e 2a fase
         var nLetrasFase2 = [6,8,5,6]          //Quantidade de letras que caem na 3 e 4a fase
@@ -279,27 +279,20 @@
         var nLetrasFase4 = [7,8,9,8,10,11]    //Quantidade de letras que caem na 7 e 8a fase
         var nLetrasFase5 = [7,8,9,8,10,11,12] //Quantidade de letras que caem na 9 e 10a fase
 
-        var xj1 = yj1 = 0            // Posição do jogador
         var nomeJogador  = 'Jogador'
         var letrasDaChave   = []     //Lista com a palavra escolhida
         var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
-        var posicaoW = nLtr = nLtr = 0 //Variáveis necessárias para geração das letras aleatórias
-        var letra = ''
+        var letra = v1 =  v2 = tecla = joystick = item = ''
         var xPalavra = 3
         var tempoCascata  = 10500    //Velocidade que as letras serão geradas, em milissegundos
         var removeLetras  = 10000;   //Tempo para remover as letras
-        var totalEstrelas = 0
-        var totalPontos = 0
+        var totalEstrelas = totalPontos = telaW = telaH = mX = mY = xUltPosicao = yUltPosicao = xj1 = yj1 = posicaoW = nLtr = nLtr = penalidade = 0
         var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
         var horizontal = velox
         var vertical   = 55
-        var joystick = ''
-        var tecla = ''
         var estrelas = 1
         var life     = 3
-        var item = ''
-        var telaW = telaH = 0
-        var mX = mY = xUltPosicao = yUltPosicao = 0
+        var fim = false // Se esta variável estiver true significa que o jogador completou a fase
         var idLetraVal = //iD que foi atribuído ao class e ao ID da última letra gerada, nesse caso esse ID está sendo atribuído a uma letra que compõe a palavra chave e que cai cada vez que as letras são geradas. Servirá de base para gerar a bomba e o coração.
 
       //Efeitos da tela inicial
@@ -409,16 +402,15 @@
         $('.controlMouse').click(function()
         {
           movJogadorM()
-          joystick = 'm'
         })
         $('.controlCam').click(function()
         {
           movJogadorC()
-          joystick = 'c'
         })
       //Início do jogo
       $('.controlTeclado, .controlMouse, .controlCam, .fim2, .fim4').click(function()
       {
+        fim = false
         $('.vidro-green-top').hide()
         telaW = parseInt($('#divAnimacao').width())
         telaH = parseInt($('#divAnimacao').height())
