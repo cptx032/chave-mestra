@@ -142,8 +142,8 @@
             }
           }
         }
-        penalidade = letrasDaChave.includes(v1) //Verifica se letra coletada está dentro da palavra chave
-        if(penalidade)
+        atualizaItens = letrasDaChave.includes(v1) //Verifica se letra coletada está dentro da palavra chave
+        if(atualizaItens)
         {
           totalEstrelas ++
           velox ++
@@ -173,8 +173,9 @@
             $('#totalEstrelas').html(totalEstrelas)
             for(iZeraStar = 1; iZeraStar < 6; iZeraStar++)
             {$(".starPanel > i:nth-child("+iZeraStar+")").fadeIn().html('star_border')} //Reseta icones da estrela
+          }
         }
-        if(!penalidade)                         //Se a letra coletada não tiver na palavra chave, um coração é perdido 
+        else                                       //Se a letra coletada não tiver na palavra chave, um coração é perdido 
         {
           if (estrelas > 0) //Remove estrelas
           {
@@ -190,7 +191,7 @@
           {
             $('.j1 img').removeClass("pulse red lighten-2")
           }, 500);
-  
+          
           velox --
           life  --
           if     (life == 2)
@@ -269,8 +270,7 @@
           }
         }
       }
-      if(life == 1){ $('.life1').addClass('pulsar')}
-      else         { $('.life1').removeClass('pulsar')} 
+      if(life == 1){ $('.life1').addClass('pulsar')}else{ $('.life1').removeClass('pulsar')} 
       fim = comparaListas(letrasColetadas, letrasDaChave); //Compara as letras coletadas com as letras da chave, se todas as letras estiverem coletadas acontece o fim da fase ou do jogo
       if(fim)
       {
@@ -336,7 +336,6 @@
           for(iXXX = 0; iXXX < 20; iXXX ++)
           {$('.cH'+iXXX).removeClass('white'); $('.cH'+iXXX).addClass('red pulse')}
         }
-      }
     }
   }
   //console.log("Início - Fim: "+fim+"  V1:  "+v1+"  Letras Coletadas:  "+letrasColetadas+"  Letras Chave:  "+letrasDaChave)  
