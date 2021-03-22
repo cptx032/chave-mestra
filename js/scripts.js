@@ -47,7 +47,7 @@
           $('.cH'+idLetraVal).css({"left": mLeft})
           setTimeout(function(){$('div').remove('.iBomba')}, removeLetras);   //Remove iBomba ao final do tempo programado
         }, 5000);
-      }, 3000);
+      }, 2000);
   }
 
   function sortPalChave()  //Sorteia a palavra chave da fase
@@ -152,8 +152,8 @@
             totalEstrelas = estrelas + totalEstrelas
             $('#totalEstrelas').html(totalEstrelas)
             for(iZeraStar = 0; iZeraStar <=5; iZeraStar++)
-            estrelas = 0
             {$(".star"+iZeraStar).html('star_border')} //Reseta icones da estrela
+            estrelas = 0
           }
           else if(estrelas == 5 && life == 2)    //Se tiver 5 estrelas e 2 vida ganha um coração. Zera estrelas
           {
