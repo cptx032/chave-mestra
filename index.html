@@ -22,7 +22,7 @@
       <meta charset="utf-8" />
     <!--Estilos e animações-->
   </head>
-  <title>Chave Mestr@</title>
+  <title>Chave Mestra</title>
   <body>
     <div class="card loadPage fundo"> <!-- Tela inicial (Personalização do usuário e cadastro das palavras) -->
       <div class="btn-floating detalhes white" onclick="javascript:$('#helpmodal').fadeIn()"><span>?</span></div>
@@ -50,7 +50,6 @@
         </div>
       </div>
       <div class="btn yellow darken-2 choose_name pulse">Click e escolha seu nome e avatar</div>
-
       <div id="helpmodal" class="modal">
         <div class="container">
           <div class="row">
@@ -82,7 +81,6 @@
           </div>
         </div>
       </div>
-
       <div class="personalize modal"> <!-- Nome e foto (avatar) do jogador -->
         <div class="container">
           <div class="row">
@@ -173,11 +171,11 @@
         <div id="jogoD" class="col s10">
           <div id="divPainelUser" class="col s12 btn cyan lighten-5"> <!--Painel de cima-->
             <div class="col s7 l6 xl5 starPanel"> <!--Estrelas-->
-              <i class="material-icons star starB">star_border</i>
-              <i class="material-icons star starB">star_border</i>
-              <i class="material-icons star starB">star_border</i>
-              <i class="material-icons star starB">star_border</i>
-              <i class="material-icons star starB">star_border</i>
+              <i class="material-icons star starB star1">star_border</i>
+              <i class="material-icons star starB star2">star_border</i>
+              <i class="material-icons star starB star3">star_border</i>
+              <i class="material-icons star starB star4">star_border</i>
+              <i class="material-icons star starB star5">star_border</i>
             </div>
             <div class="col s4 l4 xl4 lifePanel"> <!--Corações-->
               <i class="material-icons life1 btn-floating white">favorite</i>
@@ -220,7 +218,7 @@
                 <div class="col s12">E</div>
               </div>
               <div class="load"><img src="imagens/imd.jpg" alt=""></div> <!--Load próxima fase-->
-              <div class="gameOver"><!-- Botão Próxima fase -->
+              <div class="gameOver"><!-- Tela Game Over -->
                 <div class="fim3">
                   <span class="g">G</span>
                   <span class="a">A</span>
@@ -231,7 +229,8 @@
                   <span class="v">V</span>
                   <span class="e">E</span>
                   <span class="r">R</span>
-                  <i class="material-icons large right">videogame_asset_off</i></div>
+                  <span class="material-icons large right">videogame_asset_off</span>
+                </div>
                 <div class="fim4">Tente novamente <div class="btn-floating large black pulse hoverable"><i class="material-icons large right">play_circle</i></div></div>
               </div>
               <div class="fimJogo"><!-- Botão Próxima fase -->
@@ -239,11 +238,9 @@
                 </div>
               </div>
             </div>
-            <!--Jogadores-->
               <div id="j1" class="waves-effect waves-light j1">
-                <img id="circle1" src="perfis/1.png" alt="" class="circle">
+                <img id="circle1" src="perfis/1.png" alt="" class="circle"> <!--Ícone do Jogador-->
               </div>
-            <!--Jogadores-->
           </div>
         </div>
         <div class="col s2" style="position: relative;"> <!--Acomoda a palavra chave-->
@@ -291,7 +288,7 @@
         var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
         var horizontal = velox
         var vertical   = 55
-        var estrelas = 1
+        var estrelas = 0
         var life     = 3
         var fim = false // Se esta variável estiver true significa que o jogador completou a fase
 
@@ -414,9 +411,9 @@
         $('.vidro-green-top').hide()
         telaW = parseInt($('#divAnimacao').width())
         telaH = parseInt($('#divAnimacao').height())
-        estrelas = 1
+        estrelas = 0
         velox    = 30            //Velocidade do movimento do jogador, medida em pixel
-        for(i=1; i<5; i++){$(".starPanel > i:nth-child("+i+")").fadeIn().html('star_border')}
+        for(i=0; i<5; i++){$(".starPanel > i:nth-child("+i+")").fadeIn().html('star_border')}
         $('#velocidade').html(0)
         $('.vidro').hide()
         $('.pC').removeClass('blue')
