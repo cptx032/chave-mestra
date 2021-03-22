@@ -23,10 +23,10 @@
       mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
       $('.cH'+idLetraVal).css({"left": mLeft})
 
-    setTimeout(function()
+      item0 = setTimeout(function()
     {
       // Gera corações
-         item1 = stopProcessLetras = setTimeout(function()
+      item1 = setTimeout(function()
         {
           idLetraVal ++
           $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iCoracao cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">favorite</i><span class="spancH'+idLetraVal+'" style="display: none">favorite</span></div>') //Adiciona o item
@@ -37,7 +37,7 @@
           setTimeout(function(){$('div').remove('.iCoracao')}, removeLetras); //Remove iCoracoes ao final do tempo programado
         }, 2000);
       // Gera foguinhos
-        item2 = stopProcessLetras = setTimeout(function()
+      item2 = setTimeout(function()
         {
           idLetraVal ++
           $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iBomba cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">local_fire_department</i><span class="spancH'+idLetraVal+'" style="display: none">local_fire_department</span></div>') //Adiciona o item
@@ -119,44 +119,40 @@
   }
   function processaLetras(cH, xj1, yj1, xcH, ycH) //x0 e y0 for menor que 40 o jogador pegou uma letra, decisões são tomadas com base nessa ação
   {
-    if(xj1 + 40 > xcH && xj1 < xcH + 40 && yj1 + 40 > ycH && yj1 < ycH + 40) //Verifica se houve colisão em algum lado do jogador: Uma das ações abaixo é executada
-    { //Se entrou aqui houve colisão
-      var v1 = $('.span'+cH).text() //Pega a letra dentro da esfera
+    if(xj1 + 40 > xcH && xj1 < xcH + 40 && yj1 + 40 > ycH && yj1 < ycH + 40) //Condições que definem a colisão
+    { 
+      var v1 = $('.span'+cH).text()                //Pega a letra dentro da esfera
       $('div').remove('#'+cH)                      //Remove a esfera da tela
       if(v1 != 'favorite' && v1 != 'local_fire_department')
       {
-        for(iX = 0; iX < letrasDaChave.length; iX++)
+        for(iX = 0; iX < letrasDaChave.length; iX++)  //Percorre a palavra chave para ver se ela contém a letra coletada
         {
           var v2 = letrasDaChave[iX]            //Pega letra dentro da chave
-          if      (v1 == v2)                    //Se a letra coletada (v1) for igual as letras da palavra chave (v2)...
+          if(v1 == v2)                          //Se a letra coletada (v1) for igual as letras da palavra chave (v2)...
           {
-            totalPontos += 3
-            letrasColetadas[iX] = v1
-            $('#pontos').html(totalPontos)
-            $('.j1 img').addClass("pulse green lighten-2")   //Pisca jogador cor verde
-            window.setTimeout(function() //Remove pisca 
-            {
-              $('.j1 img').removeClass("pulse green lighten-2")
-            }, 500);
+            $('.j1 img').addClass("pulse green lighten-2")                                         //Pisca jogador cor verde
+            window.setTimeout(function(){$('.j1 img').removeClass("pulse green lighten-2")}, 500); //Cor do jogador volta ao transparente
             $('.pC'+v1).removeClass('white');$('.pC'+v1).addClass('blue') //Remove cor branca da palavra chave e adiciona azul para marcar como coletada
-            }
+            totalPontos += 3
+            $('#pontos').html(totalPontos)
+            letrasColetadas[iX] = v1
           }
         }
-        atualizaItens = letrasDaChave.includes(v1) //Verifica se letra coletada está dentro da palavra chave
-        if(atualizaItens)
+        atualizaItens = letrasDaChave.includes(v1)   //Verifica se letra coletada está dentro da palavra chave
+        if(atualizaItens)                            //Se a letra correta foi coletada
         {
           totalEstrelas ++
           velox ++
           $('#totalEstrelas').html(totalEstrelas)//Aumenta a velocidade do jogador em 1
           $('#velocidade').html(velox-30)
           //Adiciona a letra coletada na posição correta desta lista
-          if (estrelas > 0 && estrelas < 6)   //Adiciona estrelas
+          if     (estrelas > 0 && estrelas < 6)//Adiciona estrelas
           {
             if(estrelas == 0){estrela ++}
             $(".starPanel > i:nth-child("+estrelas+")").fadeIn().html('star') //Muda icone da estrela
             if(estrelas >= 1){estrelas ++} //Adiciona 1 estrela            
           }
-          else if(estrelas == 6 && life == 1) //Se tiver 5 estrelas e 1 vida ganha dois corações. Zera estrelas
+          else if(estrelas == 6 && life == 1)  //Se tiver 5 estrelas e 1 vida ganha dois corações. Zera estrelas
           {
             $('.lifePanel').append('<i class="material-icons life2 btn-floating white">favorite</i>')
             life ++
@@ -165,7 +161,7 @@
             for(iZeraStar = 1; iZeraStar < 6; iZeraStar++)
             {$(".starPanel > i:nth-child("+iZeraStar+")").fadeIn().html('star_border')} //Reseta icones da estrela
           }
-          else if(estrelas == 6 && life == 2) //Se tiver 5 estrelas e 2 vida ganha um coração. Zera estrelas
+          else if(estrelas == 6 && life == 2)  //Se tiver 5 estrelas e 2 vida ganha um coração. Zera estrelas
           {
             $('.lifePanel').append('<i class="material-icons life3 btn-floating white">favorite</i>')
             life ++
@@ -175,8 +171,10 @@
             {$(".starPanel > i:nth-child("+iZeraStar+")").fadeIn().html('star_border')} //Reseta icones da estrela
           }
         }
-        else                                       //Se a letra coletada não tiver na palavra chave, um coração é perdido 
+        else                                         //Se a letra coletada não estiver correta um coração é perdido e outras ações são realizadas 
         {
+          $('.j1 img').addClass("pulse red lighten-2")                                            //Pisca jogador cor vermelha
+          window.setTimeout(function(){$('.j1 img').removeClass("pulse red lighten-2")}, 500);    //Cor do jogador volta ao transparente
           if (estrelas > 0) //Remove estrelas
           {
             $(".starPanel > i:nth-child("+estrelas+")").fadeIn().html('star_border')
@@ -184,16 +182,7 @@
           if (estrelas > 1) //Remove estrelas
           {
             estrelas --
-          }            
-  
-          $('.j1 img').addClass("pulse red lighten-2") //Pisca jogador cor vermelho
-          window.setTimeout(function()
-          {
-            $('.j1 img').removeClass("pulse red lighten-2")
-          }, 500);
-          
-          velox --
-          life  --
+          }                     
           if     (life == 2)
           {
             $('i').remove('.life3')
@@ -202,56 +191,30 @@
           {
             $('i').remove('.life2')
           }
-          else if(life == 0)
-          {
-            $('i').remove('.life1')
-            $('.j1').css({ "bottom": "10px"})
-            while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()}
-            clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item1, item2);
-            $('.proxFase, .startGame, .fim4').hide()
-            $('.vidro, .gameOver').show()
-            $('.g').fadeToggle(800)
-            $('.a').fadeToggle(1600)
-            $('.m').fadeToggle(2400)
-            $('.e').fadeToggle(3200)
-            $('.oo').fadeToggle(4000)
-            $('.o').fadeToggle(4800)
-            $('.v').fadeToggle(5200)
-            $('.e').fadeToggle(6000)
-            $('.r').fadeToggle(6800)
-            window.setTimeout(function() 
-            {  
-              $('.fim3').hide()
-              $('.fim4').fadeIn(500)
-            },9000);
-            
-            $('div').remove('.chaveAnima')
-            for(iXXX = 0; iXXX < 20; iXXX ++)
-            {$('.cH'+iXXX).removeClass('white'); $('.cH'+iXXX).addClass('red pulse')}
-          }   
+          velox --; life -- //Penaliza jogador retirando velocidade e vida
         }
       }
       else
       {
-        if      (v1 == 'favorite')                 //Ativa coracao
+        if      (v1 == 'favorite')              //Ativa coracao
         {
-          $('div').remove('.iCoracao')       //Remove a coração da tela
-          if(life == 1)
+          $('div').remove('.iCoracao')          //Remove a coração da tela
+          if     (life == 1)
           {
+            life += 2
             $('.lifePanel').append('<i class="material-icons life2 btn-floating white">favorite</i>')
             $('.lifePanel').append('<i class="material-icons life3 btn-floating white">favorite</i>')
-            life += 2
           }
           else if(life == 2)
           {
-            $('.lifePanel').append('<i class="material-icons life2 btn-floating white">favorite</i>')
             life ++
+            $('.lifePanel').append('<i class="material-icons life3 btn-floating white">favorite</i>')
           }
         }
-        else if (v1 == 'local_fire_department')    //Remove coracao
+        else if (v1 == 'local_fire_department') //Remove coracao
         {
-          $('div').remove('.iBomba')               //Remove a bomba da tela
-          if(life == 3)
+          $('div').remove('.iBomba')            //Remove o foguinho da tela
+          if     (life == 3)
           {
             $('i').remove('.life3')
             $('i').remove('.life2')
@@ -270,19 +233,49 @@
           }
         }
       }
-      if(life == 1){ $('.life1').addClass('pulsar')}else{ $('.life1').removeClass('pulsar')} 
-      fim = comparaListas(letrasColetadas, letrasDaChave); //Compara as letras coletadas com as letras da chave, se todas as letras estiverem coletadas acontece o fim da fase ou do jogo
-      if(fim)
+      fim = comparaListas(letrasColetadas, letrasDaChave);                                  //Compara as letras coletadas com as letras da chave, se todas as letras estiverem coletadas acontece o fim da fase ou do jogo
+      console.log(life)
+      if     (life == 1){$('.life1').addClass('pulsar')}else{ $('.life1').removeClass('pulsar')} //SE houver apenas 1 coração ele ficará pulsando e com a cor mais clara.
+      if     (life == 0)       //Game over
+      {
+        $('i').remove('.life1')           //Remove último coração
+        $('div').remove('.chaveAnima')    //Remove todas as letras que estão caindo na tela
+        $('.j1').css({ "bottom": "10px"}) //Move o jogador para a posição original
+        clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item0);clearInterval(item1);clearInterval(item2) //Para o processamento das letras e a gerarção letras e itens que caem
+        while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()} //Zera as listras com as letras coletadas e da palavra-chave
+
+        life = 3
+        $('.proxFase, .startGame, .fim4').hide()
+        $('.vidro, .gameOver').show()
+        $('.g').fadeIn(800)
+        $('.a').fadeIn(1600)
+        $('.m').fadeIn(2400)
+        $('.e').fadeIn(3200)
+        $('.oo').fadeIn(4000)
+        $('.o').fadeIn(4800)
+        $('.v').fadeIn(5200)
+        $('.e').fadeIn(6000)
+        $('.r').fadeIn(6800)
+        window.setTimeout(function() //Apaga Game over e mostra Tente novamente
+        { 
+          $('.fim3,.g,.a,.m,.e,.oo,.v,.e,.r').hide(500)
+          $('.fim4').fadeIn(500)
+        },9000);
+      }   
+      else if(fim)             //Fase completa ou jogo completo
       {
         nFase ++
         if     (nFase <= 10)
         {
-          $('.j1').css({ "bottom": "10px"})
-          $('#circle1').css({ "width": "150px", "height": "150px"})
+          $('i').remove('.life1')           //Remove último coração
+          $('div').remove('.chaveAnima')    //Remove todas as letras que estão caindo na tela
+          $('.j1').css({ "bottom": "10px"}) //Move o jogador para a posição original  
+          clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item0);clearInterval(item1);clearInterval(item2);
           while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()}
+
+          $('#circle1').css({ "width": "150px", "height": "150px"})
           $('.vidro, .proxFase, .fim1, .vidro-green-left').show()
           $('.vidro-green-left').css({"width": "15%", "height": "100%"});
-
           var load = window.setInterval(function()
           {
             $('.load').fadeIn(200)
@@ -295,9 +288,7 @@
             $('.load').css({"border-left":"solid 5px rgba(40, 120, 255, 0.6)"});},400)
             setTimeout(() => { $('.load').css({"border-left":"solid 5px #fbc02d"});},550)
           },550)
-
           $('.startGame, .fim2, .gameOver').hide()
-          clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item1, item2)
           window.setTimeout(function() 
           {  
             $('.vidro-green-left').fadeOut(500);
@@ -309,9 +300,6 @@
             $('.fim2').show()
             $('#circle1').css({ "width": "50px", "height": "50px"})
           }, 7000);
-          $('div').remove('.chaveAnima')
-          for(iXX = 0; iXX < 20; iXX ++)
-          {$('.cH'+iXX).removeClass('white'); $('.cH'+iXX).addClass('red pulse')}
         }
         else if(nFase == 11)
         {
@@ -320,22 +308,17 @@
           totalPontos = 0
           $('.j1').css({ "bottom": "10px"})
           while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()}
-          clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item1, item2);
+          clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item0);clearInterval(item1);clearInterval(item2);
           $('.startGame, .proxFase, .gameOver').hide()
           $('.vidro, .fimJogo').show()
           for(iFim = 1; iFim <= 10; iFim++)
           {
             $('.fimJogo .row').fadeIn(1000).append('<div class="yellow darken-2 col s1 fimJogoNumPal" style="margin-left: 5.5%;">'+iFim+'</div><div class="btn  light-blue darken-4 fimJogoListaPal col s4">'+palavraChave[iFim]+'</div>')
           }
-            $('.fimJogo .row').fadeIn(800).append('<a href="index.html"><div class="btn black fimJogoAviso col s4 offset-s1" style="margin-left: 5.5%; margin-top: 50px"> Jogue novamente!</div><i class="material-icons medium col s2" style="margin-top: 40px">play_circle</i></a>')
-          var intervalo = window.setTimeout(function() 
-          {  
-          },9000);
-          
+            $('.fimJogo .row').fadeIn(800).append('<a href="index.html"><div class="btn black fimJogoAviso col s4 offset-s1" style="margin-left: 5.5%; margin-top: 50px"> Jogue novamente!</div><i class="material-icons medium col s2" style="margin-top: 40px">play_circle</i></a>')        
           $('div').remove('.chaveAnima')
-          for(iXXX = 0; iXXX < 20; iXXX ++)
-          {$('.cH'+iXXX).removeClass('white'); $('.cH'+iXXX).addClass('red pulse')}
         }
+      }
     }
   }
   //console.log("Início - Fim: "+fim+"  V1:  "+v1+"  Letras Coletadas:  "+letrasColetadas+"  Letras Chave:  "+letrasDaChave)  
