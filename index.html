@@ -231,7 +231,8 @@
                   <span class="r">R</span>
                   <span class="material-icons large right">videogame_asset_off</span>
                 </div>
-                <div class="fim4">Tente novamente <div class="btn-floating large black pulse hoverable"><i class="material-icons large right">play_circle</i></div></div>
+                <div class="fim4">Continuar? <div class="btn-floating large green lighten-2 pulse hoverable"><i class="material-icons large right">play_circle</i></div></div>
+                <div class="fim5">Voltar para o início? <div class="btn-floating large grey pulse hoverable"><i class="material-icons large right">play_circle</i></div></div>
               </div>
               <div class="fimJogo"><!-- Botão Próxima fase -->
                 <div class="row">
@@ -268,7 +269,7 @@
         var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
         var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W"] //Letras do alfabeto que cairão para serem coletadas
         var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w"] //Letras do alfabeto que cairão para serem coletadas
-        var nFase = 1
+        var nFase = 0
         var maxLetras = 14                    //Limite de letras das palavras chave + 1
         var nLetrasFase1 = [4,5,3,6]          //Quantidade de letras que caem na 1 e 2a fase
         var nLetrasFase2 = [6,8,5,6]          //Quantidade de letras que caem na 3 e 4a fase
@@ -347,6 +348,17 @@
         {
           $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
           for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
+          life = 3
+          nFase = nFase
+        })
+        $('.fim5').click(function()
+        {
+          $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
+          for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
+          life = 3
+          nFase = 1
+          totalEstrelas = 0
+          totalPontos = 0
         })
         //Atribuindo dados e foto do jogador
         $('#nomeJogador').html(nomeJogador)
@@ -405,7 +417,7 @@
           movJogadorC()
         })
       //Início do jogo
-      $('.controlTeclado, .controlMouse, .controlCam, .fim2, .fim4').click(function()
+      $('.controlTeclado, .controlMouse, .controlCam, .fim2, .fim4, .fim5').click(function()
       {
         fim = false
         $('.vidro-green-top').hide()

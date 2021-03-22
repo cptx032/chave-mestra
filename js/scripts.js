@@ -1,23 +1,23 @@
 
   function geraLetras(nL)    //Sorteia e adiciona as letras que vão cair, controla o tempo que as novas letras aparecerão
   {
-    setTimeout(function(){$('div').remove('.remove')}, removeLetras);        //Remove letras ao final do tempo programado
     // Letras aleatórias dentro do alfabeto
       for(i = 0; i < nL; i++) //Sorteia letras aleatórias do alfabeto
       {
         nLtr = Math.floor(Math.random() * 25);
         letra = alfabetoBig[nLtr]
-        $('#divAnimacao').fadeIn().append('<div id="cH'+i+'"class="btn-floating white chaveAnima remove cH'+i+'"><span class="spancH'+i+'">'+letra+'</span></div>') //Adiciona as letras que caem
+        $('#divAnimacao').fadeIn().append('<div id="cH'+i+'"class="btn-floating white chaveAnima remove cH'+i+'"><span class="spancH'+i+' remove">'+letra+'</span></div>') //Adiciona as letras que caem
         mTop = Math.floor(Math.random() * 120);
         $('.cH'+i).css({"top": mTop} )
         mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
         $('.cH'+i).css({"left": mLeft})
       }
+      setTimeout(function(){$('div').remove('.remove')}, removeLetras);        //Remove letras ao final do tempo programado
     // Letra válida gerada em meio às que são do sorteio aleatório
       ltr = Math.floor(Math.random() * (letrasDaChave.length - 0));
       letra = letrasDaChave[ltr]
       idLetraVal = nL
-      $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima remove cH'+idLetraVal+'"><span class="spancH'+idLetraVal+'">'+letra+'</span></div>') //Adiciona as letras que caem
+      $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima remove cH'+idLetraVal+'"><span class="spancH'+idLetraVal+' remove">'+letra+'</span></div>') //Adiciona as letras que caem
       mTop = Math.floor(Math.random() * 120);
       $('.'+idLetraVal).css({"top": mTop} )
       mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
@@ -29,7 +29,7 @@
       item1 = setTimeout(function()
         {
           idLetraVal ++
-          $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iCoracao cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">favorite</i><span class="spancH'+idLetraVal+'" style="display: none">favorite</span></div>') //Adiciona o item
+          $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iCoracao cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">favorite</i><span class="spancH'+idLetraVal+' remove" style="display: none">favorite</span></div>') //Adiciona o item
           mTop = Math.floor(Math.random() * 120);
           $('.'+idLetraVal).css({"top": mTop} )
           mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
@@ -40,7 +40,7 @@
       item2 = setTimeout(function()
         {
           idLetraVal ++
-          $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iBomba cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">local_fire_department</i><span class="spancH'+idLetraVal+'" style="display: none">local_fire_department</span></div>') //Adiciona o item
+          $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iBomba cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">local_fire_department</i><span class="spancH'+idLetraVal+' remove" style="display: none">local_fire_department</span></div>') //Adiciona o item
           mTop = Math.floor(Math.random() * 120);
           $('.'+idLetraVal).css({"top": mTop} )
           mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
@@ -171,7 +171,6 @@
           $('.j1 img').addClass("pulse red lighten-2")                                            //Pisca jogador cor vermelha
           window.setTimeout(function(){$('.j1 img').removeClass("pulse red lighten-2")}, 500);    //Cor do jogador volta ao transparente
           velox --; life -- //Penaliza jogador retirando velocidade e vida
-          console.log('Estrelas: '+estrelas)
           if     (estrelas >=1&&estrelas < 5)    //Adiciona estrelas
           {
             if     (estrelas == 1){$(".star1").html('star_border')} //Muda icone para estrela completa
@@ -230,7 +229,6 @@
         }
       }
       fim = comparaListas(letrasColetadas, letrasDaChave);                                  //Compara as letras coletadas com as letras da chave, se todas as letras estiverem coletadas acontece o fim da fase ou do jogo
-      console.log('Vida: '+life)
       if     (life == 1){$('.life1').addClass('pulsar')}else{ $('.life1').removeClass('pulsar')} //SE houver apenas 1 coração ele ficará pulsando e com a cor mais clara.
       if     (life == 0)       //Game over
       {
@@ -241,7 +239,7 @@
         while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()} //Zera as listras com as letras coletadas e da palavra-chave
 
         life = 3
-        $('.proxFase, .startGame, .fim4').hide()
+        $('.proxFase, .startGame, .fim4, .fim5').hide()
         $('.vidro, .gameOver').show()
         $('.g').fadeIn(800)
         $('.a').fadeIn(1600)
@@ -255,7 +253,7 @@
         window.setTimeout(function() //Apaga Game over e mostra Tente novamente
         { 
           $('.fim3,.g,.a,.m,.e,.oo,.v,.e,.r').hide(500)
-          $('.fim4').fadeIn(500)
+          $('.fim4, .fim5').fadeIn(500)
         },9000);
       }   
       else if(fim)             //Fase completa ou jogo completo
