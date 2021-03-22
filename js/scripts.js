@@ -4,50 +4,26 @@
     // Letras aleatórias dentro do alfabeto
       for(i = 0; i < nL; i++) //Sorteia letras aleatórias do alfabeto
       {
-        nLtr = Math.floor(Math.random() * 25);
-        letra = alfabetoBig[nLtr]
-        $('#divAnimacao').fadeIn().append('<div id="cH'+i+'"class="btn-floating white chaveAnima remove cH'+i+'"><span class="spancH'+i+' remove">'+letra+'</span></div>') //Adiciona as letras que caem
+        nLtr = Math.floor(Math.random() * 28);
+        letra = tipoLetra[nLtr]
+        $('#divAnimacao').fadeIn().append('<div id="cH'+i+'"class="btn-floating white chaveAnima cH'+i+'"><span class="spancH'+i+'">'+letra+'</span></div>') //Adiciona as letras que caem
         mTop = Math.floor(Math.random() * 120);
+        if(letra == "favorite")                  // Gera corações
+        {
+          $('.cH'+i).addClass('iCoracao')
+          $('.cH'+i).css({"border":"none","color":"none","background-color":"none","box-shadow":"none"})
+          $('.cH'+i).html('<i class="material-icons">favorite</i><span class="spancH'+i+'" style="display: none">favorite</span>')
+        }
+        else if(letra == "local_fire_department")// Gera foguinhos
+        {
+          $('.cH'+i).addClass('iBomba')
+          $('.cH'+i).css({"border":"none","color":"none","background-color":"none","box-shadow":"none"})
+          $('.cH'+i).html('<i class="material-icons">local_fire_department</i><span class="spancH'+i+'" style="display: none">local_fire_department</span>')
+        }
         $('.cH'+i).css({"top": mTop} )
         mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
         $('.cH'+i).css({"left": mLeft})
       }
-      setTimeout(function(){$('div').remove('.remove')}, removeLetras);        //Remove letras ao final do tempo programado
-    // Letra válida gerada em meio às que são do sorteio aleatório
-      ltr = Math.floor(Math.random() * (letrasDaChave.length - 0));
-      letra = letrasDaChave[ltr]
-      idLetraVal = nL
-      $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima remove cH'+idLetraVal+'"><span class="spancH'+idLetraVal+' remove">'+letra+'</span></div>') //Adiciona as letras que caem
-      mTop = Math.floor(Math.random() * 120);
-      $('.'+idLetraVal).css({"top": mTop} )
-      mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-      $('.cH'+idLetraVal).css({"left": mLeft})
-
-      item0 = setTimeout(function()
-    {
-      // Gera corações
-      item1 = setTimeout(function()
-        {
-          idLetraVal ++
-          $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iCoracao cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">favorite</i><span class="spancH'+idLetraVal+' remove" style="display: none">favorite</span></div>') //Adiciona o item
-          mTop = Math.floor(Math.random() * 120);
-          $('.'+idLetraVal).css({"top": mTop} )
-          mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-          $('.cH'+idLetraVal).css({"left": mLeft})
-          setTimeout(function(){$('div').remove('.iCoracao')}, removeLetras); //Remove iCoracoes ao final do tempo programado
-        }, 2000);
-      // Gera foguinhos
-      item2 = setTimeout(function()
-        {
-          idLetraVal ++
-          $('#divAnimacao').fadeIn().append('<div id="cH'+idLetraVal+'"class="btn-floating white chaveAnima iBomba cH'+idLetraVal+'" style="border:none; color:none; background-color:none; box-shadow:none"><i class="material-icons">local_fire_department</i><span class="spancH'+idLetraVal+' remove" style="display: none">local_fire_department</span></div>') //Adiciona o item
-          mTop = Math.floor(Math.random() * 120);
-          $('.'+idLetraVal).css({"top": mTop} )
-          mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
-          $('.cH'+idLetraVal).css({"left": mLeft})
-          setTimeout(function(){$('div').remove('.iBomba')}, removeLetras);   //Remove iBomba ao final do tempo programado
-        }, 5000);
-      }, 2000);
   }
 
   function sortPalChave()  //Sorteia a palavra chave da fase
@@ -68,11 +44,11 @@
       tecla = event.which
       if    (tecla == 37)  //Seta esquerda
         {if (horizontal > 15){horizontal -= velox; $('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-left":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-left":"1px solid gainsboro"})},500)}} 
-      else if(tecla == 39) //Seta direita 
+      if(tecla == 39) //Seta direita 
         {if(horizontal < (telaW - 70)){horizontal += velox;$('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-right":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-right":"1px solid gainsboro"})},500)}}
-      else if(tecla == 38) //Seta cima
+      if(tecla == 38) //Seta cima
         {if(vertical < 250){vertical += velox; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-top":"solid 5px coral"});   var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-top":"1px solid gainsboro"})},500)}} 
-      else if(tecla == 40) //Seta baixo 
+      if(tecla == 40) //Seta baixo 
         {if(vertical > 10){vertical -= velox; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-bottom":"solid 5px coral"}); var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-bottom":"1px solid gainsboro"})},500)}}
     })
   }
@@ -240,21 +216,36 @@
 
         life = 3
         $('.proxFase, .startGame, .fim4, .fim5').hide()
-        $('.vidro, .gameOver').show()
-        $('.g').fadeIn(800)
-        $('.a').fadeIn(1600)
-        $('.m').fadeIn(2400)
-        $('.e').fadeIn(3200)
-        $('.oo').fadeIn(4000)
-        $('.o').fadeIn(4800)
-        $('.v').fadeIn(5200)
-        $('.e').fadeIn(6000)
-        $('.r').fadeIn(6800)
+        $('.vidro, .gameOver, .fim3').show()
+        $('.g').fadeIn(1200)
+        $('.a').fadeIn(2500)
+        $('.m').fadeIn(2800)
+        $('.e').fadeIn(2600)
+        $('.oo').fadeIn(3000)
+        $('.o').fadeIn(2100)
+        $('.v').fadeIn(1700)
+        $('.e').fadeIn(1000)
+        $('.r').fadeIn(1900)
         window.setTimeout(function() //Apaga Game over e mostra Tente novamente
         { 
-          $('.fim3,.g,.a,.m,.e,.oo,.v,.e,.r').hide(500)
+          $('.g').fadeOut(3200)
+          $('.a').fadeOut(3500)
+          $('.m').fadeOut(3800)
+          $('.e').fadeOut(3600)
+          $('.oo').fadeOut(3150)
+          $('.o').fadeOut(3100)
+          $('.v').fadeOut(3700)
+          $('.e').fadeOut(3220)
+          $('.r').fadeOut(3900)
+        },5000);
+        window.setTimeout(function() //Apaga Game over e mostra Tente novamente
+        { 
+          $('.fim3').fadeOut(100)
+        },8000);
+        window.setTimeout(function() //Apaga Game over e mostra Tente novamente
+        { 
           $('.fim4, .fim5').fadeIn(500)
-        },9000);
+        },8200);
       }   
       else if(fim)             //Fase completa ou jogo completo
       {
@@ -292,7 +283,15 @@
             $('.fim1, .load').hide()
             $('.fim2').show()
             $('#circle1').css({ "width": "50px", "height": "50px"})
+          }, 6700);
+          window.setTimeout(function()
+          { 
+            $('.chaveIco2').addClass('cadeadoAnima')
           }, 7000);
+          window.setTimeout(function()
+          { 
+            $('.chaveIco2').html('lock_open')
+          }, 9000);
         }
         else if(nFase == 11)
         {
@@ -314,4 +313,5 @@
       }
     }
   }
+  
   //console.log("Início - Fim: "+fim+"  V1:  "+v1+"  Letras Coletadas:  "+letrasColetadas+"  Letras Chave:  "+letrasDaChave)  

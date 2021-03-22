@@ -164,6 +164,7 @@
               <strong>Background Image:</strong> <a class="blue-link" href="https://www.freepik.com/vectors/background">FreePik</a>
             </div>
           </div>
+        </div>
       </div>
     </div>
     <div class="container runGame">   <!-- Tela do Jogo -->
@@ -204,9 +205,21 @@
                   </div>
                 </div>
               </div>
+              <div class="tipoLetra"><!-- Botão de início de jogo -->
+                <div class="col s12">
+                  <div class="col s12 l10 offset-l1 card hoverable maiusculas">
+                    <div class="col s12"><i class="">A B C D...</i></div>
+                    <div class="col s12" style=" border-top: 2px solid grey;">Maiúsculas</div>
+                  </div>
+                  <div class="col s12 l10 offset-l1 card hoverable minusculas">
+                    <div class="col s12"><i class="">a b c d...</i></div>
+                    <div class="col s12" style=" border-top: 2px solid grey;">Minúsculas</div>
+                  </div>
+                </div>
+              </div>
               <div class="proxFase"><!-- Botão Próxima fase -->
                 <div class="btn blue lighten-2 fim1">Parabéns! Aguarde, estamos carregando a nova fase para você.</div>
-                <div class="btn black fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">lock_open</i></div>
+                <div class="btn black fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">lock</i></div>
               </div>
               <div class="btn blue lighten-2 vidro-green-left">
                 <div class="col s12">A</div>
@@ -229,7 +242,7 @@
                   <span class="v">V</span>
                   <span class="e">E</span>
                   <span class="r">R</span>
-                  <span class="material-icons large right">videogame_asset_off</span>
+                  <span class="material-icons large right g">videogame_asset_off</span>
                 </div>
                 <div class="fim4">Continuar? <div class="btn-floating large green lighten-2 pulse hoverable"><i class="material-icons large right">play_circle</i></div></div>
                 <div class="fim5">Voltar para o início? <div class="btn-floating large grey pulse hoverable"><i class="material-icons large right">play_circle</i></div></div>
@@ -267,9 +280,10 @@
     <script>
       //Variáveis do jogo
         var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
-        var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W"] //Letras do alfabeto que cairão para serem coletadas
-        var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w"] //Letras do alfabeto que cairão para serem coletadas
-        var nFase = 0
+        var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
+        var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
+        var tipoLetra = []
+        var nFase = 10
         var maxLetras = 14                    //Limite de letras das palavras chave + 1
         var nLetrasFase1 = [4,5,3,6]          //Quantidade de letras que caem na 1 e 2a fase
         var nLetrasFase2 = [6,8,5,6]          //Quantidade de letras que caem na 3 e 4a fase
@@ -295,30 +309,8 @@
 
       //Efeitos da tela inicial
         $('.texto_1').fadeToggle(1000);
-        $('.choose_name').fadeToggle(2000);
-        $('.choose_name').click(function()
-        {
-          $('.personalize').fadeIn()
-        })
         $('.texto_3').fadeToggle(3000);
         $('.texto_4').fadeToggle();
-        $('#new_game').click(function()
-        {
-          $('.vidro-green-left, .creditos, .detalhes').hide()
-          setTimeout(function()
-          {
-            $('.runGame').fadeIn(500);
-            $('.texto_3').hide();
-          }, 20);
-          setTimeout(function()
-          {
-            $('#final').fadeIn();
-          }, 500);
-          setTimeout(function()
-          {
-            $('.startGame').fadeIn();
-          }, 1000);
-        });
         $('.texto_4').mouseenter(function()
         {
           $('.txtStartJogo').fadeIn()
@@ -331,18 +323,6 @@
         $('.texto_5').click(function()
         {
           $('.cadPalavras').show()
-        })
-        $('#creditos1').click(function()
-        {
-          $('#creditos2').fadeToggle(500)
-        })
-        $('.fechaPersonalize').click(function()
-        {
-          $('.personalize').fadeOut()
-        })
-        $('.fechaModal').click(function()
-        {
-          $('.cadPalavras').hide()
         })
         $('.fim4').click(function()
         {
@@ -360,7 +340,41 @@
           totalEstrelas = 0
           totalPontos = 0
         })
+        $('#new_game').click(function()
+        {
+          $('.vidro-green-left, .creditos, .detalhes, .loadPage').hide()
+          setTimeout(function()
+          {
+            $('.runGame').fadeIn(500);
+            $('.texto_3').hide();
+          }, 20);
+          setTimeout(function()
+          {
+            $('#final').fadeIn();
+          }, 500);
+          setTimeout(function()
+          {
+            $('.startGame').fadeIn();
+          }, 1000);
+        });
         //Atribuindo dados e foto do jogador
+        $('.choose_name').fadeToggle(2000);
+        $('.choose_name').click(function()
+        {
+          $('.personalize').fadeIn()
+        })
+        $('#creditos1').click(function()
+        {
+          $('#creditos2').fadeToggle(500)
+        })
+        $('.fechaPersonalize').click(function()
+        {
+          $('.personalize').fadeOut()
+        })
+        $('.fechaModal').click(function()
+        {
+          $('.cadPalavras').hide()
+        })
         $('#nomeJogador').html(nomeJogador)
         $('.salvaDados').click(function()     //Adiciona nome
         {
@@ -407,17 +421,31 @@
         $('.controlTeclado').click(function()
         {
          movJogadorK()
+         $('.startGame').fadeOut(500)
+         $('.tipoLetra').fadeIn(500)
         })
         $('.controlMouse').click(function()
         {
           movJogadorM()
+          $('.startGame').fadeOut(500)
+          $('.tipoLetra').fadeIn(500)
         })
         $('.controlCam').click(function()
         {
           movJogadorC()
+          $('.startGame').fadeOut(500)
+          $('.tipoLetra').fadeIn(500)
         })
-      //Início do jogo
-      $('.controlTeclado, .controlMouse, .controlCam, .fim2, .fim4, .fim5').click(function()
+        $('.maiusculas').click(function()
+        {
+          tipoLetra = JSON.parse(JSON.stringify(alfabetoBig));
+        })
+        $('.minusculas').click(function()
+        {
+          tipoLetra = JSON.parse(JSON.stringify(alfabetoMin));
+        })
+        //Início do jogo
+      $('.maiusculas, .minusculas, .fim2, .fim4, .fim5').click(function()
       {
         fim = false
         $('.vidro-green-top').hide()
@@ -425,7 +453,9 @@
         telaH = parseInt($('#divAnimacao').height())
         estrelas = 0
         velox    = 30            //Velocidade do movimento do jogador, medida em pixel
-        for(i=0; i<5; i++){$(".starPanel > i:nth-child("+i+")").fadeIn().html('star_border')}
+        for(iZeraStar = 0; iZeraStar <=5; iZeraStar++){$(".star"+iZeraStar).html('star_border')} //Reseta icones da estrela
+        $('.chaveIco2').removeClass('cadeadoAnima')
+        $('.chaveIco2').html('lock')
         $('#velocidade').html(0)
         $('.vidro').hide()
         $('.pC').removeClass('blue')
@@ -468,63 +498,30 @@
           xj1 = rect.x;
           yj1 = rect.y;
 
-          for(ii = 0; ii <= (nL+2); ii++)
+          for(ii = 0; ii <= nL; ii++)
           {
             var cH = 'cH'+ii
-            if(cH == 'cH0')
+            switch(cH)
             {
-              var div = document.getElementById('cH0');
+              case 'cH0' : var div = document.getElementById('cH0');  break
+              case 'cH1' : var div = document.getElementById('cH1');  break
+              case 'cH2' : var div = document.getElementById('cH2');  break
+              case 'cH3' : var div = document.getElementById('cH3');  break
+              case 'cH4' : var div = document.getElementById('cH4');  break
+              case 'cH5' : var div = document.getElementById('cH5');  break
+              case 'cH6' : var div = document.getElementById('cH6');  break
+              case 'cH7' : var div = document.getElementById('cH7');  break
+              case 'cH8' : var div = document.getElementById('cH8');  break
+              case 'cH9' : var div = document.getElementById('cH9');  break
+              case 'cH10': var div = document.getElementById('cH10'); break
+              case 'cH11': var div = document.getElementById('cH11'); break
             }
-            if(cH == 'cH1')
-            {
-              var div = document.getElementById('cH1');
-            }
-            if(cH == 'cH2')
-            {
-              var div = document.getElementById('cH2');
-            }
-            if(cH == 'cH3')
-            {
-              var div = document.getElementById('cH3');
-            }
-            if(cH == 'cH4')
-            {
-              var div = document.getElementById('cH4');
-            }
-            if(cH == 'cH5')
-            {
-              var div = document.getElementById('cH5');
-            }
-            if(cH == 'cH6')
-            {
-              var div = document.getElementById('cH6');
-            }
-            if(cH == 'cH7')
-            {
-              var div = document.getElementById('cH7');
-            }
-            if(cH == 'cH8')
-            {
-              var div = document.getElementById('cH8');
-            }
-            if(cH == 'cH9')
-            {
-              var div = document.getElementById('cH9');
-            }
-            if(cH == 'cH10')
-            {
-              var div = document.getElementById('cH10');
-            }
-            if(cH == 'cH11')
-            {
-              var div = document.getElementById('cH11');
-            }
-
             if (document.getElementById(cH))
             {
               var rect = div.getBoundingClientRect();
               var xcH = rect.x;
               var ycH = rect.y;
+              if(ycH > (telaH+80)){$('div').remove('#'+cH)} //Remove as esferas que chegam ao fim da tela
 
               processaLetras(cH, xj1, yj1, xcH, ycH) //Verifica se a letra coletada compõe a palavra e toma decisão de acordo com a resposta
             }
