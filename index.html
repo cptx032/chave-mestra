@@ -18,6 +18,9 @@
       <!--jquery-->
       <!--Scripts personalizados-->
         <script src="js/scripts.js"></script>
+        <script src="js/p5.js"></script>
+        <script src="js/p5.dom.min.js"></script>
+        <script src="js/p5.sound.min.js"></script>
       <!--Scripts personalizados-->
       <meta charset="utf-8" />
     <!--Estilos e animações-->
@@ -283,7 +286,7 @@
         var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
         var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
         var tipoLetra = []
-        var nFase = 10
+        var nFase = 0
         var maxLetras = 14                    //Limite de letras das palavras chave + 1
         var nLetrasFase1 = [4,5,3,6]          //Quantidade de letras que caem na 1 e 2a fase
         var nLetrasFase2 = [6,8,5,6]          //Quantidade de letras que caem na 3 e 4a fase
@@ -298,14 +301,22 @@
         var xPalavra = 3
         var tempoCascata  = 10500    //Velocidade que as letras serão geradas, em milissegundos
         var removeLetras  = 10000;   //Tempo para remover as letras
-        var totalEstrelas = totalPontos = telaW = telaH = mX = mY = xUltPosicao = yUltPosicao = xj1 = yj1 = posicaoW = nLtr = nLtr = penalidade = mTop = mLeft = idLetraVal =0
+        var totalEstrelas = totalPontos = telaW = telaH = mX = mY = xUltPosicao = yUltPosicao = xj1 = yj1 = posicaoW = nLtr = nLtr = penalidade = mTop = mLeft = idLetraVal = 0
         var item0 = item1 = item2 = stopLetras = stopProcessLetras = 0
         var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
         var horizontal = velox
         var vertical   = 55
         var estrelas = 0
         var life     = 3
-        var fim = false // Se esta variável estiver true significa que o jogador completou a fase
+        var fim = false //Se esta variável estiver true significa que o jogador completou a fase
+        var esfera = 40 //Tamanho da esfera com as letras
+        //Áudio
+        let match; let unmatch; let selecao; let finalFase; let zero; let gameOver; let fire; let heart; let ambiente 
+        function preload()
+        {
+          match = loadSound('som/match.mp3'); unmatch = loadSound('som/unmatch.mp3'); selecao = loadSound('som/selecao.mp3'); finalFase = loadSound('som/finalFase.mp3'); zero = loadSound('som/zero.mp3'); gameOver = loadSound('som/zero.mp3');
+          fire = loadSound('som/fire.mp3'); heart = loadSound('som/heart.mp3'); ambiente = loadSound('som/'+nFase+'.mp3')
+        }
 
       //Efeitos da tela inicial
         $('.texto_1').fadeToggle(1000);
@@ -454,6 +465,7 @@
         estrelas = 0
         velox    = 30            //Velocidade do movimento do jogador, medida em pixel
         for(iZeraStar = 0; iZeraStar <=5; iZeraStar++){$(".star"+iZeraStar).html('star_border')} //Reseta icones da estrela
+        $('.tipoLetra').hide()
         $('.chaveIco2').removeClass('cadeadoAnima')
         $('.chaveIco2').html('lock')
         $('#velocidade').html(0)
