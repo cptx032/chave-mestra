@@ -3,6 +3,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8" />
     <link rel="shortcut icon" type="image/png" href="imagens/favicon.png"/>
     <!--Estilos e animações-->
       <!--Materialize-->
@@ -19,7 +20,10 @@
       <!--Scripts personalizados-->
         <script src="js/scripts.js"></script>
       <!--Scripts personalizados-->
-      <meta charset="utf-8" />
+      <!--TensorFlow-->
+        <script src="js/tf.min.js"></script>
+        <script src="js/teachablemachine-image.min.js"></script>
+        <!--TensorFlow-->
     <!--Estilos e animações-->
   </head>
   <title>Chave Mestra</title>
@@ -188,6 +192,8 @@
             </div>
           </div>
           <div id="divAnimacao" class="col s12"> <!--Jogador e letras caindo-->
+            <div id="webcam-container"></div>
+            <div id="label-container"></div>
             <div class="vidro"><!-- Botões de início e próxima fase -->
               <div class="startGame"><!-- Botão de início de jogo -->
                 <div class="col s12">
@@ -252,9 +258,9 @@
                 </div>
               </div>
             </div>
-              <div id="j1" class="waves-effect waves-light j1">
-                <img id="circle1" src="perfis/1.png" alt="" class="circle"> <!--Ícone do Jogador-->
-              </div>
+            <div id="j1" class="waves-effect waves-light j1">
+              <img id="circle1" src="perfis/1.png" alt="" class="circle"> <!--Ícone do Jogador-->
+            </div>
           </div>
         </div>
         <div class="col s2" style="position: relative;"> <!--Acomoda a palavra chave-->
@@ -279,9 +285,9 @@
     </div>
     <div>
       <audio id="selecao"  src="som/selecao.wav">  </audio>
-      <audio loop id="music0"   src="som/0.mp3">        </audio>
-      <audio loop id="music1"   src="som/1.ogg">        </audio>
-      <audio loop id="music2"   src="som/2.ogg">        </audio>
+      <audio loop id="music0"   src="som/0.mp3">   </audio>
+      <audio loop id="music1"   src="som/1.ogg">   </audio>
+      <audio loop id="music2"   src="som/2.ogg">   </audio>
       <audio id="match"    src="som/match.wav">    </audio>
       <audio id="unmatch"  src="som/unmatch.wav">  </audio>
       <audio id="heart"    src="som/heart.wav">    </audio>
