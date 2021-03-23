@@ -18,9 +18,6 @@
       <!--jquery-->
       <!--Scripts personalizados-->
         <script src="js/scripts.js"></script>
-        <script src="js/p5.js"></script>
-        <script src="js/p5.dom.min.js"></script>
-        <script src="js/p5.sound.min.js"></script>
       <!--Scripts personalizados-->
       <meta charset="utf-8" />
     <!--Estilos e animações-->
@@ -280,6 +277,33 @@
         </div>
       </div>
     </div>
+    <div>
+      <audio id="selecao"  src="som/selecao.wav">  </audio>
+      <audio loop id="music0"   src="som/0.mp3">        </audio>
+      <audio loop id="music1"   src="som/1.ogg">        </audio>
+      <audio loop id="music2"   src="som/2.ogg">        </audio>
+      <audio id="match"    src="som/match.wav">    </audio>
+      <audio id="unmatch"  src="som/unmatch.wav">  </audio>
+      <audio id="heart"    src="som/heart.wav">    </audio>
+      <audio id="fire"     src="som/fire.wav">     </audio>
+      <audio id="finalFase"src="som/finalFase.wav"></audio>
+      <audio id="zero"     src="som/zero.mp3">     </audio>
+      <audio id="gameOver" src="som/gameOver.wav"> </audio>
+      <script>
+        const selecao   = document.getElementById('selecao');
+        const music0    = document.getElementById('music0'); 
+        const music1    = document.getElementById('music1'); 
+        const music2    = document.getElementById('music2');
+        const match     = document.getElementById('match'); 
+        const unmatch   = document.getElementById('unmatch'); 
+        const heart     = document.getElementById('heart');
+        const fire      = document.getElementById('fire'); 
+        const finalFase = document.getElementById('finalFase'); 
+        const zero      = document.getElementById('zero');
+        const gameOver  = document.getElementById('gameOver');
+        const musicaAmbiente = ''
+      </script>
+    </div>
     <script>
       //Variáveis do jogo
         var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
@@ -311,12 +335,6 @@
         var fim = false //Se esta variável estiver true significa que o jogador completou a fase
         var esfera = 40 //Tamanho da esfera com as letras
         //Áudio
-        let match; let unmatch; let selecao; let finalFase; let zero; let gameOver; let fire; let heart; let ambiente 
-        function preload()
-        {
-          match = loadSound('som/match.mp3'); unmatch = loadSound('som/unmatch.mp3'); selecao = loadSound('som/selecao.mp3'); finalFase = loadSound('som/finalFase.mp3'); zero = loadSound('som/zero.mp3'); gameOver = loadSound('som/zero.mp3');
-          fire = loadSound('som/fire.mp3'); heart = loadSound('som/heart.mp3'); ambiente = loadSound('som/'+nFase+'.mp3')
-        }
 
       //Efeitos da tela inicial
         $('.texto_1').fadeToggle(1000);
@@ -333,10 +351,12 @@
         $('.texto_5').fadeToggle(3000);
         $('.texto_5').click(function()
         {
+          selecao.play()
           $('.cadPalavras').show()
         })
         $('.fim4').click(function()
         {
+          selecao.play()
           $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
           for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
           life = 3
@@ -344,6 +364,7 @@
         })
         $('.fim5').click(function()
         {
+          selecao.play()
           $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
           for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
           life = 3
@@ -353,6 +374,7 @@
         })
         $('#new_game').click(function()
         {
+          selecao.play()
           $('.vidro-green-left, .creditos, .detalhes, .loadPage').hide()
           setTimeout(function()
           {
@@ -372,23 +394,28 @@
         $('.choose_name').fadeToggle(2000);
         $('.choose_name').click(function()
         {
+          selecao.play()
           $('.personalize').fadeIn()
         })
         $('#creditos1').click(function()
         {
+          selecao.play()
           $('#creditos2').fadeToggle(500)
         })
         $('.fechaPersonalize').click(function()
         {
+          selecao.play()
           $('.personalize').fadeOut()
         })
         $('.fechaModal').click(function()
         {
+          selecao.play()
           $('.cadPalavras').hide()
         })
         $('#nomeJogador').html(nomeJogador)
         $('.salvaDados').click(function()     //Adiciona nome
         {
+          selecao.play()
           $('.personalize').fadeOut()
           if($('.nomeJogador').val().length > 0)
           {
@@ -402,6 +429,7 @@
         })
         $('.circle').click(function ()        //Seleciona avatar
         {
+          selecao.play()
           var avatar = $(this).attr('src')
           $(".j1").empty()
           $(".j1").append('<img id="circle1" src="'+avatar+'" alt="" class="circle">')
@@ -409,6 +437,7 @@
         })
         $('.maisPalavras').click(function()   //Mostra mais inputs para cadastrar palavras
         {
+          selecao.play()
           if(xPalavra < 11)
           {
             $('.rowCadPalavras').append('<div class="input-field col s12 l6"><i class="material-icons prefix">menu_book</i><input id="icon_prefix" class="palavraF palFase'+xPalavra+'" type="text" data-ls-module="charCounter" maxlength="12" ><label for="icon_prefix">Palavra da '+xPalavra+'a fase</label></div>')
@@ -431,33 +460,52 @@
       //Seleciona modo de controle do jogo
         $('.controlTeclado').click(function()
         {
+          selecao.play()
          movJogadorK()
          $('.startGame').fadeOut(500)
          $('.tipoLetra').fadeIn(500)
         })
         $('.controlMouse').click(function()
         {
+          selecao.play()
           movJogadorM()
           $('.startGame').fadeOut(500)
           $('.tipoLetra').fadeIn(500)
         })
         $('.controlCam').click(function()
         {
+          selecao.play()
           movJogadorC()
           $('.startGame').fadeOut(500)
           $('.tipoLetra').fadeIn(500)
         })
         $('.maiusculas').click(function()
         {
+          selecao.play()
           tipoLetra = JSON.parse(JSON.stringify(alfabetoBig));
         })
         $('.minusculas').click(function()
         {
+          selecao.play()
           tipoLetra = JSON.parse(JSON.stringify(alfabetoMin));
         })
         //Início do jogo
       $('.maiusculas, .minusculas, .fim2, .fim4, .fim5').click(function()
       {
+        switch(nFase)
+          {
+            case 0: music0.play(); break
+            case 3: music0.play(); break
+            case 6: music0.play(); break
+            case 9: music0.play(); break
+            case 1: music1.play(); break
+            case 4: music1.play(); break
+            case 7: music1.play(); break
+            case 10: music1.play(); break
+            case 2: music2.play(); break
+            case 5: music2.play(); break
+            case 8: music2.play(); break
+          }
         fim = false
         $('.vidro-green-top').hide()
         telaW = parseInt($('#divAnimacao').width())

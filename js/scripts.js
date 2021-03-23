@@ -226,7 +226,11 @@
       if     (life == 1){$('.life1').addClass('pulsar')}else{ $('.life1').removeClass('pulsar')} //SE houver apenas 1 coração ele ficará pulsando e com a cor mais clara.
       if     (life == 0)       //Game over
       {
-        gameOver.play()
+        music0.pause();music1.pause();music2.pause();
+        window.setTimeout(function()
+        {
+          gameOver.play()
+        },1000)
         $('i').remove('.life1')           //Remove último coração
         $('div').remove('.chaveAnima')    //Remove todas as letras que estão caindo na tela
         $('.j1').css({ "bottom": "10px"}) //Move o jogador para a posição original
@@ -271,7 +275,11 @@
         nFase ++
         if     (nFase <= 10)
         {
-          finalFase.play()
+          music0.pause();music1.pause();music2.pause();
+          window.setTimeout(function()
+          {
+            finalFase.play()
+          },1000)
           $('div').remove('.chaveAnima')    //Remove todas as letras que estão caindo na tela
           $('.j1').css({ "bottom": "10px"}) //Move o jogador para a posição original  
           clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item0);clearInterval(item1);clearInterval(item2);
@@ -315,7 +323,11 @@
         }
         else if(nFase == 11)
         {
-          zero.play()
+          music0.pause();music1.pause();music2.pause();
+          window.setTimeout(function()
+          {
+            zero.play()
+          },1000)
           nFase = 1
           totalEstrelas = 0
           totalPontos = 0
