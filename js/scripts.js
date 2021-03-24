@@ -47,6 +47,7 @@
     }
     stopProcessLetras = window.setInterval(function()
     {
+      movJogadorC()
       var divJ = document.getElementById('j1');
       var rect = divJ.getBoundingClientRect();
       xj1 = rect.x;
@@ -191,11 +192,7 @@
   }
 
   function movJogadorC()    //Controle do jogo por visão computacional 
-  {
-    // More API functions here:
-    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
-    //Testa a webcam
-    
+  {   
     navigator.mediaDevices.getUserMedia({video: true})
     .then(function (mediaStream)
     {
