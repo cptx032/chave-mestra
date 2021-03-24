@@ -194,7 +194,7 @@
   function movJogadorC()    //Controle do jogo por visão computacional 
   {  
     // the link to your model provided by Teachable Machine export panel
-    const URL = "../js/";
+    const URL = "../cv/";
     var valuePredict;
     var classPredict;
     let model, webcam, labelContainer, maxPredictions;
