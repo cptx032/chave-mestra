@@ -22,7 +22,7 @@ body .loadPage { width: 100%; height: 100%; top:-10px; position: absolute; z-ind
     #palavraChave { position: absolute; left: 50%; transform: translate(-50%); margin-top: -5px; padding: 0px; width: 42px; height: 95% }
     #palavraChave .pC { left: 50%; transform: translate(-50%); margin-top: 10px; text-align: center; color: black; font-weight: 500; }
     .row #jogoD #divAnimacao .chaveAnima { position: absolute; margin-bottom: 410px; animation: desce 25s linear; text-align: center; }
-    @keyframes desce {to { margin-top: 130%; }}
+    @keyframes desce {to { margin-top: 100%; }}
   #divAnimacao .iCoracao i, #divAnimacao .iBomba i {text-align: center; font-size: 3em; }
   #divAnimacao .iCoracao i { color: rgb(247, 35, 35); }
   #divAnimacao .iBomba   i { color: #fbc02d; }
@@ -53,9 +53,9 @@ body .loadPage { width: 100%; height: 100%; top:-10px; position: absolute; z-ind
   .fimJogo .row a .fimJogoAviso, .fimJogo .row .fimJogoListaPal, .fimJogoNumPal { font-size: 1.3em; font-weight: 500; margin-top: .3%; }
   .fimJogoNumPal { border-bottom: 5px solid white; text-align: center; font-weight: 900; }
   .fimJogo .row a .fimJogoAviso { color: white; margin-top: 2%;}
-body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
-.runGame .row { height: 500px; margin: 0px; border-radius: 10px 10px 0px 0px; }
-#jogoD { height: 400px; padding: 0px;}
+body .runGame { display: none; height: auto; padding: 0px; margin-top: 2%; }
+.runGame .row { height: auto; margin: 0px; border-radius: 10px 10px 0px 0px; }
+#jogoD { height: auto; padding: 0px;}
 .row #jogoD #divPainelUser { height: 50px; border-radius: 10px 0px 0px 0px; padding-top: 5px}
 #divPainelUser .starB { font-size: 40px; color: rgba(41, 41, 17, 0.7);   border: black; }
 #divPainelUser .star  { font-size: 40px; color: #fbc02d; }
@@ -72,7 +72,7 @@ body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
 .webcam { position: absolute; top: 0px; left: 0px; display: block; }
 .webcam-container, .label-container { display: block; }
 
-#final { height: 150px; display: none; z-index: 2000; padding: 10px 30px; margin: 0px; }
+#final { height: 110px; display: none; z-index: 2000; padding: 10px 30px; margin: 0px; }
   .telaInfo { font-size: 1.5em; font-weight: 500; text-align: center; }
   .detInfo {  font-size: 2em; font-weight: 500; text-align: center; color: rgba(90, 87, 87, 0.767); }
 
