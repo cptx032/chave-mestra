@@ -137,7 +137,6 @@
         fa = letrasDaChave[parseInt(fac)]
         esf = Math.floor(Math.random() * nL);
         $('.spancH'+parseInt(esf)).html(fa)
-        console.log('N. letras: '+nL+'  N. letra sorteada:  '+parseInt(fac)+'  Letra sorteada:  '+fa)
       }
       if(telaW < 600)
       {
@@ -199,12 +198,9 @@
     var classPredict;
     let model, webcam, labelContainer, maxPredictions;
   
-    console.log('Iniciou a função vídeo')
-
     navigator.mediaDevices.getUserMedia({video: true})
     .then(function (mediaStream)
     {
-      console.log('Câmera ok')
       init()
       // Load the image model and setup the webcam
       async function init() 
@@ -240,12 +236,10 @@
         await predict();
         window.requestAnimationFrame(loop);
       }
-      console.log('Antes de predict')
 
       // run the webcam image through the image model
       async function predict() 
       {
-        console.log('Entrou em predict')
         // predict can take in an image, video or canvas html element
         const prediction = await model.predict(webcam.canvas);
         for (let i = 0; i < maxPredictions; i++) 
@@ -255,12 +249,12 @@
           labelContainer.childNodes[i].innerHTML = classPrediction;
           valuePredict = prediction[i].probability.toFixed(2);
           classPredict = prediction[i].className;
-          console.log('Nome da classe: '+className+'Nível de certeza: '+valuePredict)
-          if(className == "leftC" && parseFloat(valuePredict) >0.5)  //Seta esquerda
+          
+          if     (className == "leftC" && parseFloat(valuePredict) >0.5)  //Seta esquerda
             {if (horizontal > 15){horizontal -= velox; $('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-left":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-left":"1px solid gainsboro"})},500)}} 
           else if(className == "rightC" && parseFloat(valuePredict) >0.5) //Seta direita 
             {if(horizontal < (telaW - 70)){horizontal += velox;$('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-right":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-right":"1px solid gainsboro"})},500)}}
-          else if(className == "topC" && parseFloat(valuePredict) >0.5) //Seta cima
+          else if(className == "upC" && parseFloat(valuePredict) >0.5) //Seta cima
             {if(vertical < 250){vertical += velox; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-top":"solid 5px coral"});   var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-top":"1px solid gainsboro"})},500)}} 
           else if(className == "downC" && parseFloat(valuePredict) >0.5) //Seta baixo 
             {if(vertical > 10){vertical -= velox; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-bottom":"solid 5px coral"}); var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-bottom":"1px solid gainsboro"})},500)}}
