@@ -192,13 +192,20 @@
   }
 
   function movJogadorC()    //Controle do jogo por visão computacional 
-  {   
+  {  
+    // the link to your model provided by Teachable Machine export panel
+    const URL = "../js/";
+    var valuePredict;
+    var classPredict;
+    let model, webcam, labelContainer, maxPredictions;
+  
     console.log('Iniciou a função vídeo')
 
     navigator.mediaDevices.getUserMedia({video: true})
     .then(function (mediaStream)
     {
       console.log('Câmera ok')
+      init()
       // Load the image model and setup the webcam
       async function init() 
       {
