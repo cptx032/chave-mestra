@@ -47,7 +47,6 @@
     }
     stopProcessLetras = window.setInterval(function()
     {
-      movJogadorC()
       var divJ = document.getElementById('j1');
       var rect = divJ.getBoundingClientRect();
       xj1 = rect.x;
@@ -243,17 +242,17 @@
           labelContainer.childNodes[i].innerHTML = classPrediction;
           valuePredict = prediction[i].probability.toFixed(2);
           classPredict = prediction[i].className;
-
-          if(type == "leftC" && parseFloat(value) >0.5)  //Seta esquerda
+          console.log('Nome da classe: '+className+'Nível de certeza: '+valuePredict)
+          if(className == "leftC" && parseFloat(valuePredict) >0.5)  //Seta esquerda
             {if (horizontal > 15){horizontal -= velox; $('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-left":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-left":"1px solid gainsboro"})},500)}} 
-          else if(type == "rightC" && parseFloat(value) >0.5) //Seta direita 
+          else if(className == "rightC" && parseFloat(valuePredict) >0.5) //Seta direita 
             {if(horizontal < (telaW - 70)){horizontal += velox;$('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-right":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-right":"1px solid gainsboro"})},500)}}
-          else if(type == "topC" && parseFloat(value) >0.5) //Seta cima
+          else if(className == "topC" && parseFloat(valuePredict) >0.5) //Seta cima
             {if(vertical < 250){vertical += velox; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-top":"solid 5px coral"});   var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-top":"1px solid gainsboro"})},500)}} 
-          else if(type == "downC" && parseFloat(value) >0.5) //Seta baixo 
+          else if(className == "downC" && parseFloat(valuePredict) >0.5) //Seta baixo 
             {if(vertical > 10){vertical -= velox; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-bottom":"solid 5px coral"}); var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-bottom":"1px solid gainsboro"})},500)}}
-          else if(type == "continueC" && parseFloat(value) >0.5) {novoJogo() } //Em caso de Game Over, continua
-          else if(type == "novoC" && parseFloat(value) >0.5)     {continueJ()} //Novo jogo
+          else if(className == "continueC" && parseFloat(valuePredict) >0.5) {novoJogo() } //Em caso de Game Over, continua
+          else if(className == "novoC" && parseFloat(valuePredict) >0.5)     {continueJ()} //Novo jogo
           else { console.log("Não detectado")}
         }
       }
