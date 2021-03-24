@@ -40,6 +40,8 @@ body .loadPage { width: 100%; height: 100%; top:-10px; position: absolute; z-ind
   .tipoLetra .col .maiusculas, .tipoLetra .col .minusculas, .tipoLetra .col .modoFacil { max-width: 240px; max-height: 84px; cursor: pointer; }
   .tipoLetra i   { font-size: 42px; }
   .tipoLetra div { font-size: 14px; font-weight: 500; }
+  .modoFacil .nModos { background-color: rgba(220, 220, 220, 0.5);}
+  .facil, .medio, .dific { border-radius: 5px;}
 
   .vidro .load { display: none; z-index: 2000; width: 110px; height: 110px; border: solid 5px rgb(199, 189, 158); position: absolute; bottom: 0px; right: 0px; border-radius: 50%;}
   .vidro .load img { z-index: 2000; width: 100px; border-radius: 50%; }

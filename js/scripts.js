@@ -134,9 +134,10 @@
       if(nivel == 1) //Se estiver no nível fácil uma letra válida será adicionada a cada geração de novas letras 
       {
         fac = Math.floor(Math.random() * letrasDaChave.length);
-        fa = tipoLetra[fac]
+        fa = letrasDaChave[parseInt(fac)]
         esf = Math.floor(Math.random() * nL);
-        $('#spancH'+esf).html(fa)
+        $('.spancH'+parseInt(esf)).html(fa)
+        console.log('N. letras: '+nL+'  N. letra sorteada:  '+parseInt(fac)+'  Letra sorteada:  '+fa)
       }
       if(telaW < 600)
       {
@@ -192,9 +193,12 @@
 
   function movJogadorC()    //Controle do jogo por visão computacional 
   {   
+    console.log('Iniciou a função vídeo')
+
     navigator.mediaDevices.getUserMedia({video: true})
     .then(function (mediaStream)
     {
+      console.log('Câmera ok')
       // Load the image model and setup the webcam
       async function init() 
       {
@@ -229,10 +233,12 @@
         await predict();
         window.requestAnimationFrame(loop);
       }
+      console.log('Antes de predict')
 
       // run the webcam image through the image model
       async function predict() 
       {
+        console.log('Entrou em predict')
         // predict can take in an image, video or canvas html element
         const prediction = await model.predict(webcam.canvas);
         for (let i = 0; i < maxPredictions; i++) 
