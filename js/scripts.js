@@ -1,6 +1,113 @@
+  function novoJogo()
+  {
+    switch(nFase)
+    {
+      case 0: music0.play(); break
+      case 3: music0.play(); break
+      case 6: music0.play(); break
+      case 9: music0.play(); break
+      case 1: music1.play(); break
+      case 4: music1.play(); break
+      case 7: music1.play(); break
+      case 10: music1.play(); break
+      case 2: music2.play(); break
+      case 5: music2.play(); break
+      case 8: music2.play(); break
+    }
+    fim = false
+    $('.vidro-green-top').hide()
+    telaW = parseInt($('#divAnimacao').width())
+    telaH = parseInt($('#divAnimacao').height())
+    estrelas = 0
+    velox    = 30            //Velocidade do movimento do jogador, medida em pixel
+    for(iZeraStar = 0; iZeraStar <=5; iZeraStar++){$(".star"+iZeraStar).html('star_border')} //Reseta icones da estrela
+    level = veloxEsferas + (nFase*1000)
+    $('.chaveAnima').css({"animation" : "desce "+level+"s linear"}) //Velocidade das esferas
+    $('.tipoLetra').hide()
+    $('.chaveIco2').removeClass('cadeadoAnima')
+    $('.chaveIco2').html('lock')
+    $('#velocidade').html(0)
+    $('.vidro').hide()
+    $('.pC').removeClass('blue')
+    $('.pC').addClass('white')
+    $('.pC').hide()
+    $('#nFase').html(nFase)
+    $('#totalEstrelas').html(totalEstrelas)
+    $('#pontos').html(totalPontos)
+    sortPalChave()
+    //Gera quantidade de letras que cairão a cada (var tempoCastaca)segundos
+    var nLS = Math.floor(Math.random() * (3 - 0) + 1);
+    var nL = nLetrasFase1[nLS]
+    geraLetras(nL)
+
+    //Prepara a letrasColetadas para receber as letras capturadas pelo jogador a fim de comparar as listas e saber quando o usuário ganhou
+    for(i = 0; i < letrasDaChave.length; i ++)
+    {
+      letrasColetadas[i] = '-'
+    }
+    stopProcessLetras = window.setInterval(function()
+    {
+      var divJ = document.getElementById('j1');
+      var rect = divJ.getBoundingClientRect();
+      xj1 = rect.x;
+      yj1 = rect.y;
+
+      for(ii = 0; ii <= nL; ii++)
+      {
+        var cH = 'cH'+ii
+        switch(cH)
+        {
+          case 'cH0' : var divE = document.getElementById('cH0');  break
+          case 'cH1' : var divE = document.getElementById('cH1');  break
+          case 'cH2' : var divE = document.getElementById('cH2');  break
+          case 'cH3' : var divE = document.getElementById('cH3');  break
+          case 'cH4' : var divE = document.getElementById('cH4');  break
+          case 'cH5' : var divE = document.getElementById('cH5');  break
+          case 'cH6' : var divE = document.getElementById('cH6');  break
+          case 'cH7' : var divE = document.getElementById('cH7');  break
+          case 'cH8' : var divE = document.getElementById('cH8');  break
+          case 'cH9' : var divE = document.getElementById('cH9');  break
+          case 'cH10': var divE = document.getElementById('cH10'); break
+          case 'cH11': var divE = document.getElementById('cH11'); break
+        }
+        if (document.getElementById(cH))
+        {
+          var rect = divE.getBoundingClientRect();
+          var xcH = rect.x;
+          var ycH = rect.y;
+          if(ycH > (telaH+80)){$('div').remove('#'+cH);} //Remove as esferas que chegam ao fim da tela
+          processaLetras(cH, xj1, yj1, xcH, ycH) //Verifica se a letra coletada compõe a palavra e toma decisão de acordo com a resposta
+          esferasAtivas[1] = '-'
+        }
+        else
+        {window.setTimeout(function(){esferasAtivas.pop()},2000)}
+      }
+      if(esferasAtivas.length == 0)
+      {
+        var nLS = Math.floor(Math.random() * (4 - 0) + 1);
+        if(nFase == 1 || nFase == 2) {nL = nLetrasFase1[nLS]}
+        if(nFase == 3 || nFase == 4) {nL = nLetrasFase2[nLS]}
+        if(nFase >= 5 || nFase == 6) {nL = nLetrasFase3[nLS]}
+        if(nFase == 7 || nFase == 8) {nL = nLetrasFase4[nLS]}
+        if(nFase >= 9 || nFase == 10){nL = nLetrasFase5[nLS]}
+        geraLetras(nL)
+      }
+    })
+  }
+  
+  function continueJ()
+  {
+    selecao.play()
+    $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
+    for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
+    life = 3
+    nFase = nFase
+    novoJogo()
+  }
 
   function geraLetras(nL)   //Sorteia e adiciona as letras que vão cair, controla o tempo que as novas letras aparecerão
   {
+      $('div').remove('.chaveAnima')    //Remove todas as letras que estão caindo na tela
     // Letras aleatórias dentro do alfabeto
       for(i = 0; i < nL; i++) //Sorteia letras aleatórias do alfabeto
       {
@@ -23,6 +130,13 @@
         $('.cH'+i).css({"top": mTop})
         mLeft = Math.floor(Math.random() * (parseInt(telaW) - 60) + 30)
         $('.cH'+i).css({"left": mLeft})
+      }
+      if(nivel == 1) //Se estiver no nível fácil uma letra válida será adicionada a cada geração de novas letras 
+      {
+        fac = Math.floor(Math.random() * letrasDaChave.length);
+        fa = tipoLetra[fac]
+        esf = Math.floor(Math.random() * nL.length);
+        $('#spancH'+esf).html(fa)
       }
       if(telaW < 600)
       {
@@ -126,9 +240,21 @@
         const prediction = await model.predict(webcam.canvas);
         for (let i = 0; i < maxPredictions; i++) 
         {
-            const classPrediction =
-            prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
+          const classPrediction =
+          prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+          labelContainer.childNodes[i].innerHTML = classPrediction;
+
+        if(type == "leftC")  //Seta esquerda
+          {if (horizontal > 15){horizontal -= velox; $('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-left":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-left":"1px solid gainsboro"})},500)}} 
+        if(type == "rightC") //Seta direita 
+          {if(horizontal < (telaW - 70)){horizontal += velox;$('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-right":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-right":"1px solid gainsboro"})},500)}}
+        if(type == "topC") //Seta cima
+          {if(vertical < 250){vertical += velox; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-top":"solid 5px coral"});   var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-top":"1px solid gainsboro"})},500)}} 
+        if(type == "downC") //Seta baixo 
+          {if(vertical > 10){vertical -= velox; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-bottom":"solid 5px coral"}); var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-bottom":"1px solid gainsboro"})},500)}}
+        if(type == "continueC") {novoJogo() } //Em caso de Game Over, continua
+        if(type == "novoC")     {continueJ()} //Novo jogo
+
         }
       }
     })

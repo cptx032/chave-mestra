@@ -226,6 +226,14 @@
                     <div class="col s12"><i class="">a b c d...</i></div>
                     <div class="col s12" style=" border-top: 2px solid grey;">Minúsculas</div>
                   </div>
+                  <div class="col s12 l10 offset-l1 card hoverable modoFacil">
+                    <div class="col s12">
+                        <div class="col s4 hoverable facil">Fácil</div>
+                        <div class="col s4 hoverable medio">Médio</div>
+                        <div class="col s4 hoverable dific">Difícil</div>
+                    </div>
+                    <div class="col s12" style=" border-top: 2px solid green;">Nivel do jogo</div>
+                  </div>
                 </div>
               </div>
               <div class="proxFase"><!-- Botão Próxima fase -->
@@ -279,8 +287,8 @@
         <div id="final" class="col s12 card">
           <div class="col s4"><span class="telaInfo">Nome Jogador</span></div>
           <div class="col s2"><span class="telaInfo">Pontos</span></div>
-          <div class="col s3"><span class="telaInfo">Total estrelas</span><div class="material-icons left medium">star</div></div>
-          <div class="col s3"><span class="telaInfo">Velocidade</span><div class="material-icons left medium">flash_on</div></div>
+          <div class="col s3"><span class="telaInfo">Total estrelas</span><div class="material-icons left medium Lstar">star</div></div>
+          <div class="col s3"><span class="telaInfo">Velocidade</span><div class="material-icons left medium Lflash">flash_on</div></div>
           <div class="col s4"><span class="detInfo" id="nomeJogador"></span></div>
           <div class="col s2"><span class="detInfo" id="pontos"></span></div>
           <div class="col s3"><span class="detInfo" id="totalEstrelas"></span></div>
@@ -320,22 +328,22 @@
         var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
         var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
         var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
-        var tipoLetra = []
-        var nFase = 0
-        var maxLetras = 14                    //Limite de letras das palavras chave + 1
+        var tipoLetra    = []
+        var letrasDaChave   = []     //Lista com a palavra escolhida
+        var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
+        var nFase        = 1
+        var maxLetras    = 14                 //Limite de letras das palavras chave + 1
         var nLetrasFase1 = [4,5,3,6]          //Quantidade de letras que caem na 1 e 2a fase
         var nLetrasFase2 = [6,8,5,6]          //Quantidade de letras que caem na 3 e 4a fase
         var nLetrasFase3 = [7,8,9,8]          //Quantidade de letras que caem na 5 e 6a fase
         var nLetrasFase4 = [7,8,9,8,10,11]    //Quantidade de letras que caem na 7 e 8a fase
         var nLetrasFase5 = [7,8,9,8,10,11,12] //Quantidade de letras que caem na 9 e 10a fase
-
-        var nomeJogador  = 'Jogador'
-        var letrasDaChave   = []     //Lista com a palavra escolhida
-        var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
+        var nivel        = 1                  //A cada grupo de letras geradas pelo menos uma letra válida será gerada
+        var nomeJogador     = 'Jogador'
+        var esferasAtivas   = []     //Armazena algo se existem esferas na tela
         var letra = v1 =  v2 = tecla = joystick = item = ''
         var xPalavra = 3
-        var tempoCascata  = 10500    //Velocidade que as letras serão geradas, em milissegundos
-        var removeLetras  = 10000;   //Tempo para remover as letras
+        var tempoCascata  = 7000    //Velocidade que as letras serão geradas, em milissegundos
         var totalEstrelas = totalPontos = telaW = telaH = mX = mY = xUltPosicao = yUltPosicao = xj1 = yj1 = posicaoW = nLtr = nLtr = penalidade = mTop = mLeft = idLetraVal = 0
         var item0 = item1 = item2 = stopLetras = stopProcessLetras = 0
         var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
@@ -345,6 +353,7 @@
         var life     = 3
         var fim = false //Se esta variável estiver true significa que o jogador completou a fase
         var esfera = 40 //Tamanho da esfera com as letras
+        var veloxEsferas = 25
       // the link to your model provided by Teachable Machine export panel
         const URL = "../js/";
         let model, webcam, labelContainer, maxPredictions;
@@ -370,11 +379,7 @@
         })
         $('.fim4').click(function()
         {
-          selecao.play()
-          $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
-          for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
-          life = 3
-          nFase = nFase
+          continueJ()
         })
         $('.fim5').click(function()
         {
@@ -390,6 +395,28 @@
         {
           selecaoJoystick()
         });
+        $('.facil').click(function()
+        {
+          nivel = 1
+          $('.facil').addClass('green lighten-2')
+          $('.medio').removeClass('green lighten-2')
+          $('.dific').removeClass('green lighten-2')
+        });
+        $('.medio').click(function()
+        {
+          $('.facil').removeClass('green lighten-2')
+          $('.medio').addClass('green lighten-2')
+          $('.dific').removeClass('green lighten-2')
+          nivel = 2
+        });
+        $('.dific').click(function()
+        {
+          $('.facil').removeClass('green lighten-2')
+          $('.medio').removeClass('green lighten-2')
+          $('.dific').addClass('green lighten-2')
+          nivel = 3
+        });
+
         //Atribuindo dados e foto do jogador
         $('.choose_name').fadeToggle(2000);
         $('.choose_name').click(function()
@@ -492,101 +519,7 @@
         //Início do jogo
       $('.maiusculas, .minusculas, .fim2, .fim4, .fim5').click(function()
       {
-        switch(nFase)
-          {
-            case 0: music0.play(); break
-            case 3: music0.play(); break
-            case 6: music0.play(); break
-            case 9: music0.play(); break
-            case 1: music1.play(); break
-            case 4: music1.play(); break
-            case 7: music1.play(); break
-            case 10: music1.play(); break
-            case 2: music2.play(); break
-            case 5: music2.play(); break
-            case 8: music2.play(); break
-          }
-        fim = false
-        $('.vidro-green-top').hide()
-        telaW = parseInt($('#divAnimacao').width())
-        telaH = parseInt($('#divAnimacao').height())
-        estrelas = 0
-        velox    = 30            //Velocidade do movimento do jogador, medida em pixel
-        for(iZeraStar = 0; iZeraStar <=5; iZeraStar++){$(".star"+iZeraStar).html('star_border')} //Reseta icones da estrela
-        $('.tipoLetra').hide()
-        $('.chaveIco2').removeClass('cadeadoAnima')
-        $('.chaveIco2').html('lock')
-        $('#velocidade').html(0)
-        $('.vidro').hide()
-        $('.pC').removeClass('blue')
-        $('.pC').addClass('white')
-        $('.pC').hide()
-        $('#nFase').html(nFase)
-        $('#totalEstrelas').html(totalEstrelas)
-        $('#pontos').html(totalPontos)
-        sortPalChave()
-      //Gera quantidade de letras que cairão a cada (var tempoCastaca)segundos
-        var nLS = Math.floor(Math.random() * (3 - 0) + 1);
-        var nL = nLetrasFase1[nLS]
-        geraLetras(nL)
-        stopLetras = setInterval(function()
-        {
-          var nLS = Math.floor(Math.random() * (4 - 0) + 1);
-          if(nFase == 1 || nFase == 2)
-          {nL = nLetrasFase1[nLS]}
-          if(nFase == 3 || nFase == 4)
-          {nL = nLetrasFase2[nLS]}
-          if(nFase >= 5 || nFase == 6)
-          {nL = nLetrasFase3[nLS]}
-          if(nFase == 7 || nFase == 8)
-          {nL = nLetrasFase4[nLS]}
-          if(nFase >= 9 || nFase == 10)
-          {nL = nLetrasFase5[nLS]}
-
-          geraLetras(nL)
-        }, tempoCascata);
-
-      //Prepara a letrasColetadas para receber as letras capturadas pelo jogador a fim de comparar as listas e saber quando o usuário ganhou
-        for(i = 0; i < letrasDaChave.length; i ++)
-        {
-          letrasColetadas[i] = '-'
-        }
-        stopProcessLetras = window.setInterval(function()
-        {
-          var div = document.getElementById('j1');
-          var rect = div.getBoundingClientRect();
-          xj1 = rect.x;
-          yj1 = rect.y;
-
-          for(ii = 0; ii <= nL; ii++)
-          {
-            var cH = 'cH'+ii
-            switch(cH)
-            {
-              case 'cH0' : var div = document.getElementById('cH0');  break
-              case 'cH1' : var div = document.getElementById('cH1');  break
-              case 'cH2' : var div = document.getElementById('cH2');  break
-              case 'cH3' : var div = document.getElementById('cH3');  break
-              case 'cH4' : var div = document.getElementById('cH4');  break
-              case 'cH5' : var div = document.getElementById('cH5');  break
-              case 'cH6' : var div = document.getElementById('cH6');  break
-              case 'cH7' : var div = document.getElementById('cH7');  break
-              case 'cH8' : var div = document.getElementById('cH8');  break
-              case 'cH9' : var div = document.getElementById('cH9');  break
-              case 'cH10': var div = document.getElementById('cH10'); break
-              case 'cH11': var div = document.getElementById('cH11'); break
-            }
-            if (document.getElementById(cH))
-            {
-              var rect = div.getBoundingClientRect();
-              var xcH = rect.x;
-              var ycH = rect.y;
-              if(ycH > (telaH+80)){$('div').remove('#'+cH)} //Remove as esferas que chegam ao fim da tela
-
-              processaLetras(cH, xj1, yj1, xcH, ycH) //Verifica se a letra coletada compõe a palavra e toma decisão de acordo com a resposta
-            }
-          }
-        })
+        novoJogo()
       })
     </script>
   </body>

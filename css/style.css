@@ -37,7 +37,7 @@ body .loadPage { width: 100%; height: 100%; top:-10px; position: absolute; z-ind
   .startGame .col .controlTeclado, .startGame .col .controlMouse, .startGame .col .controlCam { background-color: black; border-radius: 0px 10px 10px 0px; border-left: 5px solid white; text-align: center; font-size: 1.3em; color: white; cursor: pointer; }
   .startGame .col .controlTeclado:hover, .startGame .col .controlMouse:hover, .startGame .col .controlCam:hover { background-color: #fbc02d;}
   .startGame i { font-size: 70px; }
-  .tipoLetra .col .maiusculas, .tipoLetra .col .minusculas { max-width: 240px; max-height: 84px; cursor: pointer; }
+  .tipoLetra .col .maiusculas, .tipoLetra .col .minusculas, .tipoLetra .col .modoFacil { max-width: 240px; max-height: 84px; cursor: pointer; }
   .tipoLetra i   { font-size: 42px; }
   .tipoLetra div { font-size: 14px; font-weight: 500; }
 
@@ -72,9 +72,13 @@ body .runGame { display: none; height: auto; padding: 0px; margin-top: 1%; }
 .webcam { position: absolute; top: 0px; left: 0px; display: block; }
 .webcam-container, .label-container { display: block; }
 
-#final { height: 110px; display: none; z-index: 2000; padding: 10px 30px; margin: 0px; }
-  .telaInfo { font-size: 1.5em; font-weight: 500; text-align: center; }
-  .detInfo {  font-size: 2em; font-weight: 500; text-align: center; color: rgba(90, 87, 87, 0.767); }
+#final { height: 110px; display: none; z-index: 2000; padding: 10px 30px; margin: 0px; text-align: center; font-weight: 500; }
+  #final div { text-align: center; padding: 0px; border-right: 1px solid grey; }
+  #final .material-icons { border-right: none; }
+  .telaInfo { font-size: 1.5em; }
+  .detInfo  { font-size: 2em; color: rgba(90, 87, 87, 0.767); }
+  .Lstar  { color: #fbc02d; }
+  .Lflash { color: rgb(247, 35, 35);}
 
   @media screen and (min-width: 0px) and (max-width: 599px)
   {
@@ -89,6 +93,7 @@ body .runGame { display: none; height: auto; padding: 0px; margin-top: 1%; }
       #divPainelUser .starPanel, #divPainelUser .lifePanel  { width: 80%; }
       #divPainelUser .lifePanel { position: absolute; left:  0px; top: 50px;}
       #divPainelUser .divnFase  { float: right; }
+      .tipoLetra i   { font-size: 30px; }
   }
 
   @media screen and (min-width: 0px) and (max-width: 991px)
@@ -106,7 +111,7 @@ body .runGame { display: none; height: auto; padding: 0px; margin-top: 1%; }
     #divPainelUser .starPanel i { font-size: 30px; }
     #divPainelUser .lifePanel i { font-size: 25px; }
     .rowCadPalavras .input-field { margin-top: 40px;}
-    .tipoLetra .col .maiusculas, .tipoLetra .col .minusculas { max-width: 300px; max-height: none;}
+    .tipoLetra .col .maiusculas, .tipoLetra .col .minusculas, .tipoLetra .col .modoFacil { max-width: 300px; max-height: none;}
     .gameOver { width: 250px; }
   }
     @media screen and (min-width: 600px) and (max-width: 991px)
@@ -114,6 +119,7 @@ body .runGame { display: none; height: auto; padding: 0px; margin-top: 1%; }
     body .loadPage .texto_5 {top: 30%; }
     body .loadPage .choose_name {top: 40%; }
     body .loadPage .txtStartJogo {top: 53%; width: 350px;}
+    .tipoLetra { width: 70%; margin-right: 15%; }
   }
   @media screen and (min-width: 992px) and (max-width: 1366px)
   {
