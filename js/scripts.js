@@ -135,7 +135,7 @@
       {
         fac = Math.floor(Math.random() * letrasDaChave.length);
         fa = tipoLetra[fac]
-        esf = Math.floor(Math.random() * nL.length);
+        esf = Math.floor(Math.random() * nL);
         $('#spancH'+esf).html(fa)
       }
       if(telaW < 600)
