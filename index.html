@@ -269,7 +269,7 @@
         </div>
       </div>
     </div>
-    <div class="container"><!-- Detalhes da fase: Nome do jogador, pontos e estrelas coletadas-->
+    <div class="container">           <!-- Painel do usuário com detalhes da fase: Nome do jogador, pontos e estrelas coletadas-->
       <div class="row">
         <div id="final" class="col s12 card">
           <div class="col s4"><span class="telaInfo">Nome Jogador</span></div>
@@ -283,7 +283,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div>                             <!-- Áudios -->
       <audio id="selecao"  src="som/selecao.wav">  </audio>
       <audio loop id="music0"   src="som/0.mp3">   </audio>
       <audio loop id="music1"   src="som/1.ogg">   </audio>
@@ -340,7 +340,10 @@
         var life     = 3
         var fim = false //Se esta variável estiver true significa que o jogador completou a fase
         var esfera = 40 //Tamanho da esfera com as letras
-        //Áudio
+      // the link to your model provided by Teachable Machine export panel
+        const URL = "../js/";
+        let model, webcam, labelContainer, maxPredictions;
+
 
       //Efeitos da tela inicial
         $('.texto_1').fadeToggle(1000);
@@ -380,21 +383,7 @@
         })
         $('#new_game').click(function()
         {
-          selecao.play()
-          $('.vidro-green-left, .creditos, .detalhes, .loadPage').hide()
-          setTimeout(function()
-          {
-            $('.runGame').fadeIn(500);
-            $('.texto_3').hide();
-          }, 20);
-          setTimeout(function()
-          {
-            $('#final').fadeIn();
-          }, 500);
-          setTimeout(function()
-          {
-            $('.startGame').fadeIn();
-          }, 1000);
+          selecaoJoystick()
         });
         //Atribuindo dados e foto do jogador
         $('.choose_name').fadeToggle(2000);

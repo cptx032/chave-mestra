@@ -1,5 +1,5 @@
 
-  function geraLetras(nL)    //Sorteia e adiciona as letras que vão cair, controla o tempo que as novas letras aparecerão
+  function geraLetras(nL)   //Sorteia e adiciona as letras que vão cair, controla o tempo que as novas letras aparecerão
   {
     // Letras aleatórias dentro do alfabeto
       for(i = 0; i < nL; i++) //Sorteia letras aleatórias do alfabeto
@@ -32,7 +32,7 @@
       }
   }
 
-  function sortPalChave()  //Sorteia a palavra chave da fase
+  function sortPalChave()   //Sorteia a palavra chave da fase
   {
     var pChave = palavraChave[nFase]
     for(i = 0; i < pChave.length; i++)
@@ -43,7 +43,7 @@
     }
   }
 
- function movJogadorK()   //Controle do jogo pelo teclado 
+ function movJogadorK()     //Controle do jogo pelo teclado 
   { 
     document.querySelector('body').addEventListener('keydown', function(event)
     {
@@ -59,7 +59,7 @@
     })
   }
 
-  function movJogadorM()   //Controle do jogo pelo mouse 
+  function movJogadorM()    //Controle do jogo pelo mouse 
 {
   document.querySelector('#divAnimacao').addEventListener('mousemove', function(e) //Movimenta jogador
   {
@@ -76,64 +76,86 @@
   })
   }
 
-  function movJogadorC()   //Controle do jogo por visão computacional 
+  function movJogadorC()    //Controle do jogo por visão computacional 
   {
     // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
-
-    // the link to your model provided by Teachable Machine export panel
-    const URL = "../js/";
-
-    let model, webcam, labelContainer, maxPredictions;
-
-    // Load the image model and setup the webcam
-    async function init() 
+    //Testa a webcam
+    navigator.mediaDevices.getUserMedia({video: true})
+    .then(function (mediaStream)
     {
-      const modelURL = URL + "model.json";
-      const metadataURL = URL + "metadata.json";
-
-      // load the model and metadata
-      // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-      // or files from your local hard drive
-      // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-      model = await tmImage.load(modelURL, metadataURL);
-      maxPredictions = model.getTotalClasses();
-
-      // Convenience function to setup a webcam
-      const flip = true; // whether to flip the webcam
-      webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
-      await webcam.setup(); // request access to the webcam
-      await webcam.play();
-      window.requestAnimationFrame(loop);
-
-      // append elements to the DOM
-      document.getElementById("webcam-container").appendChild(webcam.canvas);
-      labelContainer = document.getElementById("label-container");
-      for (let i = 0; i < maxPredictions; i++) 
-      { // and class labels
-          labelContainer.appendChild(document.createElement("div"));
-      }
-    }
-
-    async function loop() 
-    {
-      webcam.update(); // update the webcam frame
-      await predict();
-      window.requestAnimationFrame(loop);
-    }
-
-    // run the webcam image through the image model
-    async function predict() 
-    {
-      // predict can take in an image, video or canvas html element
-      const prediction = await model.predict(webcam.canvas);
-      for (let i = 0; i < maxPredictions; i++) 
+      // Load the image model and setup the webcam
+      async function init() 
       {
-          const classPrediction =
-          prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-          labelContainer.childNodes[i].innerHTML = classPrediction;
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // or files from your local hard drive
+        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        // Convenience function to setup a webcam
+        const flip = true; // whether to flip the webcam
+        webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+        await webcam.setup(); // request access to the webcam
+        await webcam.play();
+        window.requestAnimationFrame(loop);
+
+        // append elements to the DOM
+        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < maxPredictions; i++) 
+        { // and class labels
+            labelContainer.appendChild(document.createElement("div"));
+        }
       }
-    }
+      async function loop() 
+      {
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
+      }
+
+      // run the webcam image through the image model
+      async function predict() 
+      {
+        // predict can take in an image, video or canvas html element
+        const prediction = await model.predict(webcam.canvas);
+        for (let i = 0; i < maxPredictions; i++) 
+        {
+            const classPrediction =
+            prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+            labelContainer.childNodes[i].innerHTML = classPrediction;
+        }
+      }
+    })
+    .catch(function (err) 
+    {
+        alert('Não foi possível iniciar a câmera do dispositivo.\n\nVerifique a câmera e tente novamente ou escolha outro tipo de controle!')
+        selecaoJoystick()
+    })
+  }
+
+  function selecaoJoystick() //Inicia tela de escolha do tipo de controle do jogo
+  {
+    selecao.play()
+    $('.vidro-green-left, .creditos, .detalhes, .loadPage, .tipoLetra').hide()
+    setTimeout(function()
+    {
+      $('.runGame').fadeIn(500);
+      $('.texto_3').hide();
+    }, 20);
+    setTimeout(function()
+    {
+      $('#final').fadeIn();
+    }, 500);
+    setTimeout(function()
+    {
+      $('.startGame').fadeIn();
+    }, 1000);
   }
 
   function comparaListas(_arr1, _arr2) //Compara a lista com as letras coletadas e a lista com a palavra chave
@@ -150,6 +172,7 @@
     }
     return true;
   }
+
   function processaLetras(cH, xj1, yj1, xcH, ycH) //x0 e y0 for menor que 40 o jogador pegou uma letra, decisões são tomadas com base nessa ação
   {
     if(xj1 + esfera > xcH && xj1 < xcH + esfera && yj1 + esfera > ycH && yj1 < ycH + esfera) //Condições que definem a colisão
