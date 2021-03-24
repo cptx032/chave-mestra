@@ -246,7 +246,7 @@
         {
           const classPrediction =
           prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-          labelContainer.childNodes[i].innerHTML = classPrediction;
+          //labelContainer.childNodes[i].innerHTML = classPrediction;
           valuePredict = prediction[i].probability.toFixed(2);
           classPredict = prediction[i].className;
           
