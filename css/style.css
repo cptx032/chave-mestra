@@ -69,6 +69,8 @@ body .runGame { display: none; height: 500px; padding: 0px; margin-top: 2%; }
 .j1 img { width: 50px; height: 50px; }
 .j1 .j1Icon { color: black; }
 
+.webcam { position: absolute; top: 0px; left: 0px; display: block; }
+.webcam-container, .label-container { display: block; }
 
 #final { height: 150px; display: none; z-index: 2000; padding: 10px 30px; margin: 0px; }
   .telaInfo { font-size: 1.5em; font-weight: 500; text-align: center; }

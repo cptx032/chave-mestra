@@ -28,6 +28,13 @@
   </head>
   <title>Chave Mestra</title>
   <body>
+    <!--Janela da câmera-->
+      <div class="webcam">
+        <div id="webcam-container"></div>
+        <div id="label-container"></div>
+      </div>
+    <!---->
+    
     <div class="card loadPage fundo"> <!-- Tela inicial (Personalização do usuário e cadastro das palavras) -->
       <div class="btn-floating detalhes white" onclick="javascript:$('#helpmodal').fadeIn()"><span>?</span></div>
       <div class="btn yellow darken-2 texto_1 btn-no-pointer">Bem-vindo ao jogo Chave-mestra <i class="material-icons large">videogame_asset</i></div>
@@ -192,8 +199,6 @@
             </div>
           </div>
           <div id="divAnimacao" class="col s12"> <!--Jogador e letras caindo-->
-            <div id="webcam-container"></div>
-            <div id="label-container"></div>
             <div class="vidro"><!-- Botões de início e próxima fase -->
               <div class="startGame"><!-- Botão de início de jogo -->
                 <div class="col s12">
