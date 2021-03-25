@@ -351,6 +351,8 @@
         var estrelas = 0
         var life     = 3
         var fim = false //Se esta variável estiver true significa que o jogador completou a fase
+        var joyMouse = false
+        var j1 = 50
         var esfera = 40 //Tamanho da esfera com as letras
         var veloxEsferas = 25
 
@@ -491,8 +493,10 @@
         {
           selecao.play()
           movJogadorM()
+          joyMouse = true
           $('.startGame').fadeOut(500)
           $('.tipoLetra').fadeIn(500)
+
         })
         $('.controlCam').click(function()
         {

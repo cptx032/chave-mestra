@@ -22,6 +22,7 @@
     velox    = 30            //Velocidade do movimento do jogador, medida em pixel
     for(iZeraStar = 0; iZeraStar <=5; iZeraStar++){$(".star"+iZeraStar).html('star_border')} //Reseta icones da estrela
     level = veloxEsferas + (nFase*1000)
+    if(joyMouse){$('.j1').css({"position":"relative", "margin-bottom":"none"})}
     $('.chaveAnima').css({"animation" : "desce "+level+"s linear"}) //Velocidade das esferas
     $('.tipoLetra').hide()
     $('.chaveIco2').removeClass('cadeadoAnima')
@@ -142,6 +143,7 @@
       {
         $('.chaveAnima').css({"transform": "scale(0.7)", "font-size": ".7em", "animation": "desce 10s linear"} )
         $('.j1').css({"transform": "scale(0.7)"} )
+        j1 = 35
         esfera = 28
       }
   }
@@ -175,19 +177,13 @@
 
   function movJogadorM()    //Controle do jogo pelo mouse 
 {
-  document.querySelector('#divAnimacao').addEventListener('mousemove', function(e) //Movimenta jogador
-  {
-    mX = e.offsetX;
-    mY = e.offsetY;
-    if(mX > 25 && mX < (telaW - 45))//Move horizontal
+    document.querySelector('#divAnimacao').addEventListener('mousemove', function(e) //Movimenta jogador
     {
-      $('.j1').css({"left": mX})
-    }
-    if(mY > ((telaH / 2)-50) && mY < (telaH - 55))//Move horizontal
-    {
-      $('.j1').css({"top": mY})
-    }
-  })
+        mX = e.offsetX;
+        mY = e.offsetY;
+        if(mX > 0 && mX < (telaW - 45) && mY > ((telaH / 2)-50) && mY < (telaH - 55))//Move horizontal
+        {$('.j1').css({"transform": "translate("+mX+"px, "+mY+"px)"})}
+    })
   }
 
   function movJogadorC()    //Controle do jogo por visão computacional 
@@ -448,7 +444,7 @@
         },1000)
         $('i').remove('.life1')           //Remove último coração
         $('div').remove('.chaveAnima')    //Remove todas as letras que estão caindo na tela
-        $('.j1').css({ "bottom": "10px"}) //Move o jogador para a posição original
+        if(joyMouse){$('.j1').css({"position":"absolute", "margin-bottom":"10px", "transform": "translate (none)"})}//Move o jogador para a posição original
         clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item0);clearInterval(item1);clearInterval(item2) //Para o processamento das letras e a gerarção letras e itens que caem
         while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()} //Zera as listras com as letras coletadas e da palavra-chave
 
@@ -496,7 +492,7 @@
             finalFase.play()
           },1000)
           $('div').remove('.chaveAnima')    //Remove todas as letras que estão caindo na tela
-          $('.j1').css({ "bottom": "10px"}) //Move o jogador para a posição original  
+          if(joyMouse){$('.j1').css({"position":"absolute", "margin-bottom":"10px", "transform": "translate (none)"})}//Move o jogador para a posição original
           clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item0);clearInterval(item1);clearInterval(item2);
           while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()}
 
@@ -546,7 +542,7 @@
           nFase = 1
           totalEstrelas = 0
           totalPontos = 0
-          $('.j1').css({ "bottom": "10px"})
+          if(joyMouse){$('.j1').css({"position":"absolute", "margin-bottom":"10px", "transform": "translate (none)"})}//Move o jogador para a posição original
           while(letrasDaChave.length){letrasDaChave.pop();letrasColetadas.pop()}
           clearInterval(stopProcessLetras);clearInterval(stopLetras);clearInterval(item0);clearInterval(item1);clearInterval(item2);
           $('.startGame, .proxFase, .gameOver').hide()
