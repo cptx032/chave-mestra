@@ -323,199 +323,198 @@
       </script>
     </div>
     <script>
-      //Variáveis do jogo
-        var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
-        var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
-        var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
-        var tipoLetra    = []
-        var letrasDaChave   = []     //Lista com a palavra escolhida
-        var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
-        var nFase        = 1
-        var maxLetras    = 14                 //Limite de letras das palavras chave + 1
-        var nLetrasFase1 = [4,5,3,6]          //Quantidade de letras que caem na 1 e 2a fase
-        var nLetrasFase2 = [6,8,5,6]          //Quantidade de letras que caem na 3 e 4a fase
-        var nLetrasFase3 = [7,8,9,8]          //Quantidade de letras que caem na 5 e 6a fase
-        var nLetrasFase4 = [7,8,9,8,10,11]    //Quantidade de letras que caem na 7 e 8a fase
-        var nLetrasFase5 = [7,8,9,8,10,11,12] //Quantidade de letras que caem na 9 e 10a fase
-        var nivel        = 1                  //A cada grupo de letras geradas pelo menos uma letra válida será gerada
-        var nomeJogador     = 'Jogador'
-        var esferasAtivas   = []     //Armazena algo se existem esferas na tela
-        var letra = v1 =  v2 = tecla = joystick = item = ''
-        var xPalavra = 3
-        var tempoCascata  = 7000    //Velocidade que as letras serão geradas, em milissegundos
-        var totalEstrelas = totalPontos = telaW = telaH = mX = mY = xUltPosicao = yUltPosicao = xj1 = yj1 = posicaoW = nLtr = nLtr = penalidade = mTop = mLeft = idLetraVal = 0
-        var item0 = item1 = item2 = stopLetras = stopProcessLetras = 0
-        var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
-        var horizontal = velox
-        var vertical   = 55
-        var estrelas = 0
-        var life     = 3
-        var fim = false //Se esta variável estiver true significa que o jogador completou a fase
-        var joyMouse = false
-        var j1 = 50
-        var esfera = 40 //Tamanho da esfera com as letras
-        var veloxEsferas = 25
+    //Variáveis do jogo
+      var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
+      var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
+      var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
+      var tipoLetra    = []
+      var letrasDaChave   = []     //Lista com a palavra escolhida
+      var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
+      var nFase        = 0
+      var maxLetras    = 14                 //Limite de letras das palavras chave + 1
+      var nLetrasFase1 = [4,5,3,6]          //Quantidade de letras que caem na 1 e 2a fase
+      var nLetrasFase2 = [6,8,5,6]          //Quantidade de letras que caem na 3 e 4a fase
+      var nLetrasFase3 = [7,8,9,8]          //Quantidade de letras que caem na 5 e 6a fase
+      var nLetrasFase4 = [7,8,9,8,10,11]    //Quantidade de letras que caem na 7 e 8a fase
+      var nLetrasFase5 = [7,8,9,8,10,11,12] //Quantidade de letras que caem na 9 e 10a fase
+      var nivel        = 1                  //A cada grupo de letras geradas pelo menos uma letra válida será gerada
+      var nomeJogador     = 'Jogador'
+      var esferasAtivas   = []     //Armazena algo se existem esferas na tela
+      var letra = v1 =  v2 = tecla = joystick = item = ''
+      var xPalavra = 3
+      var tempoCascata  = 7000    //Velocidade que as letras serão geradas, em milissegundos
+      var totalEstrelas = totalPontos = telaW = telaH = mX = mY = xUltPosicao = yUltPosicao = xj1 = yj1 = posicaoW = nLtr = nLtr = penalidade = mTop = mLeft = idLetraVal = 0
+      var item0 = item1 = item2 = stopProcessLetras = 0
+      var velox    = 30            //Velocidade do movimento do jogador, medida em pixel
+      var horizontal = velox
+      var vertical   = 55
+      var estrelas = 0
+      var life     = 3
+      var fim = false //Se esta variável estiver true significa que o jogador completou a fase
+      var joyMouse = false
+      var j1 = 50
+      var esfera = 40 //Tamanho da esfera com as letras
+      var veloxEsferas = 25
 
-      //Efeitos da tela inicial
-        $('.texto_1').fadeToggle(1000);
-        $('.texto_3').fadeToggle(3000);
-        $('.texto_4').fadeToggle();
-        $('.texto_4').mouseenter(function()
-        {
-          $('.txtStartJogo').fadeIn()
-        })
-        $('.texto_4').mouseleave(function()
-        {
-          $('.txtStartJogo').fadeOut()
-        })
-        $('.texto_5').fadeToggle(3000);
-        $('.texto_5').click(function()
-        {
-          selecao.play()
-          $('.cadPalavras').show()
-        })
-        $('.fim4').click(function()
-        {
-          continueJ()
-        })
-        $('.fim5').click(function()
-        {
-          selecao.play()
-          $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
-          for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
-          life = 3
-          nFase = 1
-          totalEstrelas = 0
-          totalPontos = 0
-        })
-        $('#new_game').click(function()
-        {
-          selecaoJoystick()
-        });
-        $('.facil').click(function()
-        {
-          nivel = 1
-          $('.facil').addClass('green lighten-2')
-          $('.medio').removeClass('green lighten-2')
-          $('.dific').removeClass('green lighten-2')
-        });
-        $('.medio').click(function()
-        {
-          $('.facil').removeClass('green lighten-2')
-          $('.medio').addClass('green lighten-2')
-          $('.dific').removeClass('green lighten-2')
-          nivel = 2
-        });
-        $('.dific').click(function()
-        {
-          $('.facil').removeClass('green lighten-2')
-          $('.medio').removeClass('green lighten-2')
-          $('.dific').addClass('green lighten-2')
-          nivel = 3
-        });
+    //Efeitos da tela inicial
+      $('.texto_1').fadeToggle(1000);
+      $('.texto_3').fadeToggle(3000);
+      $('.texto_4').fadeToggle();
+      $('.texto_4').mouseenter(function()
+      {
+        $('.txtStartJogo').fadeIn()
+      })
+      $('.texto_4').mouseleave(function()
+      {
+        $('.txtStartJogo').fadeOut()
+      })
+      $('.texto_5').fadeToggle(3000);
+      $('.texto_5').click(function()
+      {
+        selecao.play()
+        $('.cadPalavras').show()
+      })
+      $('.fim4').click(function()
+      {
+        continueJ()
+      })
+      $('.fim5').click(function()
+      {
+        selecao.play()
+        $('i').remove('.life1');$('i').remove('.life2');$('i').remove('.life3')
+        for(i=1; i<=3; i++){$(".lifePanel").fadeIn(500).append('<i class="material-icons life'+i+' btn-floating white">favorite</i>')}
+        life = 3
+        nFase = 1
+        totalEstrelas = 0
+        totalPontos = 0
+      })
+      $('#new_game').click(function()
+      {
+        selecaoJoystick()
+      });
+      $('.facil').click(function()
+      {
+        nivel = 1
+        $('.facil').addClass('green lighten-2')
+        $('.medio').removeClass('green lighten-2')
+        $('.dific').removeClass('green lighten-2')
+      });
+      $('.medio').click(function()
+      {
+        $('.facil').removeClass('green lighten-2')
+        $('.medio').addClass('green lighten-2')
+        $('.dific').removeClass('green lighten-2')
+        nivel = 2
+      });
+      $('.dific').click(function()
+      {
+        $('.facil').removeClass('green lighten-2')
+        $('.medio').removeClass('green lighten-2')
+        $('.dific').addClass('green lighten-2')
+        nivel = 3
+      });
 
-        //Atribuindo dados e foto do jogador
-        $('.choose_name').fadeToggle(2000);
-        $('.choose_name').click(function()
+      //Atribuindo dados e foto do jogador
+      $('.choose_name').fadeToggle(2000);
+      $('.choose_name').click(function()
+      {
+        selecao.play()
+        $('.personalize').fadeIn()
+      })
+      $('#creditos1').click(function()
+      {
+        selecao.play()
+        $('#creditos2').fadeToggle(500)
+      })
+      $('.fechaPersonalize').click(function()
+      {
+        selecao.play()
+        $('.personalize').fadeOut()
+      })
+      $('.fechaModal').click(function()
+      {
+        selecao.play()
+        $('.cadPalavras').hide()
+      })
+      $('#nomeJogador').html(nomeJogador)
+      $('.salvaDados').click(function()     //Adiciona nome
+      {
+        selecao.play()
+        $('.personalize').fadeOut()
+        if($('.nomeJogador').val().length > 0)
         {
-          selecao.play()
-          $('.personalize').fadeIn()
-        })
-        $('#creditos1').click(function()
+          nomeJogador = $('.nomeJogador').val()
+          $('#nomeJogador').html(nomeJogador)
+        }
+        else
         {
-          selecao.play()
-          $('#creditos2').fadeToggle(500)
-        })
-        $('.fechaPersonalize').click(function()
-        {
-          selecao.play()
-          $('.personalize').fadeOut()
-        })
-        $('.fechaModal').click(function()
-        {
-          selecao.play()
-          $('.cadPalavras').hide()
-        })
-        $('#nomeJogador').html(nomeJogador)
-        $('.salvaDados').click(function()     //Adiciona nome
-        {
-          selecao.play()
-          $('.personalize').fadeOut()
-          if($('.nomeJogador').val().length > 0)
-          {
-            nomeJogador = $('.nomeJogador').val()
-            $('#nomeJogador').html(nomeJogador)
-          }
-          else
-          {
-            $('#nomeJogador').html(nomeJogador)
-          }
-        })
-        $('.circle').click(function ()        //Seleciona avatar
-        {
-          selecao.play()
-          var avatar = $(this).attr('src')
-          $(".j1").empty()
-          $(".j1").append('<img id="circle1" src="'+avatar+'" alt="" class="circle">')
+          $('#nomeJogador').html(nomeJogador)
+        }
+      })
+      $('.circle').click(function ()        //Seleciona avatar
+      {
+        selecao.play()
+        var avatar = $(this).attr('src')
+        $(".j1").empty()
+        $(".j1").append('<img id="circle1" src="'+avatar+'" alt="" class="circle">')
 
-        })
-        $('.maisPalavras').click(function()   //Mostra mais inputs para cadastrar palavras
+      })
+      $('.maisPalavras').click(function()   //Mostra mais inputs para cadastrar palavras
+      {
+        selecao.play()
+        if(xPalavra < 11)
         {
-          selecao.play()
-          if(xPalavra < 11)
-          {
-            $('.rowCadPalavras').append('<div class="input-field col s12 l6"><i class="material-icons prefix">menu_book</i><input id="icon_prefix" class="palavraF palFase'+xPalavra+'" type="text" data-ls-module="charCounter" maxlength="12" ><label for="icon_prefix">Palavra da '+xPalavra+'a fase</label></div>')
-            xPalavra ++
-          }
-          else
-          {
-            alert('Ops! O limite de palavras é 10, você já cadastrou o máximo de palavras.\n\n Se já finalizou clique em salvar.')
-          }
-        })
-        $('.salvarPalavras').click(function() //Aciona botão salvar palavras
+          $('.rowCadPalavras').append('<div class="input-field col s12 l6"><i class="material-icons prefix">menu_book</i><input id="icon_prefix" class="palavraF palFase'+xPalavra+'" type="text" data-ls-module="charCounter" maxlength="12" ><label for="icon_prefix">Palavra da '+xPalavra+'a fase</label></div>')
+          xPalavra ++
+        }
+        else
         {
-          for(i = 1; i < xPalavra; i++)
-          {
-            var pp = $('.palFase'+i).val()
-            if(pp.length != 0) {palavraChave[i] = pp}
-          }
-          $('.cadPalavras').fadeOut(1000)
-        })
-      //Seleciona modo de controle do jogo
-        $('.controlTeclado').click(function()
+          alert('Ops! O limite de palavras é 10, você já cadastrou o máximo de palavras.\n\n Se já finalizou clique em salvar.')
+        }
+      })
+      $('.salvarPalavras').click(function() //Aciona botão salvar palavras
+      {
+        for(i = 1; i < xPalavra; i++)
         {
-          selecao.play()
-         movJogadorK()
-         $('.startGame').fadeOut(500)
-         $('.tipoLetra').fadeIn(500)
-        })
-        $('.controlMouse').click(function()
-        {
-          selecao.play()
-          movJogadorM()
-          joyMouse = true
-          $('.startGame').fadeOut(500)
-          $('.tipoLetra').fadeIn(500)
+          var pp = $('.palFase'+i).val()
+          if(pp.length != 0) {palavraChave[i] = pp}
+        }
+        $('.cadPalavras').fadeOut(1000)
+      })
+    //Seleciona modo de controle do jogo
+      $('.controlTeclado').click(function()
+      {
+        selecao.play()
+        movJogadorK()
+        $('.startGame').fadeOut(500)
+        $('.tipoLetra').fadeIn(500)
+      })
+      $('.controlMouse').click(function()
+      {
+        selecao.play()
+        joyMouse = true
+        $('.startGame').fadeOut(500)
+        $('.tipoLetra').fadeIn(500)
 
-        })
-        $('.controlCam').click(function()
-        {
-          selecao.play()
-          movJogadorC()
-          $('.startGame').fadeOut(500)
-          $('.tipoLetra').fadeIn(500)
-        })
-        $('.maiusculas').click(function()
-        {
-          selecao.play()
-          tipoLetra = JSON.parse(JSON.stringify(alfabetoBig));
-        })
-        $('.minusculas').click(function()
-        {
-          selecao.play()
-          tipoLetra = JSON.parse(JSON.stringify(alfabetoMin));
-        })
-        //Início do jogo
+      })
+      $('.controlCam').click(function()
+      {
+        selecao.play()
+        movJogadorC()
+        $('.startGame').fadeOut(500)
+        $('.tipoLetra').fadeIn(500)
+      })
+      $('.maiusculas').click(function()
+      {
+        selecao.play()
+        tipoLetra = JSON.parse(JSON.stringify(alfabetoBig));
+      })
+      $('.minusculas').click(function()
+      {
+        selecao.play()
+        tipoLetra = JSON.parse(JSON.stringify(alfabetoMin));
+      })
+    //Início do jogo
       $('.maiusculas, .minusculas, .fim2, .fim4, .fim5').click(function()
       {
         novoJogo()
