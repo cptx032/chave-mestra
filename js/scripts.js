@@ -256,17 +256,17 @@
         }
         function controlCam(valuePredict, classPredict)
         {
-            if     (classPredict == "leftC" && parseFloat(valuePredict) >0.7)  //Seta esquerda
+          if (classPredict == "leftC" && parseFloat(valuePredict) >0.7)  //Seta esquerda
             {if (horizontal > 15){horizontal -= veloxC; $('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-left":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-left":"1px solid gainsboro"})},500)}} 
-          else if(classPredict == "rightC" && parseFloat(valuePredict) >0.7) //Seta direita 
+          if(classPredict == "rightC" && parseFloat(valuePredict) >0.7) //Seta direita 
             {if(horizontal < (telaW - 70)){horizontal += veloxC;$('.j1').css({"left": horizontal})}else{$('#divAnimacao').css({"border-right":"solid 5px coral"});var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-right":"1px solid gainsboro"})},500)}}
-          else if(classPredict == "upC" && parseFloat(valuePredict) >0.7) //Seta cima
+          if(classPredict == "upC" && parseFloat(valuePredict) >0.7) //Seta cima
             {if(vertical < 250){vertical += veloxC; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-top":"solid 5px coral"});   var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-top":"1px solid gainsboro"})},500)}} 
-          else if(classPredict == "downC" && parseFloat(valuePredict) >0.7) //Seta baixo 
+          if(classPredict == "downC" && parseFloat(valuePredict) >0.7) //Seta baixo 
             {if(vertical > 10){vertical -= veloxC; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-bottom":"solid 5px coral"}); var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-bottom":"1px solid gainsboro"})},500)}}
-          else if(classPredict == "continueC" && parseFloat(valuePredict) >0.7) {novoJogo() } //Em caso de Game Over, continua
-          else if(classPredict == "novoC" && parseFloat(valuePredict) >0.7)     {continueJ()} //Novo jogo
-          else { console.log("Não detectado")}
+          //if(classPredict == "continueC" && parseFloat(valuePredict) >0.7) {continueJ() } //Em caso de Game Over, continua
+          //else if(classPredict == "novoC" && parseFloat(valuePredict) >0.7)     {novoJogo()} //Novo jogo
+          //else { console.log("Não detectado")}
         }
       }
     })
