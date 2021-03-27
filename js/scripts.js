@@ -71,17 +71,19 @@
           case 'cH10': var divE = document.getElementById('cH10'); break
           case 'cH11': var divE = document.getElementById('cH11'); break
         }
-        if (document.getElementById(cH))
+        if (document.getElementById(cH)) //Verifica se a esfera realmente existe
         {
+          esferasAtivas[1] = '-'         //Lista que controla se ainda há esferas na tela
           var rect = divE.getBoundingClientRect();
-          var xcH = rect.x;
-          var ycH = rect.y;
-          if(ycH > (telaH+80)){$('div').remove('#'+cH);} //Remove as esferas que chegam ao fim da tela
-          processaLetras(cH, xj1, yj1, xcH, ycH) //Verifica se a letra coletada compõe a palavra e toma decisão de acordo com a resposta
-          esferasAtivas[1] = '-'
+          var xcH = rect.x; //Pega localização horizontal da esfera
+          var ycH = rect.y; //Pega localização vertical da esfera
+          if(ycH > (telaH+80)){$('div').remove('#'+cH);} //Se as esferas chegaram ao final da tela elas são removidas
+          else if ( ycH > (telaH / 2)) //Só processa as esferas se elas passarem do meio da tela (Otimização do código)
+          {
+            processaLetras(cH, xj1, yj1, xcH, ycH) //Verifica se a letra coletada compõe a palavra e toma decisão de acordo com a resposta
+          }
         }
-        else
-        {window.setTimeout(function(){esferasAtivas.pop()},2000)}
+        else{window.setTimeout(function(){esferasAtivas.pop()},2000)} //Se a esfera não existir um item é removido da lista de controle, se não existirem mais itens na lista novas esferas serão geradas
       }
       if(esferasAtivas.length == 0)
       {
