@@ -264,7 +264,7 @@
             {if(vertical < 250){vertical += veloxC; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-top":"solid 5px coral"});   var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-top":"1px solid gainsboro"})},500)}} 
           if(classPredict == "downC" && parseFloat(valuePredict) >0.85) //Seta baixo 
             {if(vertical > 10){vertical -= veloxC; $('.j1').css({"bottom": vertical})}else{$('#divAnimacao').css({"border-bottom":"solid 5px coral"}); var intervalo = window.setTimeout(function() {$('#divAnimacao').css({"border-bottom":"1px solid gainsboro"})},500)}}
-          if(classPredict == "continueC" && parseFloat(valuePredict) >0.9) {continueJ() } //Em caso de Game Over, continua
+          if(classPredict == "continueC" && parseFloat(valuePredict) >1) {continueJ() } //Em caso de Game Over, continua
           //if(classPredict == "novoC" && parseFloat(valuePredict) >0.98){novoJogo()  } //Novo jogo
           //else { console.log("Não detectado")}
         }
