@@ -139,7 +139,8 @@
       if(nivel == 1) //Se estiver no nível fácil uma letra válida será adicionada a cada geração de novas letras 
       {
         fac = Math.floor(Math.random() * letrasDaChave.length);
-        fa = letrasDaChave[parseInt(fac)]
+        if(toLowerCase == 'a'){fa = letrasDaChave[parseInt(fac)].toLowerCase()}
+        else{fa = letrasDaChave[parseInt(fac)]}
         esf = Math.floor(Math.random() * nL);
         $('.spancH'+parseInt(esf)).html(fa)
       }
@@ -158,7 +159,8 @@
     var pChave = palavraChave[nFase]
     for(i = 0; i < pChave.length; i++)
     {
-      var letra = pChave[i]
+      if(toLowerCase = 'a') var letra = pChave[i].toLowerCase()
+      else{var letra = pChave[i]}
       $('#palavraChave').fadeIn().append('<a class="btn-floating btn-medium waves-effect waves-light white pC pC'+letra+'">'+letra+'</a>') //Adiciona a palavra chave da fase atual
       letrasDaChave[i] = letra //Cria uma lista com a letras da palavra sorteada para serem comparadas com as letras pegas pelo jogador
     }

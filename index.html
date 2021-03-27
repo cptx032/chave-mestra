@@ -328,6 +328,7 @@
       var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
       var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
       var tipoLetra    = []
+      var toLowerCase; // Se o tipo de letra escolhida pelo usuário for minúscula todas as letras do jogo são convertidas pra minúsculas
       var letrasDaChave   = []     //Lista com a palavra escolhida
       var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
       var nFase        = 0
@@ -514,6 +515,7 @@
       {
         selecao.play()
         tipoLetra = JSON.parse(JSON.stringify(alfabetoMin));
+        toLowerCase = 'a'
       })
     //Início do jogo
       $('.maiusculas, .minusculas, .fim2, .fim4, .fim5').click(function()
