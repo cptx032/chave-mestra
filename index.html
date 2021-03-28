@@ -285,7 +285,7 @@
               </div>
               <div class="proxFase"><!-- Botão Próxima fase -->
                 <div class="btn blue lighten-2 fim1">Parabéns! Aguarde, estamos carregando a nova fase para você.</div>
-                <div class="btn lime lighten-2 fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">lock</i></div>
+                <div class="btn black fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">lock</i></div>
               </div>
               <div class="btn blue lighten-2 vidro-green-left">
                 <div class="col s12">A</div>
@@ -376,7 +376,7 @@
       var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
       var alfabetoMin  = ["a","b","c","d","e","f","g","h","i","j","l","l","m","n","o","p","q","r","s","t","u","v","x","y","z","w","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
       var tipoLetra    = []
-      var toLowerCase; // Se o tipo de letra escolhida pelo usuário for minúscula todas as letras do jogo são convertidas pra minúsculas
+      var toLowerCase  = false; // Se o tipo de letra escolhida pelo usuário for minúscula todas as letras do jogo são convertidas pra minúsculas
       var letrasDaChave   = []     //Lista com a palavra escolhida
       var letrasColetadas = []     //Lista que vai sendo preenchida com as letras capturadas pelo jogador
       var nFase        = 0
@@ -571,7 +571,7 @@
       {
         selecao.play()
         tipoLetra = JSON.parse(JSON.stringify(alfabetoMin));
-        toLowerCase = 'a'
+        toLowerCase = true
       })
     //Início do jogo
       $('.maiusculas, .minusculas, .fim2, .fim4, .fim5').click(function()

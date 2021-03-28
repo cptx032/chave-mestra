@@ -117,8 +117,7 @@
       for(i = 0; i < nL; i++) //Sorteia letras aleatórias do alfabeto
       {
         nLtr = Math.floor(Math.random() * 28);
-        if(toLowerCase == 'a'){letra = tipoLetra[nLtr].toLowerCase()}
-        else{letra = tipoLetra[nLtr]}
+        letra = tipoLetra[nLtr]
         $('#divAnimacao').fadeIn().append('<div id="cH'+i+'"class="btn-floating white chaveAnima cH'+i+'"><span class="spancH'+i+'">'+letra+'</span></div>') //Adiciona as letras que caem
         mTop = Math.floor(Math.random() * 120);
         if(letra == "favorite")                  // Gera corações
@@ -140,7 +139,7 @@
       if(nivel == 1) //Se estiver no nível fácil uma letra válida será adicionada a cada geração de novas letras 
       {
         fac = Math.floor(Math.random() * letrasDaChave.length);
-        if(toLowerCase == 'a'){fa = letrasDaChave[parseInt(fac)].toLowerCase()}
+        if(toLowerCase == true){fa = letrasDaChave[parseInt(fac)].toLowerCase()}
         else{fa = letrasDaChave[parseInt(fac)]}
         esf = Math.floor(Math.random() * nL);
         $('.spancH'+parseInt(esf)).html(fa)
@@ -160,7 +159,7 @@
     var pChave = palavraChave[nFase]
     for(i = 0; i < pChave.length; i++)
     {
-      if(toLowerCase = 'a') var letra = pChave[i].toLowerCase()
+      if(toLowerCase == true) var letra = pChave[i].toLowerCase()
       else{var letra = pChave[i]}
       $('#palavraChave').fadeIn().append('<a class="btn-floating btn-medium waves-effect waves-light white pC pC'+letra+'">'+letra+'</a>') //Adiciona a palavra chave da fase atual
       letrasDaChave[i] = letra //Cria uma lista com a letras da palavra sorteada para serem comparadas com as letras pegas pelo jogador
