@@ -67,8 +67,8 @@
               <div class="modal-footer">
                 <a href="javascript:close_help_modal()" class="waves-effect waves-green btn red fecharFixo">Fechar</a>
               </div>
-              <div class="row">
-                <h3>Bem vindo ao Jogo Chave-Mestra</h3>
+              <div class="row" style="padding-left: 15px; border-left: 5px solid grey;">
+                <h4>Bem vindo ao Jogo Chave-Mestra</h4>
                 <h6>
                   <p>
                     O objetivo do jogo é ajudar seu personagem a coletar todas
@@ -86,50 +86,28 @@
                     a cada letra errada coletada.
                   </p>
                 </h6>
-                <br><br>
-                <h3>Requisitos para o funcionamento do jogo</h3>
+              </div>
+              <div class="row" style="padding-left: 15px; border-left: 5px solid coral;">
+                <h4>Requisitos para o funcionamento do jogo</h4>
                 <h6>
                   <p>
                     Este jogo foi desenvolvido e testado nos navegadores principais dos computadores equipados com Windows, Linux (Ubuntu, Debian...) e Mac OS.
                     Também é possível jogá-lo utilizando celular ou tablet abrindo o navegador no modo computador, veja abaixo:
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn green">Chrome</div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn yellow darken-2">Firefox</div><img src="imagens/firefox.jpeg" alt=""></div>
-                  </p>
-                </h6>
-                <br><br>
-                <h3>Controle o jogo com a webcam ou câmera do celular</h3>
-                <h6>
-                  <p>
-                    Procure um lugar distante de objetos, da parede e com boa iluminação, veja os comando para mover o jogador:
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para cima    </div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para direita </div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para baixo   </div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para esquerda</div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Continue     </div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 posiCam"><div class="col s12 btn green">          Chrome </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg"  alt=""></div></div>
+                    <div class="col s12 posiCam"><div class="col s12 btn yellow darken-2">Firefox</div><div class="col s12 m5 offset-m1 manual"><img src="imagens/firefox.jpeg" alt=""></div></div>
                   </p>
                 </h6>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div id="helpmodalCam" class="modal">
-        <div class="container">
-          <div class="row">
-            <form class="col s12">
-              <div class="modal-footer">
-                <a href="javascript:close_help_modal()" class="waves-effect waves-green btn yellow darken-2 btn-iniciarJ fecharFixo">Entendi</a>
-              </div>
-              <div class="row">
-                <h3>Controle o jogo com a webcam ou câmera do celular</h3>
+              <div class="row" style="padding-left: 15px; border-left: 5px solid blueviolet;">
+                <h4>Controle o jogo com a webcam ou câmera do celular</h4>
                 <h6>
                   <p>
                     Procure um lugar distante de objetos, da parede e com boa iluminação, veja os comando para mover o jogador:
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para cima    </div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para direita </div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para baixo   </div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para esquerda</div><img src="imagens/chrome.jpeg" alt=""></div>
-                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Continue     </div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 posiCam"><div class="col s12 btn purple">Para cima    </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                    <div class="col s12 posiCam"><div class="col s12 btn purple">Para direita </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                    <div class="col s12 posiCam"><div class="col s12 btn purple">Para baixo   </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                    <div class="col s12 posiCam"><div class="col s12 btn purple">Para esquerda</div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                    <div class="col s12 posiCam"><div class="col s12 btn purple">Continue     </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
                   </p>
                 </h6>
               </div>
@@ -203,7 +181,7 @@
         Classificação: <div><span>E</span></div> <div>(Para todos os públicos)</div>
       </div>
       <div class="card txtStartJogo">Carregar informações e visualizar jogo.</div>
-      <div id="new_game" class="texto_4"><div class="btn black darken-2 playIcon">Novo jogo</div><i class="material-icons medium playCircle">play_circle</i></div>
+      <div id="new_game" class="texto_4"><div class="btn black playIcon">Novo jogo</div><i class="material-icons medium playCircle">play_circle</i></div>
       <div class="card creditos">
         <div id="creditos1">
           <div style="text-align: center; font-weight: 500"> Créditos
@@ -261,6 +239,30 @@
                   </div>
                 </div>
               </div>
+              <div id="helpmodalCam" class="modal">
+                <div class="container">
+                  <div class="row" style="padding-left: 15px; border-left: 5px solid blueviolet;">
+                    <form class="col s12">
+                      <div class="modal-footer">
+                        <a href="javascript:close_help_modal()" class="waves-effect waves-green btn yellow darken-2 btn-iniciarJ fecharFixo">Entendi</a>
+                      </div>
+                      <div class="row">
+                        <h4>Controle o jogo com a webcam ou câmera do celular</h4>
+                        <h6>
+                          <p>
+                            Procure um lugar distante de objetos, da parede e com boa iluminação, veja os comando para mover o jogador:
+                            <div class="col s12 posiCam"><div class="col s12 btn purple">Para cima    </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                            <div class="col s12 posiCam"><div class="col s12 btn purple">Para direita </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                            <div class="col s12 posiCam"><div class="col s12 btn purple">Para baixo   </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                            <div class="col s12 posiCam"><div class="col s12 btn purple">Para esquerda</div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                            <div class="col s12 posiCam"><div class="col s12 btn purple">Continue     </div><div class="col s12 m5 offset-m1 manual"><img src="imagens/chrome.jpeg" alt=""></div></div>
+                          </p>
+                        </h6>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>        
               <div class="tipoLetra"><!-- Botão de início de jogo -->
                 <div class="col s12">
                   <div class="col s12 l10 offset-l1 card hoverable maiusculas">
@@ -283,7 +285,7 @@
               </div>
               <div class="proxFase"><!-- Botão Próxima fase -->
                 <div class="btn blue lighten-2 fim1">Parabéns! Aguarde, estamos carregando a nova fase para você.</div>
-                <div class="btn black fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">lock</i></div>
+                <div class="btn purple fim2">Nova fase desbloqueada<i class="material-icons right chaveIco2">lock</i></div>
               </div>
               <div class="btn blue lighten-2 vidro-green-left">
                 <div class="col s12">A</div>
