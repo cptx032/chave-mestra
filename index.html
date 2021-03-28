@@ -79,13 +79,59 @@
                     Quanto mais letras coletadas mais estrelas!
                   </p>
                   <p>
-                    Cuidado ao escolher letras erradas, você perde uma estrela
+                    Cuidado ao escolher letras erradas, você perde uma estrela e um coração
                     a cada letra errada coletada.
+                  </p>
+                </h6>
+                <br><br>
+                <h3>Requisitos para o funcionamento do jogo</h3>
+                <h6>
+                  <p>
+                    Este jogo foi desenvolvido e testado nos navegadores principais dos computadores equipados com Windows, Linux (Ubuntu, Debian...) e Mac OS.
+                    Também é possível jogá-lo utilizando celular ou tablet abrindo o navegador no modo computador, veja abaixo:
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn green">Chrome</div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn yellow darken-2">Firefox</div><img src="imagens/firefox.jpeg" alt=""></div>
+                  </p>
+                </h6>
+                <br><br>
+                <h3>Controle o jogo com a webcam ou câmera do celular</h3>
+                <h6>
+                  <p>
+                    Procure um lugar distante de objetos e da parede e com boa iluminação, veja os comando para mover o jogador:
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para cima    </div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para direita </div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para baixo   </div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para esquerda</div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Continue     </div><img src="imagens/chrome.jpeg" alt=""></div>
                   </p>
                 </h6>
               </div>
               <div class="modal-footer">
                 <a href="javascript:close_help_modal()" class="waves-effect waves-green btn-flat">Fechar</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="helpmodalCam" class="modal">
+        <div class="container">
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <h3>Controle o jogo com a webcam ou câmera do celular</h3>
+                <h6>
+                  <p>
+                    Procure um lugar distante de objetos e da parede e com boa iluminação, veja os comando para mover o jogador:
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para cima    </div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para direita </div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para baixo   </div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Para esquerda</div><img src="imagens/chrome.jpeg" alt=""></div>
+                    <div class="col s12 m4 offset-m1 manual"><div class="btn black">Continue     </div><img src="imagens/chrome.jpeg" alt=""></div>
+                  </p>
+                </h6>
+              </div>
+              <div class="modal-footer">
+                <a href="javascript:close_help_modal()" class="waves-effect waves-green btn-flat yellow darken-2 btn-iniciarJ">Entendi</a>
               </div>
             </form>
           </div>
@@ -323,9 +369,6 @@
       </script>
     </div>
     <script>
-      function close_help_modal() {
-        $('#helpmodal').fadeOut()
-      }
     //Variáveis do jogo
       var palavraChave = ["A","BOLA","UVA","CABANA","BATATA","COCADA","BILOCA","PANELA","ABACATE","JERIMUM","NATALINO"] //Palavras que serão usadas em cada fase, ordem crescente. Máximo 12 caracteres
       var alfabetoBig  = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y","Z","W","favorite","local_fire_department"] //Letras do alfabeto que cairão para serem coletadas
@@ -505,10 +548,18 @@
       $('.controlCam').click(function()
       {
         selecao.play()
-        movJogadorC()
         $('.startGame').fadeOut(500)
+        $('#helpmodalCam').fadeIn(500)
+      })
+      function close_help_modal() {$('#helpmodal').fadeOut()}
+      $('.btn-iniciarJ').click(function()
+      {
+        selecao.play()
+        movJogadorC()
+        $('#helpmodalCam').fadeOut(500)
         $('.tipoLetra').fadeIn(500)
       })
+
       $('.maiusculas').click(function()
       {
         selecao.play()
