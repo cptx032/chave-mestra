@@ -117,7 +117,8 @@
       for(i = 0; i < nL; i++) //Sorteia letras aleatórias do alfabeto
       {
         nLtr = Math.floor(Math.random() * 28);
-        letra = tipoLetra[nLtr]
+        if(toLowerCase == 'a'){letra = tipoLetra[nLtr].toLowerCase()}
+        else{letra = tipoLetra[nLtr]}
         $('#divAnimacao').fadeIn().append('<div id="cH'+i+'"class="btn-floating white chaveAnima cH'+i+'"><span class="spancH'+i+'">'+letra+'</span></div>') //Adiciona as letras que caem
         mTop = Math.floor(Math.random() * 120);
         if(letra == "favorite")                  // Gera corações
